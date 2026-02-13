@@ -5,12 +5,11 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js",
+    "preview": "npx -y serve ./build/client",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
     "@react-router/node": "7.12.0",
-    "@react-router/serve": "7.12.0",
     "isbot": "^5.1.31",
     "lucide-react": "^0.564.0",
     "react": "^19.2.4",
