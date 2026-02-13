@@ -49,7 +49,7 @@ const features: Feature[] = [
       '混合模式：故事 + 指令同时输入',
       '纯元指令：暂停故事，与小苍兰对话',
       '元回复机制：Freesia 以她的视角回应',
-      '支持五种文风与自定义模版',
+      '功能整合：@Freesia 总结 / @Freesia 代写回复',
     ],
     mockComponent: (isDark: boolean) => <MockAtFreesia isDark={isDark} />,
     accentColor: '#ec4899',
@@ -80,7 +80,7 @@ const features: Feature[] = [
     description:
       '正文末尾自动生成故事梗概。开启 Token 减少模式后，旧消息折叠为摘要，长情陪伴无压力。',
     details: [
-      '自动生成时间、地点、事件标记',
+      '自动生成时间、地点、事件摘要',
       '实时追踪当前故事进展',
       'Token 减少模式自动折叠旧消息',
       '支持展开/折叠的优雅 UI',
@@ -100,7 +100,6 @@ const features: Feature[] = [
       '根据上下文自动生成角色回复',
       '支持自定义指令控制写作风格',
       'QR 一键上屏快捷操作',
-      '保持角色性格一致性',
     ],
     mockComponent: (isDark: boolean) => <MockImpersonate isDark={isDark} />,
     accentColor: '#a21caf',
