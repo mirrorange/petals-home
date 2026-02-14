@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router'
 import type { Route } from "./+types/home";
 import Navbar from '~/components/sections/Navbar'
 import HeroSection from '~/components/sections/HeroSection'
@@ -18,6 +19,8 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  const location = useLocation()
+
   const [isDark, setIsDark] = useState(() => {
     // SSR-safe: default to false, will be corrected in useEffect
     if (typeof window === 'undefined') return false
@@ -31,6 +34,18 @@ export default function Home() {
     const isCurrentlyDark = document.documentElement.classList.contains('dark')
     setIsDark(isCurrentlyDark)
   }, [])
+
+  // Scroll to hash target after navigating from another page
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.slice(1)
+      // Small delay to ensure DOM is painted after route transition
+      const timer = setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+      return () => clearTimeout(timer)
+    }
+  }, [location.hash])
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDark)

@@ -1,4 +1,5 @@
 import { Sparkles } from 'lucide-react'
+import { Link } from 'react-router'
 
 interface HeroSectionProps {
   isDark: boolean
@@ -86,7 +87,8 @@ export default function HeroSection({ isDark }: HeroSectionProps) {
 
         {/* CTA Buttons */}
         <div className="animate-slide-up-delayed-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
+          <Link
+            to="/tutorials/quick-start"
             id="cta-quickstart"
             className="group relative px-8 py-3.5 rounded-full text-white font-semibold text-base overflow-hidden
               transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95 cursor-pointer
@@ -106,7 +108,7 @@ export default function HeroSection({ isDark }: HeroSectionProps) {
               <Sparkles className="w-4 h-4" />
               快速开始
             </span>
-          </button>
+          </Link>
 
           <a
             id="cta-releases"

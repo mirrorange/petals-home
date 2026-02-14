@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Sparkles } from 'lucide-react'
+import { Link } from 'react-router'
 import ThemeToggle from '~/components/ui/ThemeToggle'
 
 interface NavbarProps {
@@ -29,8 +30,8 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
     >
       <div className="max-w-6xl mx-auto px-4 relative flex items-center justify-between">
         {/* Logo */}
-        <a
-          href="#hero"
+        <Link
+          to="/"
           className="flex items-center gap-2 group transition-transform hover:scale-105"
         >
           <Sparkles className={`w-5 h-5 transition-colors duration-300
@@ -46,14 +47,22 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
           >
             花瓣预设
           </span>
-        </a>
+        </Link>
 
         {/* Nav links — absolutely centered */}
         <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-          <a href="#features" className="text-sm font-medium text-slate-500 dark:text-slate-400
+          <Link to="/" className="text-sm font-medium text-slate-500 dark:text-slate-400
+            hover:text-freesia-600 dark:hover:text-freesia-300 transition-colors">
+            首页
+          </Link>
+          <a href="/#features" className="text-sm font-medium text-slate-500 dark:text-slate-400
             hover:text-freesia-600 dark:hover:text-freesia-300 transition-colors">
             功能特性
           </a>
+          <Link to="/tutorials" className="text-sm font-medium text-slate-500 dark:text-slate-400
+            hover:text-freesia-600 dark:hover:text-freesia-300 transition-colors">
+            使用教程
+          </Link>
           <a
             href="https://discord.com/channels/1134557553011998840/1333735046120476686"
             target="_blank"
