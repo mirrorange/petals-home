@@ -18,7 +18,6 @@ import {
   Contact,
   ChevronDown,
   CheckCircle,
-  AlertCircle,
   Link as LinkIcon,
   Copy,
   Sparkles,
@@ -82,15 +81,16 @@ function STButton({
   isDark: boolean
   className?: string
 }) {
+  const ringOffsetClass = isDark ? 'ring-offset-[#1b1c21]' : 'ring-offset-white'
   const highlightRing = highlight
     ? highlight === 'red'
-      ? 'ring-2 ring-red-500 ring-offset-2 animate-pulse z-10'
+      ? `ring-2 ring-red-500 ring-offset-2 ${ringOffsetClass} animate-pulse z-10`
       : highlight === 'purple'
-      ? 'ring-2 ring-purple-500 ring-offset-2 animate-pulse z-10'
+      ? `ring-2 ring-purple-500 ring-offset-2 ${ringOffsetClass} animate-pulse z-10`
       : highlight === 'yellow'
-      ? 'ring-2 ring-yellow-500 ring-offset-2 animate-pulse z-10'
+      ? `ring-2 ring-yellow-500 ring-offset-2 ${ringOffsetClass} animate-pulse z-10`
       : highlight === 'pink'
-      ? 'ring-2 ring-pink-500 ring-offset-2 animate-pulse z-10'
+      ? `ring-2 ring-pink-500 ring-offset-2 ${ringOffsetClass} animate-pulse z-10`
       : ''
     : ''
 
@@ -258,156 +258,208 @@ function STCheckbox({
   )
 }
 
-/* ───────────────────────── Step content builders ───────────────────────── */
+type GuideAccent = 'red' | 'purple' | 'yellow' | 'blue' | 'green'
 
-function StepPrepare({ isDark }: { isDark: boolean }) {
+function GuideStepCard({
+  index,
+  title,
+  detail,
+  tip,
+  accent = 'purple',
+  isDark,
+}: {
+  index: number
+  title: string
+  detail: React.ReactNode
+  tip?: React.ReactNode
+  accent?: GuideAccent
+  isDark: boolean
+}) {
+  const accentColorMap: Record<GuideAccent, string> = {
+    red: '#ef4444',
+    purple: '#a855f7',
+    yellow: '#eab308',
+    blue: '#3b82f6',
+    green: '#22c55e',
+  }
+
+  const accentColor = accentColorMap[accent]
+
   return (
-    <div className="space-y-6">
-      {/* Version Check */}
-      <div
-        className="p-4 rounded-r-lg"
-        style={{
-          background: isDark ? 'rgba(59,130,246,0.08)' : 'rgba(59,130,246,0.05)',
-          borderLeft: '4px solid #3b82f6',
-        }}
-      >
-        <h3
-          className="font-bold flex items-center gap-2 text-base"
-          style={{ color: isDark ? '#93c5fd' : '#1d4ed8' }}
+    <div
+      className="rounded-2xl p-4 md:p-5 space-y-2"
+      style={{
+        background: isDark ? 'rgba(15,23,42,0.32)' : 'rgba(255,255,255,0.82)',
+        border: isDark ? '1px solid rgba(107,114,128,0.2)' : '1px solid rgba(147,51,234,0.08)',
+        boxShadow: isDark ? '0 10px 22px rgba(0,0,0,0.25)' : '0 10px 22px rgba(148,163,184,0.12)',
+      }}
+    >
+      <div className="flex items-start gap-3">
+        <div
+          className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shrink-0 mt-0.5"
+          style={{ background: accentColor, color: '#ffffff' }}
         >
-          <AlertCircle size={20} />
-          1. 版本检查
-        </h3>
-        <p className="mt-2 text-sm leading-relaxed" style={{ color: isDark ? '#cbd5e1' : '#475569' }}>
-          请确保酒馆 (SillyTavern) 版本为{' '}
-          <code
-            className="px-1.5 py-0.5 rounded text-xs font-mono"
-            style={{
-              background: isDark ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.06)',
-              color: isDark ? '#fbbf24' : '#b45309',
-            }}
-          >
-            v1.15.0
-          </code>{' '}
-          或更高。
-        </p>
-      </div>
-
-      {/* STScript Settings */}
-      <div className="space-y-3">
-        <h3
-          className="font-bold flex items-center gap-2 text-base"
-          style={{ color: isDark ? '#e5e7eb' : '#1e293b' }}
-        >
-          <UserCog size={20} className="text-pink-400" />
-          2. 确认 STscript 设置
-        </h3>
-        <p className="text-sm mb-2" style={{ color: isDark ? '#9ca3af' : '#64748b' }}>
-          点击顶部栏第 <span className="font-bold" style={{ color: isDark ? '#fff' : '#0f172a' }}>5</span> 个图标，进入用户设置。
-          <br />
-          找到 <span style={{ color: isDark ? '#d1d5db' : '#334155' }}>STscript设置 (STscript Settings)</span> 部分。
-        </p>
-
-        <STPanel isDark={isDark} className="relative">
-          <div
-            className="absolute -top-3 left-4 px-2 text-xs uppercase tracking-wider"
-            style={{
-              background: isDark ? '#18191e' : '#f8f6ff',
-              color: isDark ? '#6b7280' : '#94a3b8',
-            }}
-          >
-            Simulation
-          </div>
-
-          <STNavbar activeIndex={4} highlightIndex={4} highlightColor="pink" isDark={isDark} />
-
-          <div className="space-y-4 px-2">
-            <div
-              className="text-xs font-mono pb-1 mb-2"
-              style={{
-                color: isDark ? '#6b7280' : '#94a3b8',
-                borderBottom: isDark ? '1px solid rgba(107,114,128,0.2)' : '1px solid rgba(147,51,234,0.08)',
-              }}
-            >
-              USER SETTINGS
-            </div>
-
-            <div className="space-y-2">
-              <STLabel isDark={isDark}>STscript设置</STLabel>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <STCheckbox label="严格转义" checked={true} highlight={true} highlightColor="pink" isDark={isDark} />
-                <STCheckbox label="替换 GETVAR (Replace GETVAR)" checked={true} highlight={true} highlightColor="pink" isDark={isDark} />
-              </div>
-            </div>
-          </div>
-        </STPanel>
-      </div>
-
-      {/* File Downloads */}
-      <div className="space-y-2 pt-4" style={{ borderTop: isDark ? '1px solid rgba(107,114,128,0.2)' : '1px solid rgba(147,51,234,0.08)' }}>
-        <h4 className="font-bold text-sm" style={{ color: isDark ? '#e5e7eb' : '#1e293b' }}>
-          3. 所需文件 (请先下载):
-        </h4>
-        <div className="grid gap-2">
-          <div
-            className="flex items-center gap-3 p-3 rounded-lg"
-            style={{
-              background: isDark ? '#202225' : '#ffffff',
-              border: isDark ? '1px solid rgba(107,114,128,0.3)' : '1px solid rgba(147,51,234,0.1)',
-            }}
-          >
-            <div className="text-green-400"><FileDown size={20} /></div>
-            <div>
-              <div className="font-mono text-xs" style={{ color: isDark ? '#e5e7eb' : '#334155' }}>
-                Freesia Petals Full v5.1.json
-              </div>
-              <div className="text-[10px]" style={{ color: isDark ? '#6b7280' : '#94a3b8' }}>
-                预设本体
-              </div>
-            </div>
-          </div>
-          <div
-            className="flex items-center gap-3 p-3 rounded-lg"
-            style={{
-              background: isDark ? '#202225' : '#ffffff',
-              border: isDark ? '1px solid rgba(107,114,128,0.3)' : '1px solid rgba(147,51,234,0.1)',
-            }}
-          >
-            <div className="text-purple-400"><FileDown size={20} /></div>
-            <div>
-              <div className="font-mono text-xs" style={{ color: isDark ? '#e5e7eb' : '#334155' }}>
-                Freesia Petals v5.1 QR.json
-              </div>
-              <div className="text-[10px]" style={{ color: isDark ? '#6b7280' : '#94a3b8' }}>
-                快速回复
-              </div>
-            </div>
-          </div>
+          {index}
+        </div>
+        <div className="min-w-0">
+          <h3 className="text-sm font-bold" style={{ color: isDark ? '#f3f4f6' : '#0f172a' }}>
+            {title}
+          </h3>
+          <p className="mt-1 text-sm leading-relaxed" style={{ color: isDark ? '#cbd5e1' : '#475569' }}>
+            {detail}
+          </p>
+          {tip && (
+            <p className="mt-2 text-xs font-medium" style={{ color: accentColor }}>
+              {tip}
+            </p>
+          )}
         </div>
       </div>
     </div>
   )
 }
 
+/* ───────────────────────── Step content builders ───────────────────────── */
+
+function StepPrepare({ isDark }: { isDark: boolean }) {
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] gap-10 lg:gap-12 items-start">
+      <div className="space-y-3">
+        <GuideStepCard
+          index={1}
+          title="确认 SillyTavern 版本"
+          accent="blue"
+          isDark={isDark}
+          detail={
+            <>
+              请确保酒馆 (SillyTavern) 版本为{' '}
+              <code
+                className="px-1.5 py-0.5 rounded text-xs font-mono"
+                style={{
+                  background: isDark ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.06)',
+                  color: isDark ? '#fbbf24' : '#b45309',
+                }}
+              >
+                v1.15.0
+              </code>{' '}
+              或更高。
+            </>
+          }
+          tip="版本过低时，预设脚本将无法运行。"
+        />
+
+        <GuideStepCard
+          index={2}
+          title="确认 STscript 设置"
+          accent="purple"
+          isDark={isDark}
+          detail={
+            <>
+              点击顶部栏第 <span className="font-semibold">5</span> 个图标进入用户设置，找到{' '}
+              <span className="font-semibold">STscript设置</span>，确认勾选{' '}
+              <span className="font-semibold" style={{ color: isDark ? '#d8b4fe' : '#7e22ce' }}>
+                严格转义
+              </span>{' '}
+              和{' '}
+              <span className="font-semibold" style={{ color: isDark ? '#d8b4fe' : '#7e22ce' }}>
+                替换 GETVAR
+              </span>
+              。
+            </>
+          }
+          tip="这两项未启用时，脚本会出现异常。"
+        />
+      </div>
+
+      <STPanel isDark={isDark} className="relative">
+        <div
+          className="absolute -top-3 left-4 px-2 text-xs uppercase tracking-wider"
+          style={{
+            background: isDark ? '#18191e' : '#f8f6ff',
+            color: isDark ? '#6b7280' : '#94a3b8',
+          }}
+        >
+          Simulation
+        </div>
+
+        <STNavbar activeIndex={4} highlightIndex={4} highlightColor="pink" isDark={isDark} />
+
+        <div className="space-y-4 px-2">
+          <div
+            className="text-xs font-mono pb-1 mb-2"
+            style={{
+              color: isDark ? '#6b7280' : '#94a3b8',
+              borderBottom: isDark ? '1px solid rgba(107,114,128,0.2)' : '1px solid rgba(147,51,234,0.08)',
+            }}
+          >
+            USER SETTINGS
+          </div>
+
+          <div className="space-y-2">
+            <STLabel isDark={isDark}>STscript设置</STLabel>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <STCheckbox label="严格转义" checked={true} highlight={true} highlightColor="pink" isDark={isDark} />
+              <STCheckbox label="替换 GETVAR" checked={true} highlight={true} highlightColor="pink" isDark={isDark} />
+            </div>
+          </div>
+        </div>
+      </STPanel>
+    </div>
+  )
+}
+
 function StepImportPreset({ isDark }: { isDark: boolean }) {
   return (
-    <div className="space-y-4">
-      <p className="text-sm leading-relaxed" style={{ color: isDark ? '#cbd5e1' : '#475569' }}>
-        1. 点击左侧设置栏顶部的 <span className="font-bold" style={{ color: isDark ? '#f3f4f6' : '#0f172a' }}>预设</span> (第1个图标) 进入设置。
-        <br />
-        2. 找到 <span className="font-bold" style={{ color: isDark ? '#f3f4f6' : '#0f172a' }}>对话补全预设</span> 区域。
-        <br />
-        3. 点击 <span className="font-bold text-red-400">红色框</span> 所示的导入按钮，选择{' '}
-        <code
-          className="px-1 rounded text-xs font-mono"
-          style={{ background: isDark ? 'rgba(107,114,128,0.3)' : 'rgba(147,51,234,0.08)', color: isDark ? '#e5e7eb' : '#475569' }}
-        >
-          Freesia Petals Full v5.1.json
-        </code>
-        。
-        <br />
-        4. 导入后，点击 <span className="font-bold text-purple-400">紫色框</span> 所示的保存按钮。
-      </p>
+    <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-10 lg:gap-10 items-start">
+      <div className="space-y-3">
+        <GuideStepCard
+          index={1}
+          title="进入预设页签"
+          accent="blue"
+          isDark={isDark}
+          detail={
+            <>
+              点击顶部设置栏第 1 个 <span className="font-semibold">预设</span> 图标，确认当前面板标题是{' '}
+              <span className="font-semibold">对话补全预设</span>。
+            </>
+          }
+        />
+
+        <GuideStepCard
+          index={2}
+          title="导入 Full 预设文件"
+          accent="red"
+          isDark={isDark}
+          detail={
+            <>
+              点击红色提示的导入按钮，选择{' '}
+              <code
+                className="px-1 rounded text-xs font-mono"
+                style={{
+                  background: isDark ? 'rgba(107,114,128,0.3)' : 'rgba(147,51,234,0.08)',
+                  color: isDark ? '#e5e7eb' : '#475569',
+                }}
+              >
+                Freesia Petals Full v5.2.json
+              </code>{' '}
+              并完成导入。
+            </>
+          }
+        />
+
+        <GuideStepCard
+          index={3}
+          title="检查是否导入成功"
+          accent="green"
+          isDark={isDark}
+          detail={
+            <>
+              导入后下拉名称应显示 <span className="font-semibold">Freesia Petals Full v5.2</span>。
+            </>
+          }
+          tip="名称没有变化通常代表导入失败或选错文件。"
+        />
+      </div>
 
       <STPanel isDark={isDark} className="relative">
         <div
@@ -417,7 +469,7 @@ function StepImportPreset({ isDark }: { isDark: boolean }) {
           Simulation
         </div>
 
-        <STNavbar activeIndex={0} isDark={isDark} />
+        <STNavbar activeIndex={0} highlightIndex={0} highlightColor="red" isDark={isDark} />
 
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
@@ -437,7 +489,7 @@ function StepImportPreset({ isDark }: { isDark: boolean }) {
 
           <div className="flex gap-2">
             <div className="flex-grow">
-              <STInput value="Freesia Petals Full v5.1" isDark={isDark} />
+              <STInput value="Freesia Petals Full v5.2" isDark={isDark} />
             </div>
             <div className="flex gap-1">
               <div className="relative group">
@@ -474,31 +526,65 @@ function StepImportPreset({ isDark }: { isDark: boolean }) {
 
 function StepImportQR({ isDark }: { isDark: boolean }) {
   return (
-    <div className="space-y-4">
-      <p className="text-sm leading-relaxed" style={{ color: isDark ? '#cbd5e1' : '#475569' }}>
-        1. 点击顶部导航栏第 <span className="font-bold" style={{ color: isDark ? '#fff' : '#0f172a' }}>7</span> 个图标（骰子/盒子图标）。
-        <br />
-        2. 找到底部的 <span className="font-bold">编辑快速回复</span> 栏，点击{' '}
-        <span className="font-bold text-yellow-400">导入按钮</span> (黄色框)，导入{' '}
-        <code
-          className="px-1 rounded text-xs font-mono"
-          style={{ background: isDark ? 'rgba(107,114,128,0.3)' : 'rgba(147,51,234,0.08)', color: isDark ? '#e5e7eb' : '#475569' }}
-        >
-          Freesia Petals v5.1 QR.json
-        </code>
-        。
-        <br />
-        3. 勾选顶部的 <span className="font-bold text-yellow-400">启用快速回复</span> (黄色框)。
-        <br />
-        4. 点击 <span className="font-bold">全局快速回复集</span> 旁边的{' '}
-        <span
-          className="inline-block px-1.5 py-0.5 rounded text-xs font-mono"
-          style={{ background: isDark ? '#374151' : '#e2e8f0' }}
-        >
-          +
-        </span>{' '}
-        号 (黄色框)，选择刚才导入的预设。
-      </p>
+    <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-10 lg:gap-10 items-start">
+      <div className="space-y-3">
+        <GuideStepCard
+          index={1}
+          title="打开 Quick Reply 页面"
+          accent="blue"
+          isDark={isDark}
+          detail={
+            <>
+              点击顶部设置栏第 7 个 <span className="font-semibold">扩展</span> 图标（盒子），进入{' '}
+              <span className="font-semibold">快速回复 (Quick Reply)</span> 设置页。
+            </>
+          }
+        />
+
+        <GuideStepCard
+          index={2}
+          title="导入 QR 文件"
+          accent="yellow"
+          isDark={isDark}
+          detail={
+            <>
+              在底部 <span className="font-semibold">编辑快速回复</span> 区域点击黄色提示导入按钮，选择{' '}
+              <code
+                className="px-1 rounded text-xs font-mono"
+                style={{
+                  background: isDark ? 'rgba(107,114,128,0.3)' : 'rgba(147,51,234,0.08)',
+                  color: isDark ? '#e5e7eb' : '#475569',
+                }}
+              >
+                Freesia Petals v5.2 QR.json
+              </code>
+              。
+            </>
+          }
+          tip="导入后应能在列表里看到对应 QR 集名称。"
+        />
+
+        <GuideStepCard
+          index={3}
+          title="启用并绑定到全局"
+          accent="green"
+          isDark={isDark}
+          detail={
+            <>
+              勾选上方 <span className="font-semibold">启用快速回复</span>，然后点击{' '}
+              <span
+                className="inline-block px-1.5 py-0.5 rounded text-xs font-mono"
+                style={{ background: isDark ? '#374151' : '#e2e8f0' }}
+              >
+                +
+              </span>{' '}
+              让下方全局快速回复项出现，并在该项目选中{' '}
+              <span className="font-semibold">Freesia Petals v5.2 QR</span>。
+            </>
+          }
+          tip="只导入不绑定到全局，或新增项选错 QR，都会导致 QR 集不生效。"
+        />
+      </div>
 
       <STPanel isDark={isDark} className="relative">
         <div
@@ -534,7 +620,7 @@ function StepImportQR({ isDark }: { isDark: boolean }) {
               <div className="relative group">
                 <STButton icon={Plus} highlight="yellow" isDark={isDark} className="w-6 h-6 p-0" />
                 <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 text-yellow-500 text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                  3. 添加到全局
+                  3. 点击 + 后出现下方项目
                 </div>
               </div>
             </div>
@@ -547,7 +633,18 @@ function StepImportQR({ isDark }: { isDark: boolean }) {
                 color: isDark ? '#ffffff' : '#334155',
               }}
             >
-              <span>Freesia Petals v5.1 QR</span>
+              <div className="flex items-center gap-2 min-w-0 relative group">
+                <span className="flex items-center gap-1 min-w-0">
+                  <span className="truncate">Freesia Petals v5.2 QR</span>
+                  <ChevronDown
+                    size={14}
+                    className={isDark ? 'text-gray-500 shrink-0' : 'text-slate-400 shrink-0'}
+                  />
+                </span>
+                <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 text-yellow-500 text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  4. 下拉选中
+                </div>
+              </div>
               <div className="flex gap-2 items-center">
                 <span
                   className="flex items-center gap-1 px-2 py-0.5 rounded text-xs"
@@ -636,7 +733,7 @@ function StepDone({ isDark }: { isDark: boolean }) {
           <li>如果界面没有变化，请尝试刷新网页。</li>
           <li>
             以后如果调整了Prompt，记得再次点击那个
-            <span className="text-purple-400">紫色的保存按钮</span>。
+            <span className="text-purple-400">保存按钮</span>。
           </li>
         </ul>
       </div>
@@ -708,7 +805,7 @@ export default function QuickStart() {
       <div className="pt-28" />
 
       {/* Main content area */}
-      <div className="max-w-2xl mx-auto px-4 pb-24">
+      <div className="max-w-5xl mx-auto px-4 pb-24">
         {/* Back to tutorials button */}
         <Link
           to="/tutorials"
@@ -742,7 +839,7 @@ export default function QuickStart() {
             </span>
           </h1>
           <p className="text-sm" style={{ color: isDark ? '#9ca3af' : '#64748b' }}>
-            花瓣预设 v5.1 · 跟着模拟 UI 一步步完成安装
+            花瓣预设 v5.2 · 跟着模拟 UI 一步步完成安装
           </p>
         </div>
 
