@@ -4,4 +4,5 @@ export default [
   index("routes/home.tsx"),
   route("tutorials", "routes/tutorials.tsx"),
   route("tutorials/quick-start", "routes/tutorials.quick-start.tsx"),
+  route("tutorials/noass", "routes/tutorials.noass.tsx"),
 ] satisfies RouteConfig;
