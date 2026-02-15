@@ -30,7 +30,7 @@ import {
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'CoT 配置指南 — 花瓣预设 Petals Preset' },
+    { title: 'Petals CoT 配置指南 — 花瓣预设 Petals Preset' },
     {
       name: 'description',
       content:
@@ -1110,7 +1110,7 @@ export default function CoTConfig() {
                   : 'linear-gradient(135deg, #701a75, #9333ea, #ec4899)',
               }}
             >
-              CoT 配置指南
+              Petals CoT 配置指南
             </span>
           </h1>
           <p className="text-sm" style={{ color: isDark ? '#9ca3af' : '#64748b' }}>
