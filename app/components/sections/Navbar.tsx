@@ -55,10 +55,10 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
             hover:text-freesia-600 dark:hover:text-freesia-300 transition-colors">
             首页
           </Link>
-          <a href="/#features" className="text-sm font-medium text-slate-500 dark:text-slate-400
+          <Link to="/#features" className="text-sm font-medium text-slate-500 dark:text-slate-400
             hover:text-freesia-600 dark:hover:text-freesia-300 transition-colors">
             功能特性
-          </a>
+          </Link>
           <Link to="/tutorials" className="text-sm font-medium text-slate-500 dark:text-slate-400
             hover:text-freesia-600 dark:hover:text-freesia-300 transition-colors">
             使用教程
