@@ -527,7 +527,6 @@ function StepDone({ isDark }: { isDark: boolean }) {
         <ul className="list-disc pl-4 space-y-1">
           <li>NoAss 仅在使用 <span className="text-purple-400 font-medium">DeepSeek</span> 系列模型时需要配置。</li>
           <li>如果安装扩展后页面没有变化，请尝试<span className="text-yellow-500 font-medium">刷新网页</span>。</li>
-          <li>更新 NoAss 插件后可能需要重新检查预设设置。</li>
         </ul>
       </div>
     </div>
