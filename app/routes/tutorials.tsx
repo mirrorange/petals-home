@@ -44,9 +44,9 @@ const categories: TutorialCategory[] = [
     icon: <Rocket className="w-6 h-6" />,
     title: '快速开始',
     titleEn: 'Quick Start',
-    description: '从零开始，跟着模拟 UI 一步步完成花瓣预设的安装与配置，几分钟即可上手。',
+    description: '从零开始，跟着教程完成花瓣预设的安装与配置，几分钟即可上手。',
     items: [
-      { label: '安装教程 · 全流程引导', href: '/tutorials/quick-start', ready: true },
+      { label: '安装教程', href: '/tutorials/quick-start', ready: true },
     ],
     accentFrom: '#9333ea',
     accentTo: '#ec4899',

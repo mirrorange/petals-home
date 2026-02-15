@@ -715,7 +715,7 @@ function StepDone({ isDark }: { isDark: boolean }) {
         </h3>
         <p className="max-w-xs mx-auto text-sm" style={{ color: isDark ? '#9ca3af' : '#64748b' }}>
           现在点开一张角色卡，应该会自动跳出{' '}
-          <span className="text-pink-400 font-medium">初始设置选项</span>。
+          <span className="text-pink-400 font-medium">初始设置</span>。
         </p>
       </div>
       <div
@@ -839,7 +839,7 @@ export default function QuickStart() {
             </span>
           </h1>
           <p className="text-sm" style={{ color: isDark ? '#9ca3af' : '#64748b' }}>
-            花瓣预设 v5.2 · 跟着模拟 UI 一步步完成安装
+            跟着模拟 UI 一步步完成安装
           </p>
         </div>
 
