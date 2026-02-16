@@ -6,4 +6,5 @@ export default [
   route("tutorials/quick-start", "routes/tutorials.quick-start.tsx"),
   route("tutorials/noass", "routes/tutorials.noass.tsx"),
   route("tutorials/cot", "routes/tutorials.cot.tsx"),
+  route("tutorials/basic-settings", "routes/tutorials.basic-settings.tsx"),
 ] satisfies RouteConfig;

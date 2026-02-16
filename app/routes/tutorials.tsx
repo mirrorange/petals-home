@@ -61,9 +61,8 @@ const categories: TutorialCategory[] = [
     description: '深入了解预设的各项配置选项，根据自己的需求自由调整参数。',
     items: [
       { label: 'Petals CoT 配置', href: '/tutorials/cot', ready: true },
-      { label: '预设参数详解', href: '/tutorials/config-params', ready: false },
+      { label: '基本参数设置', href: '/tutorials/basic-settings', ready: true },
       { label: 'API 设置建议', href: '/tutorials/api-setup', ready: false },
-      { label: '上下文与 Token 管理', href: '/tutorials/token-management', ready: false },
     ],
     accentFrom: '#7e22ce',
     accentTo: '#a855f7',
