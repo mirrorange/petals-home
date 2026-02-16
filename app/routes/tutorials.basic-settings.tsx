@@ -6,7 +6,6 @@ import {
   Settings,
   MessageSquare,
   Zap,
-  RefreshCw,
   Languages,
   Lightbulb,
   PenLine,

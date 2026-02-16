@@ -8,7 +8,6 @@ import {
   Languages,
   Send,
   Lightbulb,
-  PenLine,
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.cot'
 import {

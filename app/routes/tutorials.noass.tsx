@@ -13,7 +13,6 @@ import type { Route } from './+types/tutorials.noass'
 import {
   STPanel,
   STNavbar,
-  STLabel,
   STCheckbox,
   STInput,
   GuideStepCard,

@@ -5,9 +5,7 @@ import {
   Layers,
   Palette,
   ArrowRight,
-  Sparkles,
   BookOpen,
-  Clock,
 } from 'lucide-react'
 import type { Route } from './+types/tutorials'
 import Navbar from '~/components/sections/Navbar'
