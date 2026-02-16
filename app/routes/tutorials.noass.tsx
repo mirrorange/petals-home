@@ -25,6 +25,7 @@ import {
   STInput,
   GuideStepCard,
   SimulationBadge,
+  TutorialHintCard,
 } from '~/components/ui/TutorialComponents'
 
 export function meta({}: Route.MetaArgs) {
@@ -412,15 +413,7 @@ function StepInstallNoAss({ isDark }: { isDark: boolean }) {
 
         {/* Simulation: Install dialog */}
         <STPanel isDark={isDark} className="relative">
-          <div
-            className="absolute -top-3 left-4 px-2 text-xs uppercase tracking-wider"
-            style={{
-              background: isDark ? '#18191e' : '#f8f6ff',
-              color: isDark ? '#6b7280' : '#94a3b8',
-            }}
-          >
-            Dialog
-          </div>
+          <SimulationBadge isDark={isDark} label="Dialog" />
           <MockInstallDialog isDark={isDark} />
         </STPanel>
       </div>
@@ -513,22 +506,12 @@ function StepDone({ isDark }: { isDark: boolean }) {
           NoAss 插件已配置就绪，现在可以在 DeepSeek 模型中享受 Petals 预设的完整体验了。
         </p>
       </div>
-      <div
-        className="p-4 rounded-xl text-left text-sm max-w-md mx-auto"
-        style={{
-          background: isDark ? '#202225' : '#ffffff',
-          border: isDark ? '1px solid rgba(107,114,128,0.3)' : '1px solid rgba(147,51,234,0.1)',
-          color: isDark ? '#9ca3af' : '#64748b',
-        }}
-      >
-        <p className="font-bold mb-2" style={{ color: isDark ? '#d1d5db' : '#334155' }}>
-          💡 小提示:
-        </p>
+      <TutorialHintCard isDark={isDark} className="max-w-md mx-auto">
         <ul className="list-disc pl-4 space-y-1">
           <li>NoAss 仅在使用 <span className="text-purple-400 font-medium">DeepSeek</span> 系列模型时需要配置。</li>
           <li>如果安装扩展后页面没有变化，请尝试<span className="text-yellow-500 font-medium">刷新网页</span>。</li>
         </ul>
-      </div>
+      </TutorialHintCard>
     </div>
   )
 }

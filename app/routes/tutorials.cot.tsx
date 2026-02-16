@@ -26,6 +26,7 @@ import {
   STPanel,
   GuideStepCard,
   SimulationBadge,
+  TutorialHintCard,
 } from '~/components/ui/TutorialComponents'
 
 export function meta({}: Route.MetaArgs) {
@@ -838,15 +839,7 @@ function StepFindEntry({ isDark }: { isDark: boolean }) {
 
         {/* Simulation: Settings menu */}
         <STPanel isDark={isDark} className="relative">
-          <div
-            className="absolute -top-3 left-4 px-2 text-xs uppercase tracking-wider"
-            style={{
-              background: isDark ? '#18191e' : '#f8f6ff',
-              color: isDark ? '#6b7280' : '#94a3b8',
-            }}
-          >
-            设置菜单
-          </div>
+          <SimulationBadge isDark={isDark} label="设置菜单" />
           <MockSettingsMenu isDark={isDark} highlightCot />
         </STPanel>
       </div>
@@ -997,26 +990,22 @@ function StepDone({ isDark }: { isDark: boolean }) {
           CoT 模式已设定完毕，Freesia 与 Petals 将按照你选择的方式协同创作。
         </p>
       </div>
-      <div
-        className="p-4 rounded-xl text-left text-sm max-w-md mx-auto"
-        style={{
-          background: isDark ? '#202225' : '#ffffff',
-          border: isDark ? '1px solid rgba(107,114,128,0.3)' : '1px solid rgba(147,51,234,0.1)',
-          color: isDark ? '#9ca3af' : '#64748b',
-        }}
-      >
-        <p className="font-bold mb-2" style={{ color: isDark ? '#d1d5db' : '#334155' }}>
+      <TutorialHintCard
+        isDark={isDark}
+        className="max-w-md mx-auto"
+        title={(
           <span className="inline-flex items-center gap-1.5">
             <Lightbulb size={15} />
             小提示:
           </span>
-        </p>
+        )}
+      >
         <ul className="list-disc pl-4 space-y-1">
           <li>如果不确定选哪个模式，推荐使用<span className="text-pink-400 font-medium">线性</span>模式开始体验。</li>
           <li>你可以随时通过同一入口<span className="text-yellow-500 font-medium">切换 CoT 模式</span>，无需重新初始化。</li>
           <li>不同模式适用于不同场景，建议先试用再决定。</li>
         </ul>
-      </div>
+      </TutorialHintCard>
     </div>
   )
 }

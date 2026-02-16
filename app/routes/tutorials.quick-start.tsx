@@ -29,6 +29,7 @@ import {
   STCheckbox,
   GuideStepCard,
   SimulationBadge,
+  TutorialHintCard,
 } from '~/components/ui/TutorialComponents'
 
 export function meta({}: Route.MetaArgs) {
@@ -177,12 +178,7 @@ function StepImportPreset({ isDark }: { isDark: boolean }) {
       </div>
 
       <STPanel isDark={isDark} className="relative">
-        <div
-          className="absolute -top-3 left-4 px-2 text-xs uppercase tracking-wider"
-          style={{ background: isDark ? '#18191e' : '#f8f6ff', color: isDark ? '#6b7280' : '#94a3b8' }}
-        >
-          Simulation
-        </div>
+        <SimulationBadge isDark={isDark} />
 
         <STNavbar activeIndex={0} highlightIndex={0} highlightColor="red" isDark={isDark} />
 
@@ -302,12 +298,7 @@ function StepImportQR({ isDark }: { isDark: boolean }) {
       </div>
 
       <STPanel isDark={isDark} className="relative">
-        <div
-          className="absolute -top-3 left-4 px-2 text-xs uppercase tracking-wider"
-          style={{ background: isDark ? '#18191e' : '#f8f6ff', color: isDark ? '#6b7280' : '#94a3b8' }}
-        >
-          Simulation
-        </div>
+        <SimulationBadge isDark={isDark} />
 
         <STNavbar activeIndex={6} highlightIndex={6} highlightColor="red" isDark={isDark} />
 
@@ -470,17 +461,7 @@ function StepDone({ isDark }: { isDark: boolean }) {
         </div>
       </div>
 
-      <div
-        className="p-4 rounded-xl text-left text-sm"
-        style={{
-          background: isDark ? '#202225' : '#ffffff',
-          border: isDark ? '1px solid rgba(107,114,128,0.3)' : '1px solid rgba(147,51,234,0.1)',
-          color: isDark ? '#9ca3af' : '#64748b',
-        }}
-      >
-        <p className="font-bold mb-2" style={{ color: isDark ? '#d1d5db' : '#334155' }}>
-          💡 小提示:
-        </p>
+      <TutorialHintCard isDark={isDark} className="max-w-md mx-auto">
         <ul className="list-disc pl-4 space-y-1">
           <li>如果界面没有变化，请尝试刷新网页。</li>
           <li>
@@ -488,7 +469,7 @@ function StepDone({ isDark }: { isDark: boolean }) {
             <span className="text-purple-400">保存按钮</span>。
           </li>
         </ul>
-      </div>
+      </TutorialHintCard>
     </div>
   )
 }
