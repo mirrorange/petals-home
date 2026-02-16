@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Link, useSearchParams } from 'react-router'
 import { ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react'
 import Navbar from '~/components/sections/Navbar'
 import FooterSection from '~/components/sections/FooterSection'
@@ -8,6 +8,11 @@ import FloatingPetals from '~/components/ui/FloatingPetals'
 export interface TutorialStepItem {
   title: string
   desc: string
+}
+
+function clampStep(stepIndex: number, totalSteps: number) {
+  if (totalSteps <= 0) return 0
+  return Math.max(0, Math.min(totalSteps - 1, stepIndex))
 }
 
 export function useTutorialTheme() {
@@ -31,6 +36,39 @@ export function useTutorialTheme() {
   const toggleTheme = () => setIsDark((prev) => !prev)
 
   return { isDark, toggleTheme }
+}
+
+export function useTutorialStepQuery(totalSteps: number, paramKey = 'step') {
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const currentStep = useMemo(() => {
+    const rawStep = searchParams.get(paramKey)
+    if (!rawStep) return 0
+
+    const parsed = Number(rawStep)
+    if (!Number.isInteger(parsed)) return 0
+
+    // Query parameter is 1-based (?step=1 is the first step).
+    return clampStep(parsed - 1, totalSteps)
+  }, [paramKey, searchParams, totalSteps])
+
+  const setCurrentStep = useCallback(
+    (stepIndex: number) => {
+      const nextStep = clampStep(stepIndex, totalSteps)
+      const nextParams = new URLSearchParams(searchParams)
+
+      if (nextStep <= 0) {
+        nextParams.delete(paramKey)
+      } else {
+        nextParams.set(paramKey, String(nextStep + 1))
+      }
+
+      setSearchParams(nextParams)
+    },
+    [paramKey, searchParams, setSearchParams, totalSteps],
+  )
+
+  return { currentStep, setCurrentStep }
 }
 
 export function TutorialPageShell({

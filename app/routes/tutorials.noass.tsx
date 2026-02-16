@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
   Download,
   FileDown,
@@ -25,6 +24,7 @@ import {
   TutorialPageShell,
   TutorialStepNavigator,
   type TutorialStepItem,
+  useTutorialStepQuery,
   useTutorialTheme,
 } from '~/components/ui/TutorialPageLayout'
 
@@ -526,7 +526,7 @@ const steps: Step[] = [
 
 export default function NoAss() {
   const { isDark, toggleTheme } = useTutorialTheme()
-  const [currentStep, setCurrentStep] = useState(0)
+  const { currentStep, setCurrentStep } = useTutorialStepQuery(steps.length)
 
   return (
     <TutorialPageShell isDark={isDark} onToggleTheme={toggleTheme}>

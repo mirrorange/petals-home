@@ -23,6 +23,7 @@ import {
   TutorialPageShell,
   TutorialStepNavigator,
   type TutorialStepItem,
+  useTutorialStepQuery,
   useTutorialTheme,
 } from '~/components/ui/TutorialPageLayout'
 
@@ -899,7 +900,7 @@ const steps: Step[] = [
 
 export default function CoTConfig() {
   const { isDark, toggleTheme } = useTutorialTheme()
-  const [currentStep, setCurrentStep] = useState(0)
+  const { currentStep, setCurrentStep } = useTutorialStepQuery(steps.length)
 
   return (
     <TutorialPageShell isDark={isDark} onToggleTheme={toggleTheme}>
