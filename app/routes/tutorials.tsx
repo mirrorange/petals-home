@@ -76,7 +76,7 @@ const categories: TutorialCategory[] = [
       { label: '@Freesia 系统', href: '/tutorials/at-freesia', ready: true },
       { label: '记忆系统', href: '/tutorials/memory', ready: true },
       { label: '故事摘要', href: '/tutorials/synopsis', ready: true },
-      { label: '代写回复', href: '/tutorials/impersonate', ready: false },
+      { label: '选项与代回', href: '/tutorials/impersonate', ready: true },
     ],
     accentFrom: '#c026d3',
     accentTo: '#f472b6',

@@ -11,4 +11,5 @@ export default [
   route("tutorials/at-freesia", "routes/tutorials.at-freesia.tsx"),
   route("tutorials/memory", "routes/tutorials.memory.tsx"),
   route("tutorials/synopsis", "routes/tutorials.synopsis.tsx"),
+  route("tutorials/impersonate", "routes/tutorials.impersonate.tsx"),
 ] satisfies RouteConfig;
