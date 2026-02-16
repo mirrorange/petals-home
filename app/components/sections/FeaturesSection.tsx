@@ -93,10 +93,10 @@ const features: Feature[] = [
   {
     id: 'user-options',
     icon: <ListChecks className="w-5 h-5" />,
-    title: '用户选项',
+    title: '故事选项',
     titleEn: 'User Options',
     description:
-      '不知道接下来该怎么推进故事？Freesia 会根据当前剧情自动生成多个用户回复选项，可通过快速回复发送。',
+      '不知道接下来该怎么推进故事？Freesia 会根据当前剧情自动生成多个回复选项，可通过快速回复发送。',
     details: [
       '根据剧情上下文自动生成多个选项',
       '每个选项包含标题与完整回复内容',
