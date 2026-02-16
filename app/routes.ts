@@ -8,4 +8,5 @@ export default [
   route("tutorials/cot", "routes/tutorials.cot.tsx"),
   route("tutorials/basic-settings", "routes/tutorials.basic-settings.tsx"),
   route("tutorials/preset-features", "routes/tutorials.preset-features.tsx"),
+  route("tutorials/at-freesia", "routes/tutorials.at-freesia.tsx"),
 ] satisfies RouteConfig;

@@ -73,7 +73,7 @@ const categories: TutorialCategory[] = [
     titleEn: 'Feature Usage',
     description: '详细了解花瓣预设的每一项核心功能，充分发挥创作潜力。',
     items: [
-      { label: '@Freesia 小苍兰系统', href: '/tutorials/at-freesia', ready: false },
+      { label: '@Freesia 系统', href: '/tutorials/at-freesia', ready: true },
       { label: '记忆系统', href: '/tutorials/memory', ready: false },
       { label: '故事摘要', href: '/tutorials/synopsis', ready: false },
       { label: '代写回复', href: '/tutorials/impersonate', ready: false },
