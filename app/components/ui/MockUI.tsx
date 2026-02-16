@@ -231,54 +231,6 @@ export function MockPetalsCoT({ isDark }: MockUIProps) {
 export function MockAtFreesia({ isDark }: MockUIProps) {
   return (
     <div className="font-sans text-sm w-full select-none">
-      {/* ── User input area ── */}
-      <div
-        className="rounded-t-xl overflow-hidden"
-        style={{
-          background: isDark
-            ? 'linear-gradient(135deg, #0f0c18, #1a1625)'
-            : 'linear-gradient(135deg, #fffdfb, #fdf4ff)',
-          border: isDark
-            ? '1px solid rgba(147, 51, 234, 0.25)'
-            : '1px solid rgba(147, 51, 234, 0.1)',
-          borderBottom: 'none',
-          boxShadow: isDark
-            ? '0 -2px 10px rgba(0,0,0,0.3)'
-            : '0 -2px 8px rgba(230,210,240,0.2)',
-        }}
-      >
-        <div className="p-3.5">
-          <div
-            className="rounded-lg p-3"
-            style={{
-              background: isDark ? 'rgba(45,27,78,0.2)' : 'rgba(250,245,255,0.6)',
-              border: isDark
-                ? '1px solid rgba(147,51,234,0.15)'
-                : '1px solid rgba(147,51,234,0.1)',
-            }}
-          >
-            <div
-              className="text-[11px] leading-relaxed"
-              style={{ color: isDark ? '#cbd5e1' : '#334155' }}
-            >
-              <span
-                className="font-mono px-1.5 py-0.5 rounded text-[10px] font-semibold mr-1"
-                style={{
-                  background: isDark ? 'rgba(168,85,247,0.2)' : 'rgba(147,51,234,0.1)',
-                  color: isDark ? '#d8b4fe' : '#9333ea',
-                  border: isDark
-                    ? '1px solid rgba(168,85,247,0.3)'
-                    : '1px solid rgba(147,51,234,0.14)',
-                }}
-              >
-                @Freesia
-              </span>{' '}
-              帮我把这段对话描写得更细腻一点，加入更多环境描写。
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* ── Freesia Meta Reply — MessageCard style ── */}
       <div style={{ position: 'relative', width: '100%' }}>
         {/* Keyframes for floating petals */}
