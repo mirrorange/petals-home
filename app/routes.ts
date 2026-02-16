@@ -7,4 +7,5 @@ export default [
   route("tutorials/noass", "routes/tutorials.noass.tsx"),
   route("tutorials/cot", "routes/tutorials.cot.tsx"),
   route("tutorials/basic-settings", "routes/tutorials.basic-settings.tsx"),
+  route("tutorials/preset-features", "routes/tutorials.preset-features.tsx"),
 ] satisfies RouteConfig;
