@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router'
+import { useState } from 'react'
 import {
-  CheckCircle,
   Sparkles,
   ArrowLeft,
   ArrowRight,
@@ -10,28 +8,29 @@ import {
   Zap,
   RefreshCw,
   Languages,
-  Send,
-  AtSign,
   Lightbulb,
-  FileText,
   PenLine,
-  Trash2,
-  Menu,
   Ruler,
   Globe,
   Shuffle,
   Cpu,
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.basic-settings'
-import Navbar from '~/components/sections/Navbar'
-import FooterSection from '~/components/sections/FooterSection'
-import FloatingPetals from '~/components/ui/FloatingPetals'
 import {
   STPanel,
   GuideStepCard,
   SimulationBadge,
+  MockPetalsInputBar,
+  TutorialCompletionCard,
   TutorialHintCard,
 } from '~/components/ui/TutorialComponents'
+import {
+  TutorialPageHeader,
+  TutorialPageShell,
+  TutorialStepNavigator,
+  type TutorialStepItem,
+  useTutorialTheme,
+} from '~/components/ui/TutorialPageLayout'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -49,97 +48,6 @@ function hexToRgb(hex: string): string {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
   if (!result) return '128,128,128'
   return `${parseInt(result[1], 16)},${parseInt(result[2], 16)},${parseInt(result[3], 16)}`
-}
-
-/* ───────────────────────── Mock Chat Input Bar ───────────────────────── */
-
-function MockChatInputBar({
-  isDark,
-  highlightGear,
-}: {
-  isDark: boolean
-  highlightGear?: boolean
-}) {
-  const barBg = isDark ? '#1e1f24' : '#f3f0fa'
-  const barBorder = isDark ? 'rgba(107,114,128,0.35)' : 'rgba(147,51,234,0.12)'
-  const iconColor = isDark ? '#9ca3af' : '#64748b'
-  const inputBg = isDark ? '#0b0c0f' : '#ffffff'
-  const inputBorder = isDark ? 'rgba(107,114,128,0.3)' : 'rgba(147,51,234,0.15)'
-  const placeholderColor = isDark ? '#6b7280' : '#94a3b8'
-
-  const gearRing = highlightGear
-    ? isDark
-      ? 'ring-2 ring-yellow-500 ring-offset-2 ring-offset-[#1b1c21] animate-pulse'
-      : 'ring-2 ring-yellow-500 ring-offset-2 ring-offset-white animate-pulse'
-    : ''
-  const quickActions = [
-    { id: 'mention', Icon: AtSign },
-    { id: 'idea', Icon: Lightbulb },
-    { id: 'template', Icon: FileText },
-    { id: 'edit', Icon: PenLine },
-    { id: 'clear', Icon: Trash2 },
-    { id: 'settings', Icon: Settings },
-  ]
-
-  return (
-    <div
-      className="rounded-xl overflow-hidden"
-      style={{
-        background: barBg,
-        border: `1px solid ${barBorder}`,
-      }}
-    >
-      <div
-        className="flex items-center justify-center gap-1 px-3 py-2"
-        style={{
-          borderBottom: `1px solid ${isDark ? 'rgba(107,114,128,0.2)' : 'rgba(147,51,234,0.08)'}`,
-        }}
-      >
-        {quickActions.map(({ id, Icon }) => (
-          <div
-            key={id}
-            className={`h-8 min-w-10 px-2 rounded-full flex items-center justify-center cursor-default ${
-              id === 'settings' && highlightGear ? gearRing : ''
-            }`}
-            style={{
-              background: isDark ? '#1f2127' : '#ffffff',
-              border: isDark
-                ? '1px solid rgba(107,114,128,0.3)'
-                : '1px solid rgba(147,51,234,0.1)',
-              color: id === 'settings' && highlightGear
-                ? isDark
-                  ? '#fbbf24'
-                  : '#d97706'
-                : iconColor,
-            }}
-          >
-            <Icon size={15} />
-          </div>
-        ))}
-      </div>
-      <div className="flex items-center gap-2 px-3 py-2.5">
-        <div className="w-8 h-8 rounded flex items-center justify-center shrink-0 cursor-default" style={{ color: iconColor }}>
-          <Menu size={16} />
-        </div>
-        <div className="w-8 h-8 rounded flex items-center justify-center shrink-0 cursor-default" style={{ color: iconColor }}>
-          <Sparkles size={16} />
-        </div>
-        <div
-          className="flex-1 px-3 py-1.5 rounded-lg text-sm"
-          style={{
-            background: inputBg,
-            border: `1px solid ${inputBorder}`,
-            color: placeholderColor,
-          }}
-        >
-          输入想发送的消息，或输入 /? 获取帮助
-        </div>
-        <div className="w-8 h-8 rounded flex items-center justify-center shrink-0 cursor-default" style={{ color: iconColor }}>
-          <Send size={16} />
-        </div>
-      </div>
-    </div>
-  )
 }
 
 /* ───────────────────────── Mock Settings Menu ───────────────────────── */
@@ -426,7 +334,7 @@ function StepFindEntry({ isDark }: { isDark: boolean }) {
           >
             输入栏与快速回复区域
           </div>
-          <MockChatInputBar isDark={isDark} highlightGear />
+          <MockPetalsInputBar isDark={isDark} highlightGear />
         </STPanel>
 
         <STPanel isDark={isDark} className="relative">
@@ -967,28 +875,11 @@ function StepModel({ isDark }: { isDark: boolean }) {
 
 function StepDone({ isDark }: { isDark: boolean }) {
   return (
-    <div className="text-center space-y-6 py-8">
-      <div
-        className="w-20 h-20 rounded-full flex items-center justify-center mx-auto"
-        style={{
-          background: isDark ? 'rgba(34,197,94,0.12)' : 'rgba(34,197,94,0.08)',
-          color: '#22c55e',
-          boxShadow: '0 0 0 4px rgba(34,197,94,0.08)',
-        }}
-      >
-        <CheckCircle size={40} />
-      </div>
-      <div>
-        <h3
-          className="text-2xl font-bold mb-2"
-          style={{ color: isDark ? '#ffffff' : '#0f172a' }}
-        >
-          配置完成!
-        </h3>
-        <p className="max-w-sm mx-auto text-sm" style={{ color: isDark ? '#9ca3af' : '#64748b' }}>
-          基本参数已设定完毕，Freesia 将按照你的配置进行创作。
-        </p>
-      </div>
+    <TutorialCompletionCard
+      isDark={isDark}
+      title="配置完成!"
+      description="基本参数已设定完毕，Freesia 将按照你的配置进行创作。"
+    >
       <TutorialHintCard
         isDark={isDark}
         className="max-w-md mx-auto"
@@ -998,15 +889,13 @@ function StepDone({ isDark }: { isDark: boolean }) {
           <li>所有参数可随时通过<span className="text-yellow-500 font-medium">齿轮按钮</span>重新配置。</li>
         </ul>
       </TutorialHintCard>
-    </div>
+    </TutorialCompletionCard>
   )
 }
 
 /* ───────────────────────── Main Page ───────────────────────── */
 
-interface Step {
-  title: string
-  desc: string
+interface Step extends TutorialStepItem {
   content: (isDark: boolean) => React.ReactNode
 }
 
@@ -1044,244 +933,27 @@ const steps: Step[] = [
 ]
 
 export default function BasicSettings() {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window === 'undefined') return false
-    const saved = localStorage.getItem('petals-theme')
-    if (saved) return saved === 'dark'
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-  })
+  const { isDark, toggleTheme } = useTutorialTheme()
   const [currentStep, setCurrentStep] = useState(0)
 
-  useEffect(() => {
-    const isCurrentlyDark = document.documentElement.classList.contains('dark')
-    setIsDark(isCurrentlyDark)
-  }, [])
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDark)
-    localStorage.setItem('petals-theme', isDark ? 'dark' : 'light')
-  }, [isDark])
-
-  const toggleTheme = () => setIsDark((prev) => !prev)
-
   return (
-    <div
-      className={`min-h-screen transition-colors duration-500
-      ${isDark ? 'bg-dark-bg text-slate-200' : 'bg-[#fefcff] text-slate-800'}`}
-    >
-      <FloatingPetals />
-      <Navbar isDark={isDark} onToggleTheme={toggleTheme} />
+    <TutorialPageShell isDark={isDark} onToggleTheme={toggleTheme}>
+      <TutorialPageHeader
+        isDark={isDark}
+        badgeIcon={<Settings className="w-3.5 h-3.5" />}
+        badgeLabel="配置指南"
+        title="基本参数设置"
+        description="了解回复长度、语言设置、模式设置、模型设置的配置方式与用法。"
+      />
 
-      <div className="pt-28" />
-
-      <div className="max-w-5xl mx-auto px-4 pb-24">
-        <Link
-          to="/tutorials"
-          className="inline-flex items-center gap-1.5 text-sm font-medium mb-8
-            text-slate-500 dark:text-slate-400
-            hover:text-freesia-600 dark:hover:text-freesia-300 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          返回教程目录
-        </Link>
-
-        <div className="mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-4
-            bg-freesia-100/80 text-freesia-700 border border-freesia-200/50
-            dark:bg-freesia-900/30 dark:text-freesia-300 dark:border-freesia-700/30"
-          >
-            <Settings className="w-3.5 h-3.5" />
-            配置指南
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-2">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: isDark
-                  ? 'linear-gradient(135deg, #e9d5ff, #c084fc, #f472b6)'
-                  : 'linear-gradient(135deg, #701a75, #9333ea, #ec4899)',
-              }}
-            >
-              基本参数设置
-            </span>
-          </h1>
-          <p className="text-sm" style={{ color: isDark ? '#9ca3af' : '#64748b' }}>
-            了解回复长度、语言设置、模式设置、模型设置的配置方式与用法。
-          </p>
-        </div>
-
-        {/* Step indicator card */}
-        <div
-          className="rounded-2xl p-5 mb-8"
-          style={{
-            background: isDark
-              ? 'linear-gradient(135deg, rgba(15,12,24,0.8), rgba(26,22,37,0.6))'
-              : 'linear-gradient(135deg, rgba(255,255,255,0.9), rgba(250,245,255,0.5))',
-            border: isDark
-              ? '1px solid rgba(147,51,234,0.15)'
-              : '1px solid rgba(147,51,234,0.1)',
-            backdropFilter: 'blur(12px)',
-            boxShadow: isDark
-              ? '0 8px 32px rgba(0,0,0,0.3)'
-              : '0 8px 32px rgba(147,51,234,0.06)',
-          }}
-        >
-          {/* Progress dots */}
-          <div className="flex items-center justify-center gap-3 mb-5 flex-wrap">
-            {steps.map((step, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentStep(idx)}
-                className="group relative cursor-pointer"
-              >
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-500"
-                  style={{
-                    background:
-                      idx === currentStep
-                        ? 'linear-gradient(135deg, #9333ea, #ec4899)'
-                        : idx < currentStep
-                        ? isDark ? 'rgba(147,51,234,0.2)' : 'rgba(147,51,234,0.1)'
-                        : isDark ? 'rgba(107,114,128,0.15)' : 'rgba(148,163,184,0.1)',
-                    color:
-                      idx === currentStep
-                        ? '#ffffff'
-                        : idx < currentStep
-                        ? isDark ? '#c084fc' : '#9333ea'
-                        : isDark ? '#6b7280' : '#94a3b8',
-                    border:
-                      idx === currentStep
-                        ? 'none'
-                        : idx < currentStep
-                        ? isDark ? '1px solid rgba(147,51,234,0.3)' : '1px solid rgba(147,51,234,0.2)'
-                        : isDark ? '1px solid rgba(107,114,128,0.2)' : '1px solid rgba(148,163,184,0.15)',
-                    boxShadow:
-                      idx === currentStep ? '0 4px 15px rgba(147,51,234,0.3)' : 'none',
-                    transform: idx === currentStep ? 'scale(1.1)' : 'scale(1)',
-                  }}
-                >
-                  {idx < currentStep ? <CheckCircle size={18} /> : idx + 1}
-                </div>
-                {idx < steps.length - 1 && (
-                  <div
-                    className="absolute top-1/2 left-full -translate-y-1/2 w-3 h-0.5 pointer-events-none hidden sm:block"
-                    style={{
-                      background: idx < currentStep
-                        ? isDark ? '#7e22ce' : '#c084fc'
-                        : isDark ? 'rgba(107,114,128,0.2)' : 'rgba(148,163,184,0.2)',
-                    }}
-                  />
-                )}
-                <div
-                  className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none font-medium"
-                  style={{ color: isDark ? '#9ca3af' : '#64748b' }}
-                >
-                  {step.title}
-                </div>
-              </button>
-            ))}
-          </div>
-
-          {/* Progress bar */}
-          <div className="flex gap-1 mb-6">
-            {steps.map((_, idx) => (
-              <div
-                key={idx}
-                className="h-1 flex-1 rounded-full transition-all duration-500"
-                style={{
-                  background: idx <= currentStep
-                    ? 'linear-gradient(90deg, #9333ea, #ec4899)'
-                    : isDark ? 'rgba(107,114,128,0.15)' : 'rgba(148,163,184,0.15)',
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Step title */}
-          <div className="mb-1">
-            <h2
-              className="text-xl sm:text-2xl font-bold"
-              style={{ color: isDark ? '#f3f4f6' : '#0f172a' }}
-            >
-              {steps[currentStep].title}
-            </h2>
-            <p className="text-sm mt-1" style={{ color: isDark ? '#6b7280' : '#94a3b8' }}>
-              步骤 {currentStep + 1} / {steps.length} · {steps[currentStep].desc}
-            </p>
-          </div>
-        </div>
-
-        {/* Step content with animation */}
-        <div
-          key={currentStep}
-          className="mb-8"
-          style={{ animation: 'fadeSlideIn 0.4s ease-out forwards' }}
-        >
-          {steps[currentStep].content(isDark)}
-        </div>
-
-        {/* Navigation buttons */}
-        <div
-          className="flex justify-between items-center pt-6"
-          style={{
-            borderTop: isDark ? '1px solid rgba(107,114,128,0.2)' : '1px solid rgba(147,51,234,0.08)',
-          }}
-        >
-          <button
-            onClick={() => setCurrentStep((p) => Math.max(0, p - 1))}
-            disabled={currentStep === 0}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all cursor-pointer
-              ${currentStep === 0
-                ? 'opacity-30 cursor-not-allowed'
-                : isDark
-                ? 'text-slate-300 hover:bg-white/5'
-                : 'text-slate-600 hover:bg-freesia-50'
-              }`}
-          >
-            <ArrowLeft className="w-4 h-4" />
-            上一步
-          </button>
-
-          {currentStep < steps.length - 1 ? (
-            <button
-              onClick={() => setCurrentStep((p) => Math.min(steps.length - 1, p + 1))}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all cursor-pointer
-                hover:scale-105 active:scale-95 shadow-lg"
-              style={{
-                background: 'linear-gradient(135deg, #9333ea, #c026d3, #ec4899)',
-                backgroundSize: '200% 200%',
-                animation: 'gradient-shift 4s ease infinite',
-                boxShadow: '0 4px 15px rgba(147,51,234,0.25)',
-              }}
-            >
-              下一步
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          ) : (
-            <Link
-              to="/tutorials"
-              className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold text-white transition-all
-                hover:scale-105 active:scale-95 shadow-lg"
-              style={{
-                background: 'linear-gradient(135deg, #22c55e, #16a34a)',
-                boxShadow: '0 4px 15px rgba(34,197,94,0.25)',
-              }}
-            >
-              返回教程目录
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          )}
-        </div>
-      </div>
-
-      <FooterSection />
-
-      <style>{`
-        @keyframes fadeSlideIn {
-          from { opacity: 0; transform: translateY(12px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
-    </div>
+      <TutorialStepNavigator
+        isDark={isDark}
+        steps={steps}
+        currentStep={currentStep}
+        onStepChange={setCurrentStep}
+      >
+        {steps[currentStep].content(isDark)}
+      </TutorialStepNavigator>
+    </TutorialPageShell>
   )
 }

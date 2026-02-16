@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router'
 import {
   Rocket,
@@ -14,6 +13,7 @@ import type { Route } from './+types/tutorials'
 import Navbar from '~/components/sections/Navbar'
 import FooterSection from '~/components/sections/FooterSection'
 import FloatingPetals from '~/components/ui/FloatingPetals'
+import { useTutorialTheme } from '~/components/ui/TutorialPageLayout'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -102,24 +102,7 @@ const categories: TutorialCategory[] = [
 ]
 
 export default function Tutorials() {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window === 'undefined') return false
-    const saved = localStorage.getItem('petals-theme')
-    if (saved) return saved === 'dark'
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-  })
-
-  useEffect(() => {
-    const isCurrentlyDark = document.documentElement.classList.contains('dark')
-    setIsDark(isCurrentlyDark)
-  }, [])
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDark)
-    localStorage.setItem('petals-theme', isDark ? 'dark' : 'light')
-  }, [isDark])
-
-  const toggleTheme = () => setIsDark((prev) => !prev)
+  const { isDark, toggleTheme } = useTutorialTheme()
 
   return (
     <div
