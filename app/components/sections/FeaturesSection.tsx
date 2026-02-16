@@ -1,11 +1,12 @@
 import { type ReactNode } from 'react'
-import { Lightbulb, AtSign, Brain, FileText, PenLine } from 'lucide-react'
+import { Lightbulb, AtSign, Brain, FileText, PenLine, ListChecks } from 'lucide-react'
 import {
   MockPetalsCoT,
   MockAtFreesia,
   MockMemory,
   MockSynopsis,
   MockImpersonate,
+  MockOptions,
 } from '~/components/ui/MockUI'
 
 interface Feature {
@@ -90,6 +91,22 @@ const features: Feature[] = [
     accentColorDark: '#e879f9',
   },
   {
+    id: 'user-options',
+    icon: <ListChecks className="w-5 h-5" />,
+    title: '用户选项',
+    titleEn: 'User Options',
+    description:
+      '不知道接下来该怎么推进故事？Freesia 会根据当前剧情自动生成多个用户回复选项，可通过快速回复发送。',
+    details: [
+      '根据剧情上下文自动生成多个选项',
+      '每个选项包含标题与完整回复内容',
+      '多样化的回复方向，打破写作瓶颈',
+    ],
+    mockComponent: (isDark: boolean) => <MockOptions isDark={isDark} />,
+    accentColor: '#7c3aed',
+    accentColorDark: '#a78bfa',
+  },
+  {
     id: 'impersonate',
     icon: <PenLine className="w-5 h-5" />,
     title: '代写回复',
@@ -105,6 +122,7 @@ const features: Feature[] = [
     accentColor: '#a21caf',
     accentColorDark: '#d946ef',
   },
+
 ]
 
 interface FeaturesSectionProps {
