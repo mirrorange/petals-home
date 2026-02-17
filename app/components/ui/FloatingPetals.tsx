@@ -21,15 +21,19 @@ export default function FloatingPetals() {
       'bg-freesia-200/30',
       'bg-blossom-200/30',
     ]
-    const generated: Petal[] = Array.from({ length: 18 }, (_, i) => ({
-      id: i,
-      left: `${Math.random() * 100}%`,
-      delay: `${Math.random() * 15}s`,
-      duration: `${12 + Math.random() * 10}s`,
-      size: `${6 + Math.random() * 10}px`,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      opacity: 0.2 + Math.random() * 0.4,
-    }))
+    const generated: Petal[] = Array.from({ length: 18 }, (_, i) => {
+      const duration = 12 + Math.random() * 10
+      return {
+        id: i,
+        left: `${Math.random() * 100}%`,
+        // Use negative delay so petals start mid-animation on first paint.
+        delay: `${-Math.random() * duration}s`,
+        duration: `${duration}s`,
+        size: `${6 + Math.random() * 10}px`,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        opacity: 0.2 + Math.random() * 0.4,
+      }
+    })
     setPetals(generated)
   }, [])
 
@@ -41,10 +45,13 @@ export default function FloatingPetals() {
           className={`absolute rounded-full ${petal.color} blur-[1px]`}
           style={{
             left: petal.left,
+            top: '-12vh',
             width: petal.size,
             height: petal.size,
             opacity: petal.opacity,
             animation: `petal-drift ${petal.duration} linear ${petal.delay} infinite`,
+            animationFillMode: 'both',
+            willChange: 'transform, opacity',
           }}
         />
       ))}
