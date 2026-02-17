@@ -1,4 +1,4 @@
-import type { PromptTone } from './theme'
+import type { PromptTone } from '../tutorial'
 
 export function MockPromptEditDialogHeader({
   isDark,

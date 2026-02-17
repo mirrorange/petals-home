@@ -14,6 +14,7 @@ import {
   GuideStepCard,
   TutorialCompletionCard,
   TutorialHintCard,
+  SimulationBadge,
 } from '~/components/ui/tutorial'
 import {
   TutorialPageHeader,
@@ -25,7 +26,6 @@ import {
 } from '~/components/ui/TutorialPageLayout'
 import {
   STPanel,
-  SimulationBadge,
   MockPetalsInputBar,
   MockInteractiveSelectionMenu,
   MockSelectionMenu,

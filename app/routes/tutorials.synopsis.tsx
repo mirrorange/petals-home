@@ -9,6 +9,7 @@ import {
   GuideStepCard,
   TutorialCompletionCard,
   TutorialHintCard,
+  SimulationBadge,
 } from '~/components/ui/tutorial'
 import {
   TutorialPageHeader,
@@ -23,7 +24,6 @@ import {
   STPanel,
   STNavbar,
   STLabel,
-  SimulationBadge,
   MockPromptListColumns,
   MockPromptListRow,
 } from '~/components/ui/tutorial-mock'

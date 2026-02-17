@@ -20,6 +20,7 @@ import {
   GuideStepCard,
   TutorialHintCard,
   TutorialCompletionCard,
+  SimulationBadge,
 } from '~/components/ui/tutorial'
 import {
   STPanel,
@@ -28,7 +29,6 @@ import {
   STInput,
   STLabel,
   STCheckbox,
-  SimulationBadge,
 } from '~/components/ui/tutorial-mock'
 import {
   TutorialPageHeader,

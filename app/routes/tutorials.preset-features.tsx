@@ -1,14 +1,10 @@
 import { useState } from 'react'
 import {
   Settings,
-  ListChecks,
   Zap,
   Lightbulb,
-  Sun,
-  Moon,
   ToggleLeft,
   ToggleRight,
-  AlertTriangle,
   Sparkles,
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.preset-features'
@@ -16,6 +12,7 @@ import {
   GuideStepCard,
   TutorialCompletionCard,
   TutorialHintCard,
+  SimulationBadge,
 } from '~/components/ui/tutorial'
 import {
   TutorialPageHeader,
@@ -28,7 +25,6 @@ import {
 import { MockAtFreesia, MockOptions } from '~/components/ui/mock-ui'
 import {
   STPanel,
-  SimulationBadge,
   MockPetalsInputBar,
   MockInteractiveSelectionMenu,
   MockSelectionMenu,

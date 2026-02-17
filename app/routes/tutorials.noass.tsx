@@ -12,13 +12,13 @@ import {
   GuideStepCard,
   TutorialHintCard,
   TutorialCompletionCard,
+  SimulationBadge,
 } from '~/components/ui/tutorial'
 import {
   STPanel,
   STNavbar,
   STCheckbox,
   STInput,
-  SimulationBadge,
 } from '~/components/ui/tutorial-mock'
 import {
   TutorialPageHeader,

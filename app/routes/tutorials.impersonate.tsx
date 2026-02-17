@@ -18,8 +18,9 @@ import {
   GuideStepCard,
   TutorialCompletionCard,
   TutorialHintCard,
+  SimulationBadge,
 } from '~/components/ui/tutorial'
-import { STPanel, SimulationBadge } from '~/components/ui/tutorial-mock'
+import { STPanel } from '~/components/ui/tutorial-mock'
 import {
   TutorialPageHeader,
   TutorialPageShell,

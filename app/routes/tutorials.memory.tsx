@@ -19,11 +19,10 @@ import {
   GuideStepCard,
   TutorialCompletionCard,
   TutorialHintCard,
+  SimulationBadge,
 } from '~/components/ui/tutorial'
 import {
   STPanel,
-  SimulationBadge,
-  MockPetalsInputBar,
 } from '~/components/ui/tutorial-mock'
 import {
   TutorialPageHeader,

@@ -1,4 +1,4 @@
-import { buildHighlightRing, getToneTextColor, type HighlightTone } from './theme'
+import { buildHighlightRing, getToneTextColor, type HighlightTone } from '../tutorial'
 
 export function MockSelectionMenu({
   isDark,

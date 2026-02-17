@@ -1,5 +1,5 @@
 import { Link2Off, PenLine, ToggleLeft, ToggleRight } from 'lucide-react'
-import { promptToneMap, type PromptTone } from './theme'
+import { promptToneMap, type PromptTone } from '../tutorial'
 
 export function MockPromptListRow({
   isDark,

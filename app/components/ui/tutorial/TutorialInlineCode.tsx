@@ -1,4 +1,4 @@
-import { promptToneMap, type PromptTone } from './theme'
+import { promptToneMap, type PromptTone } from '../tutorial/theme'
 
 export function TutorialInlineCode({
   children,

@@ -19,6 +19,8 @@ import {
 import type { Route } from "./+types/tutorials.custom-style";
 import {
   GuideStepCard,
+  TutorialInlineCode,
+  SimulationBadge,
 } from "~/components/ui/tutorial";
 import {
   TutorialPageHeader,
@@ -35,12 +37,10 @@ import {
   STButton,
   STInput,
   STCheckbox,
-  SimulationBadge,
   MockPromptEditDialogActions,
   MockPromptEditDialogHeader,
   MockPromptListColumns,
   MockPromptListRow,
-  TutorialInlineCode,
 } from "~/components/ui/tutorial-mock";
 
 export function meta({}: Route.MetaArgs) {
