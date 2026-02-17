@@ -12,4 +12,5 @@ export default [
   route("tutorials/memory", "routes/tutorials.memory.tsx"),
   route("tutorials/synopsis", "routes/tutorials.synopsis.tsx"),
   route("tutorials/impersonate", "routes/tutorials.impersonate.tsx"),
+  route("tutorials/banned-words", "routes/tutorials.banned-words.tsx"),
 ] satisfies RouteConfig;
