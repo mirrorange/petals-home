@@ -1,6 +1,8 @@
+import { Lightbulb } from 'lucide-react'
+
 export function TutorialHintCard({
   isDark,
-  title = '💡 小提示:',
+  title,
   className = '',
   children,
 }: {
@@ -9,6 +11,13 @@ export function TutorialHintCard({
   className?: string
   children: React.ReactNode
 }) {
+  const resolvedTitle = title ?? (
+    <span className="inline-flex items-center gap-1.5">
+      <Lightbulb className="w-4 h-4 shrink-0" />
+      <span>小提示:</span>
+    </span>
+  )
+
   return (
     <div
       className={`p-4 rounded-xl text-left text-sm ${className}`}
@@ -19,7 +28,7 @@ export function TutorialHintCard({
       }}
     >
       <p className="font-bold mb-2" style={{ color: isDark ? '#d1d5db' : '#334155' }}>
-        {title}
+        {resolvedTitle}
       </p>
       {children}
     </div>
