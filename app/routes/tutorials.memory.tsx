@@ -16,13 +16,15 @@ import {
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.memory'
 import {
-  STPanel,
   GuideStepCard,
-  SimulationBadge,
   TutorialCompletionCard,
   TutorialHintCard,
-  MockPetalsInputBar,
 } from '~/components/ui/TutorialComponents'
+import {
+  STPanel,
+  SimulationBadge,
+  MockPetalsInputBar,
+} from '~/components/ui/TutorialMockComponents'
 import {
   TutorialPageHeader,
   TutorialPageShell,
@@ -32,6 +34,7 @@ import {
   useTutorialTheme,
 } from '~/components/ui/TutorialPageLayout'
 import { MockMemory } from '~/components/ui/MockUI'
+import { hexToRgb } from '~/components/ui/TutorialColorUtils'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -42,14 +45,6 @@ export function meta({}: Route.MetaArgs) {
         '花瓣预设记忆系统教程 — 了解故事记忆、全局记忆和总结的用法，学习如何通过 @Freesia 和快捷按钮管理记忆。',
     },
   ]
-}
-
-/* ───────────────────────── Helper ───────────────────────── */
-
-function hexToRgb(hex: string): string {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-  if (!result) return '128,128,128'
-  return `${parseInt(result[1], 16)},${parseInt(result[2], 16)},${parseInt(result[3], 16)}`
 }
 
 /* ───────────────────────── Mock Memory Type Selector ───────────────────────── */

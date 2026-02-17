@@ -15,12 +15,11 @@ import {
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.impersonate'
 import {
-  STPanel,
   GuideStepCard,
-  SimulationBadge,
   TutorialCompletionCard,
   TutorialHintCard,
 } from '~/components/ui/TutorialComponents'
+import { STPanel, SimulationBadge } from '~/components/ui/TutorialMockComponents'
 import {
   TutorialPageHeader,
   TutorialPageShell,

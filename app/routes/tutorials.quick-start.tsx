@@ -17,17 +17,19 @@ import {
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.quick-start'
 import {
+  GuideStepCard,
+  TutorialHintCard,
+  TutorialCompletionCard,
+} from '~/components/ui/TutorialComponents'
+import {
   STPanel,
   STButton,
   STNavbar,
   STInput,
   STLabel,
   STCheckbox,
-  GuideStepCard,
   SimulationBadge,
-  TutorialHintCard,
-  TutorialCompletionCard,
-} from '~/components/ui/TutorialComponents'
+} from '~/components/ui/TutorialMockComponents'
 import {
   TutorialPageHeader,
   TutorialPageShell,

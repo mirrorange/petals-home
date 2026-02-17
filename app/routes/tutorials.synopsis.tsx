@@ -2,19 +2,11 @@ import { Link } from 'react-router'
 import {
   Layers,
   ArrowRight,
-  ToggleLeft,
-  ToggleRight,
   FileText,
-  Link2Off,
-  PenLine,
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.synopsis'
 import {
-  STPanel,
-  STNavbar,
-  STLabel,
   GuideStepCard,
-  SimulationBadge,
   TutorialCompletionCard,
   TutorialHintCard,
 } from '~/components/ui/TutorialComponents'
@@ -27,6 +19,14 @@ import {
   useTutorialTheme,
 } from '~/components/ui/TutorialPageLayout'
 import { MockSynopsis } from '~/components/ui/MockUI'
+import {
+  STPanel,
+  STNavbar,
+  STLabel,
+  SimulationBadge,
+  MockPromptListColumns,
+  MockPromptListRow,
+} from '~/components/ui/TutorialMockComponents'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -37,106 +37,6 @@ export function meta({}: Route.MetaArgs) {
         '花瓣预设故事摘要系统教程 — 了解摘要卡片的作用、如何关闭摘要提示词，以及结合节省 Token 功能的用法。',
     },
   ]
-}
-
-/* ───────────────────────── Mock Prompt List Row ───────────────────────── */
-
-function MockPromptRow({
-  isDark,
-  emoji,
-  label,
-  enabled,
-  highlight,
-}: {
-  isDark: boolean
-  emoji: string
-  label: string
-  enabled: boolean
-  highlight?: boolean
-}) {
-  return (
-    <div
-      className="flex items-center justify-between px-3 py-2.5 rounded-lg transition-all duration-200"
-      style={{
-        background: highlight
-          ? isDark
-            ? 'rgba(236,72,153,0.08)'
-            : 'rgba(236,72,153,0.04)'
-          : isDark
-            ? 'rgba(30,30,40,0.6)'
-            : 'rgba(250,245,255,0.6)',
-        border: highlight
-          ? isDark
-            ? '1px solid rgba(236,72,153,0.3)'
-            : '1px solid rgba(236,72,153,0.2)'
-          : isDark
-            ? '1px solid rgba(107,114,128,0.2)'
-            : '1px solid rgba(147,51,234,0.08)',
-      }}
-    >
-      <div className="flex items-center gap-2 min-w-0">
-        <span
-          className="text-[9px] shrink-0"
-          style={{ color: isDark ? '#fbbf24' : '#d97706' }}
-        >
-          ✱
-        </span>
-        <span
-          className="text-xs truncate"
-          style={{ color: isDark ? '#e5e7eb' : '#334155' }}
-        >
-          {emoji}{label}
-        </span>
-      </div>
-      <div className="flex items-center gap-2 shrink-0">
-        <Link2Off
-          size={14}
-          strokeWidth={1.8}
-          style={{ color: isDark ? '#6b7280' : '#94a3b8' }}
-        />
-        <PenLine
-          size={14}
-          strokeWidth={1.8}
-          style={{ color: isDark ? '#6b7280' : '#94a3b8' }}
-        />
-        {/* Toggle */}
-        <div className="relative group">
-          {enabled ? (
-            <ToggleRight
-              size={20}
-              style={{
-                color: highlight
-                  ? isDark ? '#f472b6' : '#ec4899'
-                  : isDark ? '#a855f7' : '#9333ea',
-              }}
-            />
-          ) : (
-            <ToggleLeft
-              size={20}
-              style={{ color: isDark ? '#4b5563' : '#94a3b8' }}
-            />
-          )}
-          {highlight && (
-            <div
-              className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs px-2 py-0.5 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-              style={{
-                background: isDark ? '#ec4899' : '#db2777',
-                color: '#fff',
-              }}
-            >
-              点这里开关
-            </div>
-          )}
-        </div>
-        <span
-          className="text-xs font-mono"
-          style={{ color: isDark ? '#6b7280' : '#94a3b8' }}
-        >
-          -
-        </span>
-      </div>
-    </div>
-  )
 }
 
 /* ───────────────────────── Step 1: 认识摘要系统 ───────────────────────── */
@@ -291,22 +191,21 @@ function StepToggle({ isDark }: { isDark: boolean }) {
           </div>
 
           {/* Column headers */}
-          <div
-            className="flex items-center justify-between px-3 py-1"
-            style={{
-              borderBottom: isDark
-                ? '1px solid rgba(107,114,128,0.2)'
-                : '1px solid rgba(147,51,234,0.08)',
-            }}
-          >
-            <span className="text-xs font-medium" style={{ color: isDark ? '#9ca3af' : '#64748b' }}>名称</span>
-            <span className="text-xs font-medium" style={{ color: isDark ? '#9ca3af' : '#64748b' }}>词符</span>
-          </div>
+          <MockPromptListColumns isDark={isDark} />
 
           <div className="space-y-1.5">
-            <MockPromptRow isDark={isDark} emoji="" label="== 指南（可自定义）==" enabled={true} />
-            <MockPromptRow isDark={isDark} emoji="📍" label="[禁词表] Avoid Cliché Expressions" enabled={true} />
-            <MockPromptRow isDark={isDark} emoji="📍" label="[事件梗概] Event Synopsis" enabled={true} highlight={true} />
+            <MockPromptListRow isDark={isDark} tone="pink" emoji="" label="== 指南（可自定义）==" enabled={true} />
+            <MockPromptListRow isDark={isDark} tone="pink" emoji="📍" label="[禁词表] Avoid Cliché Expressions" enabled={true} />
+            <MockPromptListRow
+              isDark={isDark}
+              tone="pink"
+              emoji="📍"
+              label="[事件梗概] Event Synopsis"
+              enabled={true}
+              highlight={true}
+              highlightEnabledToggleTone="pink"
+              toggleHighlightTooltip="点这里开关"
+            />
           </div>
         </div>
       </STPanel>

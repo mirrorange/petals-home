@@ -9,15 +9,17 @@ import {
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.noass'
 import {
+  GuideStepCard,
+  TutorialHintCard,
+  TutorialCompletionCard,
+} from '~/components/ui/TutorialComponents'
+import {
   STPanel,
   STNavbar,
   STCheckbox,
   STInput,
-  GuideStepCard,
   SimulationBadge,
-  TutorialHintCard,
-  TutorialCompletionCard,
-} from '~/components/ui/TutorialComponents'
+} from '~/components/ui/TutorialMockComponents'
 import {
   TutorialPageHeader,
   TutorialPageShell,

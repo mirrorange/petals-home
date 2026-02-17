@@ -6,11 +6,7 @@ import {
   Trash2,
   Edit2,
   Plus,
-  PenLine,
-  Link2Off,
   Link as LinkIcon,
-  ToggleRight,
-  ToggleLeft,
   Heart,
   Feather,
   MirrorRectangular,
@@ -20,14 +16,7 @@ import {
 } from "lucide-react";
 import type { Route } from "./+types/tutorials.custom-style";
 import {
-  STPanel,
-  STNavbar,
-  STLabel,
-  STButton,
-  STInput,
-  STCheckbox,
   GuideStepCard,
-  SimulationBadge,
   TutorialHintCard,
 } from "~/components/ui/TutorialComponents";
 import {
@@ -38,6 +27,20 @@ import {
   useTutorialStepQuery,
   useTutorialTheme,
 } from "~/components/ui/TutorialPageLayout";
+import {
+  STPanel,
+  STNavbar,
+  STLabel,
+  STButton,
+  STInput,
+  STCheckbox,
+  SimulationBadge,
+  MockPromptEditDialogActions,
+  MockPromptEditDialogHeader,
+  MockPromptListColumns,
+  MockPromptListRow,
+  TutorialInlineCode,
+} from "~/components/ui/TutorialMockComponents";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -48,278 +51,6 @@ export function meta({}: Route.MetaArgs) {
         "花瓣预设自定义文风教程 — 学习如何选择预设文风或创建属于自己的写作风格，定制 AI 叙事风格。",
     },
   ];
-}
-
-/* ───────────────────────── Mock Prompt List Row ───────────────────────── */
-
-function MockPromptRow({
-  isDark,
-  emoji,
-  label,
-  enabled,
-  highlight,
-  onEditHighlight,
-}: {
-  isDark: boolean;
-  emoji: string;
-  label: string;
-  enabled: boolean;
-  highlight?: boolean;
-  onEditHighlight?: boolean;
-}) {
-  return (
-    <div
-      className="flex items-center justify-between px-3 py-2.5 rounded-lg transition-all duration-200"
-      style={{
-        background: highlight
-          ? isDark
-            ? "rgba(168,85,247,0.08)"
-            : "rgba(168,85,247,0.04)"
-          : isDark
-            ? "rgba(30,30,40,0.6)"
-            : "rgba(250,245,255,0.6)",
-        border: highlight
-          ? isDark
-            ? "1px solid rgba(168,85,247,0.3)"
-            : "1px solid rgba(168,85,247,0.2)"
-          : isDark
-            ? "1px solid rgba(107,114,128,0.2)"
-            : "1px solid rgba(147,51,234,0.08)",
-      }}
-    >
-      <div className="flex items-center gap-2 min-w-0">
-        <span
-          className="text-[9px] shrink-0"
-          style={{ color: isDark ? "#fbbf24" : "#d97706" }}
-        >
-          ✱
-        </span>
-        <span
-          className="text-xs truncate"
-          style={{ color: isDark ? "#e5e7eb" : "#334155" }}
-        >
-          {emoji}
-          {label}
-        </span>
-      </div>
-      <div className="flex items-center gap-2 shrink-0">
-        <Link2Off
-          size={14}
-          strokeWidth={1.8}
-          style={{ color: isDark ? "#6b7280" : "#94a3b8" }}
-        />
-        <div className="relative group">
-          <PenLine
-            size={14}
-            strokeWidth={1.8}
-            style={{
-              color: onEditHighlight
-                ? isDark
-                  ? "#c084fc"
-                  : "#9333ea"
-                : isDark
-                  ? "#6b7280"
-                  : "#94a3b8",
-            }}
-          />
-          {onEditHighlight && (
-            <div
-              className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs px-2 py-0.5 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-              style={{
-                background: isDark ? "#a855f7" : "#7e22ce",
-                color: "#fff",
-              }}
-            >
-              点击编辑
-            </div>
-          )}
-        </div>
-        {enabled ? (
-          <ToggleRight
-            size={20}
-            style={{
-              color: isDark ? "#a855f7" : "#9333ea",
-            }}
-          />
-        ) : (
-          <ToggleLeft
-            size={20}
-            style={{ color: isDark ? "#4b5563" : "#94a3b8" }}
-          />
-        )}
-        <span
-          className="text-xs font-mono"
-          style={{ color: isDark ? "#6b7280" : "#94a3b8" }}
-        >
-          -
-        </span>
-      </div>
-    </div>
-  );
-}
-
-/* ───────────────────────── Shared Mock Edit Dialog Bottom Bar ───────────────────────── */
-
-function MockEditDialogBar({
-  isDark,
-  highlightSave,
-}: {
-  isDark: boolean;
-  highlightSave?: boolean;
-}) {
-  return (
-    <div className="flex items-center justify-between pt-2">
-      <div
-        className="w-8 h-8 rounded-lg flex items-center justify-center cursor-default"
-        style={{
-          background: isDark ? "#2b2d31" : "#f1f5f9",
-          color: isDark ? "#9ca3af" : "#64748b",
-        }}
-      >
-        ✕
-      </div>
-      <div className="relative group">
-        <div
-          className={`w-8 h-8 rounded-lg flex items-center justify-center cursor-default ${
-            highlightSave
-              ? isDark
-                ? "ring-2 ring-green-500 ring-offset-2 ring-offset-[#1b1c21] animate-pulse"
-                : "ring-2 ring-green-500 ring-offset-2 ring-offset-white animate-pulse"
-              : ""
-          }`}
-          style={{
-            background: isDark ? "#2b2d31" : "#f1f5f9",
-            color: highlightSave
-              ? isDark
-                ? "#4ade80"
-                : "#16a34a"
-              : isDark
-                ? "#9ca3af"
-                : "#64748b",
-          }}
-        >
-          <Save size={16} />
-        </div>
-        {highlightSave && (
-          <div
-            className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-xs px-2 py-0.5 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-            style={{
-              background: isDark ? "#22c55e" : "#16a34a",
-              color: "#fff",
-            }}
-          >
-            保存编辑
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/* ───────────────────────── Mock Edit Dialog Header ───────────────────────── */
-
-function MockEditDialogHeader({
-  isDark,
-  name,
-}: {
-  isDark: boolean;
-  name: string;
-}) {
-  const fieldBg = isDark ? "#0b0c0f" : "#ffffff";
-  const fieldBorder = isDark
-    ? "rgba(107,114,128,0.3)"
-    : "rgba(147,51,234,0.15)";
-  const labelColor = isDark ? "#e5e7eb" : "#334155";
-
-  return (
-    <>
-      <h3
-        className="text-lg font-bold"
-        style={{ color: isDark ? "#c084fc" : "#7e22ce" }}
-      >
-        编辑
-      </h3>
-
-      <div className="grid grid-cols-3 gap-3">
-        <div>
-          <div
-            className="text-xs font-medium mb-1"
-            style={{ color: labelColor }}
-          >
-            姓名
-          </div>
-          <div
-            className="px-2 py-1.5 rounded text-xs truncate"
-            style={{
-              background: fieldBg,
-              border: `1px solid ${fieldBorder}`,
-              color: isDark ? "#d1d5db" : "#475569",
-            }}
-          >
-            {name}
-          </div>
-        </div>
-        <div>
-          <div
-            className="text-xs font-medium mb-1"
-            style={{ color: labelColor }}
-          >
-            角色
-          </div>
-          <div
-            className="px-2 py-1.5 rounded text-xs"
-            style={{
-              background: fieldBg,
-              border: `1px solid ${fieldBorder}`,
-              color: isDark ? "#d1d5db" : "#475569",
-            }}
-          >
-            系统
-          </div>
-        </div>
-        <div>
-          <div
-            className="text-xs font-medium mb-1"
-            style={{ color: labelColor }}
-          >
-            触发器
-          </div>
-          <div
-            className="px-2 py-1.5 rounded text-xs"
-            style={{
-              background: fieldBg,
-              border: `1px solid ${fieldBorder}`,
-              color: isDark ? "#6b7280" : "#94a3b8",
-            }}
-          >
-            All types (default)
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
-
-/* ───────────────────────── Inline code style helper ───────────────────────── */
-
-function InlineCode({
-  children,
-  isDark,
-}: {
-  children: React.ReactNode;
-  isDark: boolean;
-}) {
-  return (
-    <code
-      className="px-1.5 py-0.5 rounded text-xs font-mono"
-      style={{
-        background: isDark ? "rgba(168,85,247,0.12)" : "rgba(168,85,247,0.06)",
-        color: isDark ? "#d8b4fe" : "#7e22ce",
-      }}
-    >
-      {children}
-    </code>
-  );
 }
 
 /* ───────────────────────── Step 1: 了解预设文风 ───────────────────────── */
@@ -375,7 +106,7 @@ function StepUnderstand({ isDark }: { isDark: boolean }) {
           detail={
             <>
               文风指南位于提示词列表的{" "}
-              <InlineCode isDark={isDark}>== 文风（选一） ==</InlineCode>{" "}
+              <TutorialInlineCode isDark={isDark}>== 文风（选一） ==</TutorialInlineCode>{" "}
               分组下方。你可以选择一个预设文风，或创建自己的文风来控制花瓣预设的叙事风格。
             </>
           }
@@ -408,7 +139,7 @@ function StepUnderstand({ isDark }: { isDark: boolean }) {
           detail={
             <>
               如果预设文风不能满足需求，可以基于{" "}
-              <InlineCode isDark={isDark}>🎨[自定义文风模板]</InlineCode>{" "}
+              <TutorialInlineCode isDark={isDark}>🎨[自定义文风模板]</TutorialInlineCode>{" "}
               创建属于自己的文风。
             </>
           }
@@ -543,7 +274,7 @@ function StepFindStyle({ isDark }: { isDark: boolean }) {
           detail={
             <>
               向下滚动列表，找到{" "}
-              <InlineCode isDark={isDark}>== 文风（选一） ==</InlineCode>{" "}
+              <TutorialInlineCode isDark={isDark}>== 文风（选一） ==</TutorialInlineCode>{" "}
               分组标题。文风指南条目位于其下方。
             </>
           }
@@ -570,7 +301,7 @@ function StepFindStyle({ isDark }: { isDark: boolean }) {
               >
                 自定义文风：
               </span>
-              找到 <InlineCode isDark={isDark}>🎨[自定义文风模板]</InlineCode>{" "}
+              找到 <TutorialInlineCode isDark={isDark}>🎨[自定义文风模板]</TutorialInlineCode>{" "}
               条目，点击编辑按钮。
             </>
           }
@@ -598,66 +329,46 @@ function StepFindStyle({ isDark }: { isDark: boolean }) {
             </span>
           </div>
 
-          <div
-            className="flex items-center justify-between px-3 py-1"
-            style={{
-              borderBottom: isDark
-                ? "1px solid rgba(107,114,128,0.2)"
-                : "1px solid rgba(147,51,234,0.08)",
-            }}
-          >
-            <span
-              className="text-xs font-medium"
-              style={{ color: isDark ? "#9ca3af" : "#64748b" }}
-            >
-              名称
-            </span>
-            <span
-              className="text-xs font-medium"
-              style={{ color: isDark ? "#9ca3af" : "#64748b" }}
-            >
-              词符
-            </span>
-          </div>
+          <MockPromptListColumns isDark={isDark} />
 
           <div className="space-y-1.5">
-            <MockPromptRow
+            <MockPromptListRow
               isDark={isDark}
               emoji=""
               label="== 文风（选一） =="
               enabled={true}
             />
-            <MockPromptRow
+            <MockPromptListRow
               isDark={isDark}
               emoji="❤️"
               label="[自适应文风] Kardia"
               enabled={true}
             />
-            <MockPromptRow
+            <MockPromptListRow
               isDark={isDark}
               emoji="🪞"
               label="[零度叙事] Aisthesis"
               enabled={false}
             />
-            <MockPromptRow
+            <MockPromptListRow
               isDark={isDark}
               emoji="🌸"
               label="[微观治愈] Antheia"
               enabled={false}
             />
-            <MockPromptRow
+            <MockPromptListRow
               isDark={isDark}
               emoji="💧"
               label="[吐槽系轻小说] Melos"
               enabled={false}
             />
-            <MockPromptRow
+            <MockPromptListRow
               isDark={isDark}
               emoji="🌙"
               label="[中国现代主义] Kryos"
               enabled={false}
             />
-            <MockPromptRow
+            <MockPromptListRow
               isDark={isDark}
               emoji="🎨"
               label="[自定义文风模板]"
@@ -708,9 +419,9 @@ function StepEditStyle({ isDark }: { isDark: boolean }) {
           detail={
             <>
               修改{" "}
-              <InlineCode isDark={isDark}>Petals_Mandatory_Question</InlineCode>{" "}
+              <TutorialInlineCode isDark={isDark}>Petals_Mandatory_Question</TutorialInlineCode>{" "}
               与{" "}
-              <InlineCode isDark={isDark}>Petals_Optional_Question</InlineCode>{" "}
+              <TutorialInlineCode isDark={isDark}>Petals_Optional_Question</TutorialInlineCode>{" "}
               中的问题，让 AI 在思考时关注你的文风要求。
             </>
           }
@@ -747,7 +458,7 @@ function StepEditStyle({ isDark }: { isDark: boolean }) {
       <STPanel isDark={isDark} className="relative">
         <SimulationBadge isDark={isDark} label="编辑对话框" />
         <div className="pt-2 space-y-4">
-          <MockEditDialogHeader isDark={isDark} name="🎨[自定义文风模板]" />
+          <MockPromptEditDialogHeader isDark={isDark} name="🎨[自定义文风模板]" />
 
           <div>
             <div
@@ -816,7 +527,7 @@ function StepEditStyle({ isDark }: { isDark: boolean }) {
             </div>
           </div>
 
-          <MockEditDialogBar isDark={isDark} highlightSave={true} />
+          <MockPromptEditDialogActions isDark={isDark} highlightSave={true} />
         </div>
       </STPanel>
     </div>

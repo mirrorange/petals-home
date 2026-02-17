@@ -15,12 +15,11 @@ import {
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.at-freesia'
 import {
-  STPanel,
   GuideStepCard,
-  SimulationBadge,
   TutorialCompletionCard,
   TutorialHintCard,
 } from '~/components/ui/TutorialComponents'
+import { STPanel, SimulationBadge } from '~/components/ui/TutorialMockComponents'
 import {
   TutorialPageHeader,
   TutorialPageShell,
@@ -29,6 +28,7 @@ import {
   useTutorialStepQuery,
   useTutorialTheme,
 } from '~/components/ui/TutorialPageLayout'
+import { hexToRgb } from '~/components/ui/TutorialColorUtils'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -974,14 +974,6 @@ function StepDone({ isDark }: { isDark: boolean }) {
       </TutorialHintCard>
     </TutorialCompletionCard>
   )
-}
-
-/* ───────────────────────── Helper ───────────────────────── */
-
-function hexToRgb(hex: string): string {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-  if (!result) return '128,128,128'
-  return `${parseInt(result[1], 16)},${parseInt(result[2], 16)},${parseInt(result[3], 16)}`
 }
 
 /* ───────────────────────── Main Page ───────────────────────── */

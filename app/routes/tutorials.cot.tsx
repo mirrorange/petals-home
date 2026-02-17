@@ -11,10 +11,7 @@ import {
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.cot'
 import {
-  STPanel,
   GuideStepCard,
-  SimulationBadge,
-  MockPetalsInputBar,
   TutorialCompletionCard,
   TutorialHintCard,
 } from '~/components/ui/TutorialComponents'
@@ -26,6 +23,14 @@ import {
   useTutorialStepQuery,
   useTutorialTheme,
 } from '~/components/ui/TutorialPageLayout'
+import {
+  STPanel,
+  SimulationBadge,
+  MockPetalsInputBar,
+  MockInteractiveSelectionMenu,
+  MockSelectionMenu,
+} from '~/components/ui/TutorialMockComponents'
+import { hexToRgb } from '~/components/ui/TutorialColorUtils'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -36,178 +41,6 @@ export function meta({}: Route.MetaArgs) {
         '花瓣预设 CoT（Chain of Thought）配置教程 — 了解线性、迭代、迭代&切换语言三种 CoT 模式的用法与配置方式。',
     },
   ]
-}
-
-/* ───────────────────────── Mock Settings Menu ───────────────────────── */
-
-function MockSettingsMenu({
-  isDark,
-  highlightCot,
-}: {
-  isDark: boolean
-  highlightCot?: boolean
-}) {
-  const menuBg = isDark
-    ? 'linear-gradient(135deg, #1a1b20, #222328)'
-    : 'linear-gradient(135deg, #fefcff, #f5f0ff)'
-  const menuBorder = isDark
-    ? '1px solid rgba(107,114,128,0.35)'
-    : '1px solid rgba(147,51,234,0.15)'
-  const itemBg = isDark ? '#2b2d31' : '#ffffff'
-  const itemBorder = isDark
-    ? '1px solid rgba(107,114,128,0.3)'
-    : '1px solid rgba(147,51,234,0.1)'
-  const textColor = isDark ? '#e5e7eb' : '#334155'
-  const dimColor = isDark ? '#9ca3af' : '#94a3b8'
-
-  const items = [
-    { label: 'CoT 设置', highlight: highlightCot },
-    { label: '回复长度', highlight: false },
-    { label: '语言设置', highlight: false },
-  ]
-
-  const cotRing = isDark
-    ? 'ring-2 ring-yellow-500 ring-offset-2 ring-offset-[#1b1c21] animate-pulse'
-    : 'ring-2 ring-yellow-500 ring-offset-2 ring-offset-white animate-pulse'
-
-  return (
-    <div
-      className="rounded-xl p-5 space-y-3 max-w-sm mx-auto"
-      style={{
-        background: menuBg,
-        border: menuBorder,
-        boxShadow: isDark
-          ? '0 20px 60px rgba(0,0,0,0.6)'
-          : '0 20px 60px rgba(147,51,234,0.12)',
-      }}
-    >
-      <h3
-        className="text-center text-base font-bold mb-4"
-        style={{ color: isDark ? '#f3f4f6' : '#0f172a' }}
-      >
-        Freesia Petals 设置菜单
-      </h3>
-      {items.map((item, idx) => (
-        <div
-          key={idx}
-          className={`px-4 py-3 rounded-lg text-sm font-medium text-center cursor-default ${
-            item.highlight ? cotRing : ''
-          }`}
-          style={{
-            background: itemBg,
-            border: itemBorder,
-            color: item.highlight
-              ? isDark
-                ? '#fbbf24'
-                : '#d97706'
-              : textColor,
-          }}
-        >
-          {item.label}
-        </div>
-      ))}
-      <div className="flex justify-center pt-2">
-        <div
-          className="px-4 py-2 rounded-lg text-sm font-medium cursor-default"
-          style={{
-            background: isDark ? 'rgba(127,29,29,0.5)' : 'rgba(185,28,28,0.1)',
-            border: isDark
-              ? '1px solid rgba(239,68,68,0.3)'
-              : '1px solid rgba(185,28,28,0.2)',
-            color: isDark ? '#fca5a5' : '#991b1b',
-          }}
-        >
-          取消
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/* ───────────────────────── Mock CoT Mode Selector ───────────────────────── */
-
-function MockCoTModeSelector({
-  isDark,
-  highlightMode,
-}: {
-  isDark: boolean
-  highlightMode?: 'linear' | 'iterative' | 'iterative-lang' | null
-}) {
-  const menuBg = isDark
-    ? 'linear-gradient(135deg, #1a1b20, #222328)'
-    : 'linear-gradient(135deg, #fefcff, #f5f0ff)'
-  const menuBorder = isDark
-    ? '1px solid rgba(107,114,128,0.35)'
-    : '1px solid rgba(147,51,234,0.15)'
-  const itemBg = isDark ? '#2b2d31' : '#ffffff'
-  const itemBorder = isDark
-    ? '1px solid rgba(107,114,128,0.3)'
-    : '1px solid rgba(147,51,234,0.1)'
-  const textColor = isDark ? '#e5e7eb' : '#334155'
-
-  const modes = [
-    { id: 'linear' as const, label: '线性（推荐）' },
-    { id: 'iterative' as const, label: '迭代' },
-    { id: 'iterative-lang' as const, label: '迭代&切换语言' },
-  ]
-
-  const highlightRing = (mode: string) => {
-    if (highlightMode !== mode) return ''
-    return isDark
-      ? 'ring-2 ring-purple-500 ring-offset-2 ring-offset-[#1b1c21] animate-pulse'
-      : 'ring-2 ring-purple-500 ring-offset-2 ring-offset-white animate-pulse'
-  }
-
-  return (
-    <div
-      className="rounded-xl p-5 space-y-3 max-w-sm mx-auto"
-      style={{
-        background: menuBg,
-        border: menuBorder,
-        boxShadow: isDark
-          ? '0 20px 60px rgba(0,0,0,0.6)'
-          : '0 20px 60px rgba(147,51,234,0.12)',
-      }}
-    >
-      <h3
-        className="text-center text-base font-bold mb-4"
-        style={{ color: isDark ? '#f3f4f6' : '#0f172a' }}
-      >
-        Petals CoT 模式菜单
-      </h3>
-      {modes.map((mode) => (
-        <div
-          key={mode.id}
-          className={`px-4 py-3 rounded-lg text-sm font-medium text-center cursor-default ${highlightRing(mode.id)}`}
-          style={{
-            background: itemBg,
-            border: itemBorder,
-            color: highlightMode === mode.id
-              ? isDark
-                ? '#c084fc'
-                : '#7e22ce'
-              : textColor,
-          }}
-        >
-          {mode.label}
-        </div>
-      ))}
-      <div className="flex justify-center pt-2">
-        <div
-          className="px-4 py-2 rounded-lg text-sm font-medium cursor-default"
-          style={{
-            background: isDark ? 'rgba(127,29,29,0.5)' : 'rgba(185,28,28,0.1)',
-            border: isDark
-              ? '1px solid rgba(239,68,68,0.3)'
-              : '1px solid rgba(185,28,28,0.2)',
-            color: isDark ? '#fca5a5' : '#991b1b',
-          }}
-        >
-          取消
-        </div>
-      </div>
-    </div>
-  )
 }
 
 /* ───────────── Interactive CoT Mode Selector for Step 2 ───────────── */
@@ -270,101 +103,6 @@ const COT_FLOW_COMPONENTS: Record<CoTModeId, (isDark: boolean) => React.ReactNod
   'iterative-lang': (isDark) => <CoTFlowIterativeLang isDark={isDark} />,
 }
 
-function InteractiveCoTSelector({
-  isDark,
-  activeMode,
-  onSelect,
-}: {
-  isDark: boolean
-  activeMode: CoTModeId | null
-  onSelect: (mode: CoTModeId | null) => void
-}) {
-  const menuBg = isDark
-    ? 'linear-gradient(135deg, #1a1b20, #222328)'
-    : 'linear-gradient(135deg, #fefcff, #f5f0ff)'
-  const menuBorder = isDark
-    ? '1px solid rgba(107,114,128,0.35)'
-    : '1px solid rgba(147,51,234,0.15)'
-  const textColor = isDark ? '#e5e7eb' : '#334155'
-
-  const modes: { id: CoTModeId; label: string; accent: string }[] = [
-    { id: 'linear', label: '线性（推荐）', accent: '#ec4899' },
-    { id: 'iterative', label: '迭代', accent: '#a855f7' },
-    { id: 'iterative-lang', label: '迭代&切换语言', accent: '#3b82f6' },
-  ]
-
-  return (
-    <div
-      className="rounded-xl p-5 space-y-3"
-      style={{
-        background: menuBg,
-        border: menuBorder,
-        boxShadow: isDark
-          ? '0 20px 60px rgba(0,0,0,0.6)'
-          : '0 20px 60px rgba(147,51,234,0.12)',
-      }}
-    >
-      <h3
-        className="text-center text-base font-bold mb-4"
-        style={{ color: isDark ? '#f3f4f6' : '#0f172a' }}
-      >
-        Petals CoT 模式菜单
-      </h3>
-      {modes.map((mode) => {
-        const isActive = activeMode === mode.id
-        const itemBg = isActive
-          ? isDark
-            ? `rgba(${hexToRgb(mode.accent)},0.12)`
-            : `rgba(${hexToRgb(mode.accent)},0.07)`
-          : isDark
-          ? '#2b2d31'
-          : '#ffffff'
-        const itemBorder = isActive
-          ? `1px solid ${mode.accent}`
-          : isDark
-          ? '1px solid rgba(107,114,128,0.3)'
-          : '1px solid rgba(147,51,234,0.1)'
-
-        return (
-          <div
-            key={mode.id}
-            className="px-4 py-3 rounded-lg text-sm font-medium text-center cursor-pointer transition-all duration-200"
-            style={{
-              background: itemBg,
-              border: itemBorder,
-              color: isActive ? mode.accent : textColor,
-              transform: isActive ? 'scale(1.02)' : 'scale(1)',
-              boxShadow: isActive
-                ? isDark
-                  ? `0 0 20px rgba(${hexToRgb(mode.accent)},0.15)`
-                  : `0 0 20px rgba(${hexToRgb(mode.accent)},0.1)`
-                : 'none',
-            }}
-            onMouseEnter={() => onSelect(mode.id)}
-            onClick={() => onSelect(mode.id)}
-          >
-            {mode.label}
-          </div>
-        )
-      })}
-      <div className="flex justify-center pt-2">
-        <div
-          className="px-4 py-2 rounded-lg text-sm font-medium cursor-default"
-          style={{
-            background: isDark ? 'rgba(127,29,29,0.5)' : 'rgba(185,28,28,0.1)',
-            border: isDark
-              ? '1px solid rgba(239,68,68,0.3)'
-              : '1px solid rgba(185,28,28,0.2)',
-            color: isDark ? '#fca5a5' : '#991b1b',
-          }}
-        >
-          取消
-        </div>
-      </div>
-    </div>
-  )
-}
-
 /* ───────────────────────── CoT Flow Diagram ───────────────────────── */
 
 function FlowStep({
@@ -420,13 +158,6 @@ function FlowStep({
       </div>
     </div>
   )
-}
-
-/** Helper: convert hex color to "r,g,b" string */
-function hexToRgb(hex: string): string {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-  if (!result) return '128,128,128'
-  return `${parseInt(result[1], 16)},${parseInt(result[2], 16)},${parseInt(result[3], 16)}`
 }
 
 function CoTFlowLinear({ isDark }: { isDark: boolean }) {
@@ -721,7 +452,17 @@ function StepFindEntry({ isDark }: { isDark: boolean }) {
         {/* Simulation: Settings menu */}
         <STPanel isDark={isDark} className="relative">
           <SimulationBadge isDark={isDark} label="设置菜单" />
-          <MockSettingsMenu isDark={isDark} highlightCot />
+          <MockSelectionMenu
+            isDark={isDark}
+            title="Freesia Petals 设置菜单"
+            items={[
+              { id: 'cot', label: 'CoT 设置' },
+              { id: 'length', label: '回复长度' },
+              { id: 'language', label: '语言设置' },
+            ]}
+            highlightItemId="cot"
+            highlightTone="yellow"
+          />
         </STPanel>
       </div>
     </div>
@@ -767,10 +508,19 @@ function StepModeDetails({ isDark }: { isDark: boolean }) {
               <Sparkles size={12} />
               悬浮或点击以查看模式详情
             </div>
-            <InteractiveCoTSelector
+            <MockInteractiveSelectionMenu
               isDark={isDark}
-              activeMode={activeMode}
-              onSelect={setActiveMode}
+              title="Petals CoT 模式菜单"
+              items={[
+                { id: 'linear', label: '线性（推荐）', accent: '#ec4899' },
+                { id: 'iterative', label: '迭代', accent: '#a855f7' },
+                { id: 'iterative-lang', label: '迭代&切换语言', accent: '#3b82f6' },
+              ]}
+              activeItemId={activeMode}
+              onSelect={(id) => setActiveMode(id as CoTModeId)}
+              onItemHover={(id) => setActiveMode(id as CoTModeId)}
+              showCancelButton={true}
+              className=""
             />
           </STPanel>
         </div>

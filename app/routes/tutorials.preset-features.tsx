@@ -13,10 +13,7 @@ import {
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.preset-features'
 import {
-  STPanel,
   GuideStepCard,
-  SimulationBadge,
-  MockPetalsInputBar,
   TutorialCompletionCard,
   TutorialHintCard,
 } from '~/components/ui/TutorialComponents'
@@ -29,6 +26,13 @@ import {
   useTutorialTheme,
 } from '~/components/ui/TutorialPageLayout'
 import { MockAtFreesia, MockOptions } from '~/components/ui/MockUI'
+import {
+  STPanel,
+  SimulationBadge,
+  MockPetalsInputBar,
+  MockInteractiveSelectionMenu,
+  MockSelectionMenu,
+} from '~/components/ui/TutorialMockComponents'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -39,243 +43,6 @@ export function meta({}: Route.MetaArgs) {
         '花瓣预设功能设置教程 — 了解元回复设置、UI 主题切换、故事选项开关、节省 Token 模式的配置方式与用法。',
     },
   ]
-}
-
-/* ───────────────────────── Mock Settings Menu ───────────────────────── */
-
-function MockSettingsMenu({
-  isDark,
-  highlightItem,
-}: {
-  isDark: boolean
-  highlightItem?: string | null
-}) {
-  const menuBg = isDark
-    ? 'linear-gradient(135deg, #1a1b20, #222328)'
-    : 'linear-gradient(135deg, #fefcff, #f5f0ff)'
-  const menuBorder = isDark
-    ? '1px solid rgba(107,114,128,0.35)'
-    : '1px solid rgba(147,51,234,0.15)'
-  const itemBg = isDark ? '#2b2d31' : '#ffffff'
-  const itemBorder = isDark
-    ? '1px solid rgba(107,114,128,0.3)'
-    : '1px solid rgba(147,51,234,0.1)'
-  const textColor = isDark ? '#e5e7eb' : '#334155'
-
-  const items = [
-    { label: '元回复设置', id: 'always-reply' },
-    { label: 'UI主题', id: 'theme' },
-    { label: '故事选项', id: 'user-options' },
-    { label: '节省 Token', id: 'reduce-token' },
-  ]
-
-  const hlRing = isDark
-    ? 'ring-2 ring-yellow-500 ring-offset-2 ring-offset-[#1b1c21] animate-pulse'
-    : 'ring-2 ring-yellow-500 ring-offset-2 ring-offset-white animate-pulse'
-
-  return (
-    <div
-      className="rounded-xl p-5 space-y-3 max-w-sm mx-auto"
-      style={{
-        background: menuBg,
-        border: menuBorder,
-        boxShadow: isDark
-          ? '0 20px 60px rgba(0,0,0,0.6)'
-          : '0 20px 60px rgba(147,51,234,0.12)',
-      }}
-    >
-      <h3
-        className="text-center text-base font-bold mb-4"
-        style={{ color: isDark ? '#f3f4f6' : '#0f172a' }}
-      >
-        Freesia Petals 设置菜单
-      </h3>
-      {items.map((item) => (
-        <div
-          key={item.id}
-          className={`px-4 py-3 rounded-lg text-sm font-medium text-center cursor-default ${
-            highlightItem === item.id ? hlRing : ''
-          }`}
-          style={{
-            background: itemBg,
-            border: itemBorder,
-            color: highlightItem === item.id
-              ? isDark ? '#fbbf24' : '#d97706'
-              : textColor,
-          }}
-        >
-          {item.label}
-        </div>
-      ))}
-      <div className="flex justify-center pt-2">
-        <div
-          className="px-4 py-2 rounded-lg text-sm font-medium cursor-default"
-          style={{
-            background: isDark ? 'rgba(127,29,29,0.5)' : 'rgba(185,28,28,0.1)',
-            border: isDark ? '1px solid rgba(239,68,68,0.3)' : '1px solid rgba(185,28,28,0.2)',
-            color: isDark ? '#fca5a5' : '#991b1b',
-          }}
-        >
-          取消
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/* ───────────────────────── Mock Button Selector (matches ST /buttons UI) ───────────────────────── */
-
-function MockButtonSelector({
-  isDark,
-  title,
-  items,
-  highlightItem,
-}: {
-  isDark: boolean
-  title: string
-  items: string[]
-  highlightItem?: string | null
-}) {
-  const menuBg = isDark
-    ? 'linear-gradient(135deg, #1a1b20, #222328)'
-    : 'linear-gradient(135deg, #fefcff, #f5f0ff)'
-  const menuBorder = isDark
-    ? '1px solid rgba(107,114,128,0.35)'
-    : '1px solid rgba(147,51,234,0.15)'
-  const itemBg = isDark ? '#2b2d31' : '#ffffff'
-  const itemBorder = isDark
-    ? '1px solid rgba(107,114,128,0.3)'
-    : '1px solid rgba(147,51,234,0.1)'
-  const textColor = isDark ? '#e5e7eb' : '#334155'
-
-  const hlRing = isDark
-    ? 'ring-2 ring-purple-500 ring-offset-2 ring-offset-[#1b1c21] animate-pulse'
-    : 'ring-2 ring-purple-500 ring-offset-2 ring-offset-white animate-pulse'
-
-  return (
-    <div
-      className="rounded-xl p-5 space-y-3 max-w-sm mx-auto"
-      style={{
-        background: menuBg,
-        border: menuBorder,
-        boxShadow: isDark
-          ? '0 20px 60px rgba(0,0,0,0.6)'
-          : '0 20px 60px rgba(147,51,234,0.12)',
-      }}
-    >
-      <h3
-        className="text-center text-base font-bold mb-4"
-        style={{ color: isDark ? '#f3f4f6' : '#0f172a' }}
-      >
-        {title}
-      </h3>
-      {items.map((item) => (
-        <div
-          key={item}
-          className={`px-4 py-3 rounded-lg text-sm font-medium text-center cursor-default ${
-            highlightItem === item ? hlRing : ''
-          }`}
-          style={{
-            background: itemBg,
-            border: itemBorder,
-            color: highlightItem === item
-              ? isDark ? '#c084fc' : '#7e22ce'
-              : textColor,
-          }}
-        >
-          {item}
-        </div>
-      ))}
-    </div>
-  )
-}
-
-/* ───────────────────────── Interactive Button Selector (clickable, matches ST /buttons UI) ───────────────────────── */
-
-function InteractiveButtonSelector({
-  isDark,
-  title,
-  items,
-  activeItem,
-  onSelect,
-}: {
-  isDark: boolean
-  title: string
-  items: { id: string; label: string; accent: string }[]
-  activeItem: string | null
-  onSelect: (id: string) => void
-}) {
-  const menuBg = isDark
-    ? 'linear-gradient(135deg, #1a1b20, #222328)'
-    : 'linear-gradient(135deg, #fefcff, #f5f0ff)'
-  const menuBorder = isDark
-    ? '1px solid rgba(107,114,128,0.35)'
-    : '1px solid rgba(147,51,234,0.15)'
-  const textColor = isDark ? '#e5e7eb' : '#334155'
-
-  return (
-    <div
-      className="rounded-xl p-5 space-y-3 max-w-sm mx-auto"
-      style={{
-        background: menuBg,
-        border: menuBorder,
-        boxShadow: isDark
-          ? '0 20px 60px rgba(0,0,0,0.6)'
-          : '0 20px 60px rgba(147,51,234,0.12)',
-      }}
-    >
-      <h3
-        className="text-center text-base font-bold mb-4"
-        style={{ color: isDark ? '#f3f4f6' : '#0f172a' }}
-      >
-        {title}
-      </h3>
-      {items.map((item) => {
-        const isActive = activeItem === item.id
-        const itemBg = isActive
-          ? isDark
-            ? `rgba(${hexToRgb(item.accent)},0.12)`
-            : `rgba(${hexToRgb(item.accent)},0.07)`
-          : isDark
-          ? '#2b2d31'
-          : '#ffffff'
-        const itemBorder = isActive
-          ? `1px solid ${item.accent}`
-          : isDark
-          ? '1px solid rgba(107,114,128,0.3)'
-          : '1px solid rgba(147,51,234,0.1)'
-
-        return (
-          <div
-            key={item.id}
-            className="px-4 py-3 rounded-lg text-sm font-medium text-center cursor-pointer transition-all duration-200"
-            style={{
-              background: itemBg,
-              border: itemBorder,
-              color: isActive ? item.accent : textColor,
-              transform: isActive ? 'scale(1.02)' : 'scale(1)',
-              boxShadow: isActive
-                ? isDark
-                  ? `0 0 20px rgba(${hexToRgb(item.accent)},0.15)`
-                  : `0 0 20px rgba(${hexToRgb(item.accent)},0.1)`
-                : 'none',
-            }}
-            onClick={() => onSelect(item.id)}
-          >
-            {item.label}
-          </div>
-        )
-      })}
-    </div>
-  )
-}
-
-/* ───────────────────────── Helpers ───────────────────────── */
-
-function hexToRgb(hex: string): string {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-  if (!result) return '128,128,128'
-  return `${parseInt(result[1], 16)},${parseInt(result[2], 16)},${parseInt(result[3], 16)}`
 }
 
 /* ───────────────────── Step 1: 找到配置入口 ───────────────────── */
@@ -337,7 +104,18 @@ function StepFindEntry({ isDark }: { isDark: boolean }) {
 
         <STPanel isDark={isDark} className="relative">
           <SimulationBadge isDark={isDark} label="设置菜单" />
-          <MockSettingsMenu isDark={isDark} highlightItem="always-reply" />
+          <MockSelectionMenu
+            isDark={isDark}
+            title="Freesia Petals 设置菜单"
+            items={[
+              { id: 'always-reply', label: '元回复设置' },
+              { id: 'theme', label: 'UI主题' },
+              { id: 'user-options', label: '故事选项' },
+              { id: 'reduce-token', label: '节省 Token' },
+            ]}
+            highlightItemId="always-reply"
+            highlightTone="yellow"
+          />
         </STPanel>
       </div>
     </div>
@@ -424,14 +202,14 @@ function StepAlwaysReply({ isDark }: { isDark: boolean }) {
               <Sparkles size={12} />
               点击切换启用/禁用状态
             </div>
-            <InteractiveButtonSelector
+            <MockInteractiveSelectionMenu
               isDark={isDark}
               title="是否始终请求 Freesia 元回复？"
               items={[
                 { id: 'enable', label: '启用', accent: '#ec4899' },
                 { id: 'disable', label: '禁用', accent: '#6b7280' },
               ]}
-              activeItem={enabled ? 'enable' : 'disable'}
+              activeItemId={enabled ? 'enable' : 'disable'}
               onSelect={(id) => setEnabled(id === 'enable')}
             />
           </STPanel>
@@ -507,14 +285,14 @@ function StepTheme({ isDark }: { isDark: boolean }) {
               <Sparkles size={12} />
               点击切换查看浅色/深色效果
             </div>
-            <InteractiveButtonSelector
+            <MockInteractiveSelectionMenu
               isDark={isDark}
               title="切换花瓣预设 UI 主题"
               items={[
                 { id: 'light', label: '浅色模式', accent: '#eab308' },
                 { id: 'dark', label: '深色模式', accent: '#a855f7' },
               ]}
-              activeItem={previewDark ? 'dark' : 'light'}
+              activeItemId={previewDark ? 'dark' : 'light'}
               onSelect={(id) => setPreviewDark(id === 'dark')}
             />
           </STPanel>
@@ -599,14 +377,14 @@ function StepUserOptions({ isDark }: { isDark: boolean }) {
               <Sparkles size={12} />
               点击切换启用/禁用状态
             </div>
-            <InteractiveButtonSelector
+            <MockInteractiveSelectionMenu
               isDark={isDark}
               title="是否启用故事选项功能？"
               items={[
                 { id: 'enable', label: '启用', accent: '#7c3aed' },
                 { id: 'disable', label: '禁用', accent: '#6b7280' },
               ]}
-              activeItem={enabled ? 'enable' : 'disable'}
+              activeItemId={enabled ? 'enable' : 'disable'}
               onSelect={(id) => setEnabled(id === 'enable')}
             />
           </STPanel>
@@ -754,14 +532,14 @@ function StepReduceToken({ isDark }: { isDark: boolean }) {
               <Sparkles size={12} />
               点击切换开启/关闭状态
             </div>
-            <InteractiveButtonSelector
+            <MockInteractiveSelectionMenu
               isDark={isDark}
               title="节省 Token 模式"
               items={[
                 { id: 'enable', label: '开启', accent: '#06b6d4' },
                 { id: 'disable', label: '关闭', accent: '#6b7280' },
               ]}
-              activeItem={enabled ? 'enable' : 'disable'}
+              activeItemId={enabled ? 'enable' : 'disable'}
               onSelect={(id) => setEnabled(id === 'enable')}
             />
           </STPanel>

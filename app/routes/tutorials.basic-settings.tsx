@@ -16,10 +16,7 @@ import {
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.basic-settings'
 import {
-  STPanel,
   GuideStepCard,
-  SimulationBadge,
-  MockPetalsInputBar,
   TutorialCompletionCard,
   TutorialHintCard,
 } from '~/components/ui/TutorialComponents'
@@ -31,6 +28,13 @@ import {
   useTutorialStepQuery,
   useTutorialTheme,
 } from '~/components/ui/TutorialPageLayout'
+import {
+  STPanel,
+  SimulationBadge,
+  MockPetalsInputBar,
+  MockSelectionMenu,
+} from '~/components/ui/TutorialMockComponents'
+import { hexToRgb } from '~/components/ui/TutorialColorUtils'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -41,162 +45,6 @@ export function meta({}: Route.MetaArgs) {
         '花瓣预设基本参数设置教程 — 了解回复长度、语言设置、模式设置、模型设置的配置方式与用法。',
     },
   ]
-}
-
-/** Helper: convert hex color to "r,g,b" string */
-function hexToRgb(hex: string): string {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-  if (!result) return '128,128,128'
-  return `${parseInt(result[1], 16)},${parseInt(result[2], 16)},${parseInt(result[3], 16)}`
-}
-
-/* ───────────────────────── Mock Settings Menu ───────────────────────── */
-
-function MockSettingsMenu({
-  isDark,
-  highlightItem,
-}: {
-  isDark: boolean
-  highlightItem?: string | null
-}) {
-  const menuBg = isDark
-    ? 'linear-gradient(135deg, #1a1b20, #222328)'
-    : 'linear-gradient(135deg, #fefcff, #f5f0ff)'
-  const menuBorder = isDark
-    ? '1px solid rgba(107,114,128,0.35)'
-    : '1px solid rgba(147,51,234,0.15)'
-  const itemBg = isDark ? '#2b2d31' : '#ffffff'
-  const itemBorder = isDark
-    ? '1px solid rgba(107,114,128,0.3)'
-    : '1px solid rgba(147,51,234,0.1)'
-  const textColor = isDark ? '#e5e7eb' : '#334155'
-
-  const items = [
-    { label: '回复长度', id: 'length' },
-    { label: '语言设置', id: 'language' },
-    { label: '模式设置', id: 'mode' },
-    { label: '模型设置', id: 'model' },
-  ]
-
-  const hlRing = isDark
-    ? 'ring-2 ring-yellow-500 ring-offset-2 ring-offset-[#1b1c21] animate-pulse'
-    : 'ring-2 ring-yellow-500 ring-offset-2 ring-offset-white animate-pulse'
-
-  return (
-    <div
-      className="rounded-xl p-5 space-y-3 max-w-sm mx-auto"
-      style={{
-        background: menuBg,
-        border: menuBorder,
-        boxShadow: isDark
-          ? '0 20px 60px rgba(0,0,0,0.6)'
-          : '0 20px 60px rgba(147,51,234,0.12)',
-      }}
-    >
-      <h3
-        className="text-center text-base font-bold mb-4"
-        style={{ color: isDark ? '#f3f4f6' : '#0f172a' }}
-      >
-        Freesia Petals 设置菜单
-      </h3>
-      {items.map((item) => (
-        <div
-          key={item.id}
-          className={`px-4 py-3 rounded-lg text-sm font-medium text-center cursor-default ${
-            highlightItem === item.id ? hlRing : ''
-          }`}
-          style={{
-            background: itemBg,
-            border: itemBorder,
-            color: highlightItem === item.id
-              ? isDark ? '#fbbf24' : '#d97706'
-              : textColor,
-          }}
-        >
-          {item.label}
-        </div>
-      ))}
-      <div className="flex justify-center pt-2">
-        <div
-          className="px-4 py-2 rounded-lg text-sm font-medium cursor-default"
-          style={{
-            background: isDark ? 'rgba(127,29,29,0.5)' : 'rgba(185,28,28,0.1)',
-            border: isDark ? '1px solid rgba(239,68,68,0.3)' : '1px solid rgba(185,28,28,0.2)',
-            color: isDark ? '#fca5a5' : '#991b1b',
-          }}
-        >
-          取消
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/* ───────────────────────── Mock Button Selector ───────────────────────── */
-
-function MockButtonSelector({
-  isDark,
-  title,
-  items,
-  highlightItem,
-}: {
-  isDark: boolean
-  title: string
-  items: string[]
-  highlightItem?: string | null
-}) {
-  const menuBg = isDark
-    ? 'linear-gradient(135deg, #1a1b20, #222328)'
-    : 'linear-gradient(135deg, #fefcff, #f5f0ff)'
-  const menuBorder = isDark
-    ? '1px solid rgba(107,114,128,0.35)'
-    : '1px solid rgba(147,51,234,0.15)'
-  const itemBg = isDark ? '#2b2d31' : '#ffffff'
-  const itemBorder = isDark
-    ? '1px solid rgba(107,114,128,0.3)'
-    : '1px solid rgba(147,51,234,0.1)'
-  const textColor = isDark ? '#e5e7eb' : '#334155'
-
-  const hlRing = isDark
-    ? 'ring-2 ring-purple-500 ring-offset-2 ring-offset-[#1b1c21] animate-pulse'
-    : 'ring-2 ring-purple-500 ring-offset-2 ring-offset-white animate-pulse'
-
-  return (
-    <div
-      className="rounded-xl p-5 space-y-3 max-w-sm mx-auto"
-      style={{
-        background: menuBg,
-        border: menuBorder,
-        boxShadow: isDark
-          ? '0 20px 60px rgba(0,0,0,0.6)'
-          : '0 20px 60px rgba(147,51,234,0.12)',
-      }}
-    >
-      <h3
-        className="text-center text-base font-bold mb-4"
-        style={{ color: isDark ? '#f3f4f6' : '#0f172a' }}
-      >
-        {title}
-      </h3>
-      {items.map((item) => (
-        <div
-          key={item}
-          className={`px-4 py-3 rounded-lg text-sm font-medium text-center cursor-default ${
-            highlightItem === item ? hlRing : ''
-          }`}
-          style={{
-            background: itemBg,
-            border: itemBorder,
-            color: highlightItem === item
-              ? isDark ? '#c084fc' : '#7e22ce'
-              : textColor,
-          }}
-        >
-          {item}
-        </div>
-      ))}
-    </div>
-  )
 }
 
 /* ───────────────────────── Detail Card Component ───────────────────────── */
@@ -339,7 +187,18 @@ function StepFindEntry({ isDark }: { isDark: boolean }) {
 
         <STPanel isDark={isDark} className="relative">
           <SimulationBadge isDark={isDark} label="设置菜单" />
-          <MockSettingsMenu isDark={isDark} highlightItem="length" />
+          <MockSelectionMenu
+            isDark={isDark}
+            title="Freesia Petals 设置菜单"
+            items={[
+              { id: 'length', label: '回复长度' },
+              { id: 'language', label: '语言设置' },
+              { id: 'mode', label: '模式设置' },
+              { id: 'model', label: '模型设置' },
+            ]}
+            highlightItemId="length"
+            highlightTone="yellow"
+          />
         </STPanel>
       </div>
     </div>
@@ -401,20 +260,30 @@ function StepLength({ isDark }: { isDark: boolean }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <STPanel isDark={isDark} className="relative">
           <SimulationBadge isDark={isDark} label="字数选择" />
-          <MockButtonSelector
+          <MockSelectionMenu
             isDark={isDark}
             title="回复长度菜单"
-            items={['未设置', '400', '600', '800', '自定义']}
-            highlightItem="600"
+            items={['未设置', '400', '600', '800', '自定义'].map((label) => ({
+              id: label,
+              label,
+            }))}
+            highlightItemId="600"
+            highlightTone="purple"
+            showCancelButton={false}
           />
         </STPanel>
         <STPanel isDark={isDark} className="relative">
           <SimulationBadge isDark={isDark} label="控制策略" />
-          <MockButtonSelector
+          <MockSelectionMenu
             isDark={isDark}
             title="请选择控制策略:"
-            items={['约等于', '不少于', '不多于']}
-            highlightItem={null}
+            items={['约等于', '不少于', '不多于'].map((label) => ({
+              id: label,
+              label,
+            }))}
+            highlightItemId={null}
+            highlightTone="purple"
+            showCancelButton={false}
           />
         </STPanel>
       </div>
@@ -532,20 +401,30 @@ function StepLanguage({ isDark }: { isDark: boolean }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <STPanel isDark={isDark} className="relative">
           <SimulationBadge isDark={isDark} label="首选语言" />
-          <MockButtonSelector
+          <MockSelectionMenu
             isDark={isDark}
             title="语言设置 - 首选语言"
-            items={['未设置', '中文', 'English', '日本語', '한국어', '自定义']}
-            highlightItem="中文"
+            items={['未设置', '中文', 'English', '日本語', '한국어', '自定义'].map((label) => ({
+              id: label,
+              label,
+            }))}
+            highlightItemId="中文"
+            highlightTone="purple"
+            showCancelButton={false}
           />
         </STPanel>
         <STPanel isDark={isDark} className="relative">
           <SimulationBadge isDark={isDark} label="对白语言" />
-          <MockButtonSelector
+          <MockSelectionMenu
             isDark={isDark}
             title="语言设置 - 对白语言"
-            items={['未设置', '中文', 'English', '日本語', '한국어', '自定义']}
-            highlightItem={null}
+            items={['未设置', '中文', 'English', '日本語', '한국어', '自定义'].map((label) => ({
+              id: label,
+              label,
+            }))}
+            highlightItemId={null}
+            highlightTone="purple"
+            showCancelButton={false}
           />
         </STPanel>
       </div>
@@ -858,11 +737,16 @@ function StepModel({ isDark }: { isDark: boolean }) {
         <div className="lg:sticky lg:top-28">
           <STPanel isDark={isDark} className="relative">
             <SimulationBadge isDark={isDark} label="模型类型选择" />
-            <MockButtonSelector
+            <MockSelectionMenu
               isDark={isDark}
               title="请为当前模型选择类型"
-              items={['Claude (General)', 'Claude (Prefill)', 'Claude You.com', 'DeepSeek', 'Gemini']}
-              highlightItem={null}
+              items={['Claude (General)', 'Claude (Prefill)', 'Claude You.com', 'DeepSeek', 'Gemini'].map((label) => ({
+                id: label,
+                label,
+              }))}
+              highlightItemId={null}
+              highlightTone="purple"
+              showCancelButton={false}
             />
           </STPanel>
         </div>

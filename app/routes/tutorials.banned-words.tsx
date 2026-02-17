@@ -6,22 +6,11 @@ import {
   Trash2,
   Edit2,
   Plus,
-  PenLine,
-  Link2Off,
   Link as LinkIcon,
-  ToggleRight,
-  ToggleLeft,
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.banned-words'
 import {
-  STPanel,
-  STNavbar,
-  STLabel,
-  STButton,
-  STInput,
-  STCheckbox,
   GuideStepCard,
-  SimulationBadge,
   TutorialHintCard,
 } from '~/components/ui/TutorialComponents'
 import {
@@ -32,6 +21,20 @@ import {
   useTutorialStepQuery,
   useTutorialTheme,
 } from '~/components/ui/TutorialPageLayout'
+import {
+  STPanel,
+  STNavbar,
+  STLabel,
+  STButton,
+  STInput,
+  STCheckbox,
+  SimulationBadge,
+  MockPromptEditDialogActions,
+  MockPromptEditDialogHeader,
+  MockPromptListColumns,
+  MockPromptListRow,
+  TutorialInlineCode,
+} from '~/components/ui/TutorialMockComponents'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -42,111 +45,6 @@ export function meta({}: Route.MetaArgs) {
         '花瓣预设禁词表教程 — 学习如何在提示词列表中找到并编辑禁词表，添加自定义禁用表达。',
     },
   ]
-}
-
-/* ───────────────────────── Mock Prompt List Row ───────────────────────── */
-
-function MockPromptRow({
-  isDark,
-  emoji,
-  label,
-  enabled,
-  highlight,
-  onEditHighlight,
-}: {
-  isDark: boolean
-  emoji: string
-  label: string
-  enabled: boolean
-  highlight?: boolean
-  onEditHighlight?: boolean
-}) {
-  return (
-    <div
-      className="flex items-center justify-between px-3 py-2.5 rounded-lg transition-all duration-200"
-      style={{
-        background: highlight
-          ? isDark
-            ? 'rgba(236,72,153,0.08)'
-            : 'rgba(236,72,153,0.04)'
-          : isDark
-            ? 'rgba(30,30,40,0.6)'
-            : 'rgba(250,245,255,0.6)',
-        border: highlight
-          ? isDark
-            ? '1px solid rgba(236,72,153,0.3)'
-            : '1px solid rgba(236,72,153,0.2)'
-          : isDark
-            ? '1px solid rgba(107,114,128,0.2)'
-            : '1px solid rgba(147,51,234,0.08)',
-      }}
-    >
-      <div className="flex items-center gap-2 min-w-0">
-        <span
-          className="text-[9px] shrink-0"
-          style={{ color: isDark ? '#fbbf24' : '#d97706' }}
-        >
-          ✱
-        </span>
-        <span
-          className="text-xs truncate"
-          style={{ color: isDark ? '#e5e7eb' : '#334155' }}
-        >
-          {emoji}{label}
-        </span>
-      </div>
-      <div className="flex items-center gap-2 shrink-0">
-        <Link2Off
-          size={14}
-          strokeWidth={1.8}
-          style={{ color: isDark ? '#6b7280' : '#94a3b8' }}
-        />
-        {/* Edit (pencil) button */}
-        <div className="relative group">
-          <PenLine
-            size={14}
-            strokeWidth={1.8}
-            style={{
-              color: onEditHighlight
-                ? isDark ? '#f472b6' : '#ec4899'
-                : isDark ? '#6b7280' : '#94a3b8',
-            }}
-          />
-          {onEditHighlight && (
-            <div
-              className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs px-2 py-0.5 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-              style={{
-                background: isDark ? '#ec4899' : '#db2777',
-                color: '#fff',
-              }}
-            >
-              点击编辑
-            </div>
-          )}
-        </div>
-        {/* Toggle */}
-        {enabled ? (
-          <ToggleRight
-            size={20}
-            style={{
-              color: isDark ? '#a855f7' : '#9333ea',
-            }}
-          />
-        ) : (
-          <ToggleLeft
-            size={20}
-            style={{ color: isDark ? '#4b5563' : '#94a3b8' }}
-          />
-        )}
-        <span
-          className="text-xs font-mono"
-          style={{ color: isDark ? '#6b7280' : '#94a3b8' }}
-        >
-          -
-        </span>
-      </div>
-    </div>
-  )
 }
 
 /* ───────────────────────── Mock Edit Dialog ───────────────────────── */
@@ -166,44 +64,11 @@ function MockEditDialog({
 
   return (
     <div className="space-y-4">
-      {/* Title */}
-      <h3
-        className="text-lg font-bold"
-        style={{ color: isDark ? '#f472b6' : '#db2777' }}
-      >
-        编辑
-      </h3>
-
-      {/* Name / Role / Trigger row */}
-      <div className="grid grid-cols-3 gap-3">
-        <div>
-          <div className="text-xs font-medium mb-1" style={{ color: labelColor }}>姓名</div>
-          <div
-            className="px-2 py-1.5 rounded text-xs truncate"
-            style={{ background: fieldBg, border: `1px solid ${fieldBorder}`, color: isDark ? '#d1d5db' : '#475569' }}
-          >
-            📍[禁词表] Avoid Cliché Expr
-          </div>
-        </div>
-        <div>
-          <div className="text-xs font-medium mb-1" style={{ color: labelColor }}>角色</div>
-          <div
-            className="px-2 py-1.5 rounded text-xs"
-            style={{ background: fieldBg, border: `1px solid ${fieldBorder}`, color: isDark ? '#d1d5db' : '#475569' }}
-          >
-            系统
-          </div>
-        </div>
-        <div>
-          <div className="text-xs font-medium mb-1" style={{ color: labelColor }}>触发器</div>
-          <div
-            className="px-2 py-1.5 rounded text-xs"
-            style={{ background: fieldBg, border: `1px solid ${fieldBorder}`, color: isDark ? '#6b7280' : '#94a3b8' }}
-          >
-            All types (default)
-          </div>
-        </div>
-      </div>
+      <MockPromptEditDialogHeader
+        isDark={isDark}
+        name="📍[禁词表] Avoid Cliché Expr"
+        tone="pink"
+      />
 
       {/* Prompt textarea */}
       <div>
@@ -253,48 +118,7 @@ function MockEditDialog({
         </div>
       </div>
 
-      {/* Bottom action bar */}
-      <div className="flex items-center justify-between pt-2">
-        <div
-          className="w-8 h-8 rounded-lg flex items-center justify-center cursor-default"
-          style={{
-            background: isDark ? '#2b2d31' : '#f1f5f9',
-            color: isDark ? '#9ca3af' : '#64748b',
-          }}
-        >
-          ✕
-        </div>
-        <div className="relative group">
-          <div
-            className={`w-8 h-8 rounded-lg flex items-center justify-center cursor-default ${
-              highlightSave
-                ? isDark
-                  ? 'ring-2 ring-green-500 ring-offset-2 ring-offset-[#1b1c21] animate-pulse'
-                  : 'ring-2 ring-green-500 ring-offset-2 ring-offset-white animate-pulse'
-                : ''
-            }`}
-            style={{
-              background: isDark ? '#2b2d31' : '#f1f5f9',
-              color: highlightSave
-                ? isDark ? '#4ade80' : '#16a34a'
-                : isDark ? '#9ca3af' : '#64748b',
-            }}
-          >
-            <Save size={16} />
-          </div>
-          {highlightSave && (
-            <div
-              className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-xs px-2 py-0.5 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-              style={{
-                background: isDark ? '#22c55e' : '#16a34a',
-                color: '#fff',
-              }}
-            >
-              保存编辑
-            </div>
-          )}
-        </div>
-      </div>
+      <MockPromptEditDialogActions isDark={isDark} highlightSave={highlightSave} />
     </div>
   )
 }
@@ -326,15 +150,9 @@ function StepFind({ isDark }: { isDark: boolean }) {
           detail={
             <>
               在列表中找到{' '}
-              <code
-                className="text-xs px-1.5 py-0.5 rounded font-mono"
-                style={{
-                  background: isDark ? 'rgba(236,72,153,0.12)' : 'rgba(236,72,153,0.06)',
-                  color: isDark ? '#f9a8d4' : '#db2777',
-                }}
-              >
+              <TutorialInlineCode isDark={isDark} tone="pink">
                 📍[禁词表] Avoid Cliché Expressions
-              </code>
+              </TutorialInlineCode>
               {' '}条目。
             </>
           }
@@ -376,23 +194,12 @@ function StepFind({ isDark }: { isDark: boolean }) {
             </span>
           </div>
 
-          {/* Column headers */}
-          <div
-            className="flex items-center justify-between px-3 py-1"
-            style={{
-              borderBottom: isDark
-                ? '1px solid rgba(107,114,128,0.2)'
-                : '1px solid rgba(147,51,234,0.08)',
-            }}
-          >
-            <span className="text-xs font-medium" style={{ color: isDark ? '#9ca3af' : '#64748b' }}>名称</span>
-            <span className="text-xs font-medium" style={{ color: isDark ? '#9ca3af' : '#64748b' }}>词符</span>
-          </div>
+          <MockPromptListColumns isDark={isDark} />
 
           <div className="space-y-1.5">
-            <MockPromptRow isDark={isDark} emoji="" label="== 指南（可自定义）==" enabled={true} />
-            <MockPromptRow isDark={isDark} emoji="📍" label="[禁词表] Avoid Cliché Expressions" enabled={true} highlight={true} onEditHighlight={true} />
-            <MockPromptRow isDark={isDark} emoji="📍" label="[防软道歉] Avoid Evading" enabled={true} />
+            <MockPromptListRow isDark={isDark} tone="pink" emoji="" label="== 指南（可自定义）==" enabled={true} />
+            <MockPromptListRow isDark={isDark} tone="pink" emoji="📍" label="[禁词表] Avoid Cliché Expressions" enabled={true} highlight={true} onEditHighlight={true} />
+            <MockPromptListRow isDark={isDark} tone="pink" emoji="📍" label="[防软道歉] Avoid Evading" enabled={true} />
           </div>
         </div>
       </STPanel>
