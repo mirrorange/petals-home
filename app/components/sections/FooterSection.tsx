@@ -41,16 +41,16 @@ export default function FooterSection() {
             rel="noopener noreferrer"
             className="text-sm text-freesia-600 dark:text-freesia-400 hover:text-freesia-700 dark:hover:text-freesia-300 transition-colors"
           >
-            Discord 频道
+            发布页
           </a>
           <span className="w-1 h-1 rounded-full bg-freesia-300 dark:bg-freesia-700" />
           <a
-            href="https://discord.com/channels/1134557553011998840/1333735046120476686"
+            href="https://github.com/mirrorange/petals-home"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-freesia-600 dark:text-freesia-400 hover:text-freesia-700 dark:hover:text-freesia-300 transition-colors"
           >
-            发布页
+            Github
           </a>
         </div>
 
