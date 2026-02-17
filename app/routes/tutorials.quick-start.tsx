@@ -13,6 +13,7 @@ import {
   Sparkles,
   ArrowRight,
   AlertTriangle,
+  Rocket,
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.quick-start'
 import {
@@ -507,7 +508,7 @@ export default function QuickStart() {
     <TutorialPageShell isDark={isDark} onToggleTheme={toggleTheme}>
       <TutorialPageHeader
         isDark={isDark}
-        badgeIcon={<Sparkles className="w-3.5 h-3.5" />}
+        badgeIcon={<Rocket className="w-3.5 h-3.5" />}
         badgeLabel="安装教程"
         title="快速开始"
         description="跟着模拟 UI 一步步完成安装"

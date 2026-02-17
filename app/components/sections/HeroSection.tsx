@@ -1,5 +1,6 @@
 import { Sparkles } from 'lucide-react'
 import { Link } from 'react-router'
+import PetalsIcon from '../ui/PetalsIcon'
 
 interface HeroSectionProps {
   isDark: boolean
@@ -105,7 +106,7 @@ export default function HeroSection({ isDark }: HeroSectionProps) {
               }}
             />
             <span className="relative flex items-center gap-2">
-              <Sparkles className="w-4 h-4" />
+              <PetalsIcon className="w-4 h-4" />
               快速开始
             </span>
           </Link>

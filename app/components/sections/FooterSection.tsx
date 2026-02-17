@@ -1,4 +1,4 @@
-import { Sparkles } from 'lucide-react'
+import PetalsIcon from '~/components/ui/PetalsIcon'
 
 export default function FooterSection() {
   return (
@@ -14,7 +14,10 @@ export default function FooterSection() {
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         {/* Logo */}
         <div className="flex items-center justify-center gap-3 mb-6">
-          <Sparkles className="w-5 h-5 text-freesia-400" />
+          <PetalsIcon
+            title="花瓣预设图标"
+            className="w-5 h-5 text-freesia-400"
+          />
           <span className="text-2xl font-bold bg-clip-text text-transparent"
             style={{
               backgroundImage: 'linear-gradient(135deg, #c084fc, #f472b6)',
@@ -22,7 +25,7 @@ export default function FooterSection() {
           >
             花瓣预设
           </span>
-          <Sparkles className="w-5 h-5 text-blossom-400" />
+          <PetalsIcon className="w-5 h-5 text-blossom-400" />
         </div>
 
         {/* Tagline */}

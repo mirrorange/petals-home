@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Sparkles } from 'lucide-react'
 import { Link } from 'react-router'
+import PetalsIcon from '~/components/ui/PetalsIcon'
 import ThemeToggle from '~/components/ui/ThemeToggle'
 
 interface NavbarProps {
@@ -34,8 +34,9 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
           to="/"
           className="flex items-center gap-2 group transition-transform hover:scale-105"
         >
-          <Sparkles className={`w-5 h-5 transition-colors duration-300
-            ${scrolled ? 'text-freesia-500' : 'text-freesia-400'}`}
+          <PetalsIcon
+            title="花瓣预设图标"
+            className={`w-5 h-5 transition-colors duration-300 ${scrolled ? 'text-freesia-500' : 'text-freesia-400'}`}
           />
           <span
             className="text-lg font-bold bg-clip-text text-transparent transition-all"

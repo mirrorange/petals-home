@@ -2,11 +2,10 @@ import {
   Download,
   FileDown,
   ChevronUp,
-  Sparkles,
   Plus,
   Trash2,
-  Globe,
   Puzzle,
+  Rocket,
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.noass'
 import {
@@ -532,7 +531,7 @@ export default function NoAss() {
     <TutorialPageShell isDark={isDark} onToggleTheme={toggleTheme}>
       <TutorialPageHeader
         isDark={isDark}
-        badgeIcon={<Sparkles className="w-3.5 h-3.5" />}
+        badgeIcon={<Rocket className="w-3.5 h-3.5" />}
         badgeLabel="NoAss 配置"
         title="NoAss 插件配置"
         description="跟着模拟 UI 完成 NoAss 插件安装与配置（仅 DeepSeek 模型需要）"
