@@ -64,6 +64,10 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
             hover:text-freesia-600 dark:hover:text-freesia-300 transition-colors">
             使用教程
           </Link>
+          <Link to="/about" className="text-sm font-medium text-slate-500 dark:text-slate-400
+            hover:text-freesia-600 dark:hover:text-freesia-300 transition-colors">
+            关于花瓣
+          </Link>
           <a
             href="https://discord.com/channels/1134557553011998840/1333735046120476686"
             target="_blank"

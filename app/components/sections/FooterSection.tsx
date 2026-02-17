@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import PetalsIcon from '~/components/ui/PetalsIcon'
 
 export default function FooterSection() {
@@ -43,6 +44,13 @@ export default function FooterSection() {
           >
             发布页
           </a>
+          <span className="w-1 h-1 rounded-full bg-freesia-300 dark:bg-freesia-700" />
+          <Link
+            to="/about"
+            className="text-sm text-freesia-600 dark:text-freesia-400 hover:text-freesia-700 dark:hover:text-freesia-300 transition-colors"
+          >
+            关于花瓣
+          </Link>
           <span className="w-1 h-1 rounded-full bg-freesia-300 dark:bg-freesia-700" />
           <a
             href="https://github.com/mirrorange/petals-home"
