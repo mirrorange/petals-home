@@ -12,14 +12,14 @@ import {
   GuideStepCard,
   TutorialHintCard,
   TutorialCompletionCard,
-} from '~/components/ui/TutorialComponents'
+} from '~/components/ui/tutorial'
 import {
   STPanel,
   STNavbar,
   STCheckbox,
   STInput,
   SimulationBadge,
-} from '~/components/ui/TutorialMockComponents'
+} from '~/components/ui/tutorial-mock'
 import {
   TutorialPageHeader,
   TutorialPageShell,

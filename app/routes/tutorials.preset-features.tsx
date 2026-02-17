@@ -16,7 +16,7 @@ import {
   GuideStepCard,
   TutorialCompletionCard,
   TutorialHintCard,
-} from '~/components/ui/TutorialComponents'
+} from '~/components/ui/tutorial'
 import {
   TutorialPageHeader,
   TutorialPageShell,
@@ -25,14 +25,14 @@ import {
   useTutorialStepQuery,
   useTutorialTheme,
 } from '~/components/ui/TutorialPageLayout'
-import { MockAtFreesia, MockOptions } from '~/components/ui/MockUI'
+import { MockAtFreesia, MockOptions } from '~/components/ui/mock-ui'
 import {
   STPanel,
   SimulationBadge,
   MockPetalsInputBar,
   MockInteractiveSelectionMenu,
   MockSelectionMenu,
-} from '~/components/ui/TutorialMockComponents'
+} from '~/components/ui/tutorial-mock'
 
 export function meta({}: Route.MetaArgs) {
   return [

@@ -15,7 +15,7 @@ import type { Route } from './+types/tutorials.custom-cot'
 import {
   GuideStepCard,
   TutorialHintCard,
-} from '~/components/ui/TutorialComponents'
+} from '~/components/ui/tutorial'
 import {
   TutorialPageHeader,
   TutorialPageShell,
@@ -37,7 +37,7 @@ import {
   MockPromptListColumns,
   MockPromptListRow,
   TutorialInlineCode,
-} from '~/components/ui/TutorialMockComponents'
+} from '~/components/ui/tutorial-mock'
 
 export function meta({}: Route.MetaArgs) {
   return [

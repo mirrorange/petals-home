@@ -19,12 +19,12 @@ import {
   GuideStepCard,
   TutorialCompletionCard,
   TutorialHintCard,
-} from '~/components/ui/TutorialComponents'
+} from '~/components/ui/tutorial'
 import {
   STPanel,
   SimulationBadge,
   MockPetalsInputBar,
-} from '~/components/ui/TutorialMockComponents'
+} from '~/components/ui/tutorial-mock'
 import {
   TutorialPageHeader,
   TutorialPageShell,
@@ -33,7 +33,7 @@ import {
   useTutorialStepQuery,
   useTutorialTheme,
 } from '~/components/ui/TutorialPageLayout'
-import { MockMemory } from '~/components/ui/MockUI'
+import { MockMemory } from '~/components/ui/mock-ui'
 import { hexToRgb } from '~/components/ui/TutorialColorUtils'
 
 export function meta({}: Route.MetaArgs) {

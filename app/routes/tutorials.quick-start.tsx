@@ -20,7 +20,7 @@ import {
   GuideStepCard,
   TutorialHintCard,
   TutorialCompletionCard,
-} from '~/components/ui/TutorialComponents'
+} from '~/components/ui/tutorial'
 import {
   STPanel,
   STButton,
@@ -29,7 +29,7 @@ import {
   STLabel,
   STCheckbox,
   SimulationBadge,
-} from '~/components/ui/TutorialMockComponents'
+} from '~/components/ui/tutorial-mock'
 import {
   TutorialPageHeader,
   TutorialPageShell,

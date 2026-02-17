@@ -7,7 +7,7 @@ import {
   MockSynopsis,
   MockImpersonate,
   MockOptions,
-} from '~/components/ui/MockUI'
+} from '~/components/ui/mock-ui'
 
 interface Feature {
   id: string

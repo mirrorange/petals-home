@@ -14,7 +14,7 @@ import {
   GuideStepCard,
   TutorialCompletionCard,
   TutorialHintCard,
-} from '~/components/ui/TutorialComponents'
+} from '~/components/ui/tutorial'
 import {
   TutorialPageHeader,
   TutorialPageShell,
@@ -29,7 +29,7 @@ import {
   MockPetalsInputBar,
   MockInteractiveSelectionMenu,
   MockSelectionMenu,
-} from '~/components/ui/TutorialMockComponents'
+} from '~/components/ui/tutorial-mock'
 import { hexToRgb } from '~/components/ui/TutorialColorUtils'
 
 export function meta({}: Route.MetaArgs) {
