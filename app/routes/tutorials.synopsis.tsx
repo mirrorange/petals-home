@@ -1,7 +1,5 @@
-import { Link } from 'react-router'
 import {
   Layers,
-  ArrowRight,
   FileText,
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.synopsis'
@@ -10,6 +8,7 @@ import {
   TutorialCompletionCard,
   TutorialHintCard,
   SimulationBadge,
+  TutorialLinkCard,
 } from '~/components/ui/tutorial'
 import {
   TutorialPageHeader,
@@ -226,46 +225,24 @@ function StepDone({ isDark }: { isDark: boolean }) {
         </>
       }
     >
-      {/* Token saving callout */}
-      <div
-        className="p-4 rounded-xl text-left text-sm max-w-md mx-auto flex items-start gap-3"
-        style={{
-          background: isDark ? 'rgba(147,51,234,0.08)' : 'rgba(147,51,234,0.05)',
-          border: isDark ? '1px solid rgba(147,51,234,0.25)' : '1px solid rgba(147,51,234,0.15)',
-          color: isDark ? '#d8b4fe' : '#7e22ce',
-        }}
-      >
-        <FileText
-          className="w-5 h-5 shrink-0 mt-0.5"
-          style={{ color: isDark ? '#c084fc' : '#9333ea' }}
-        />
-        <div className="space-y-2">
-          <p className="font-bold" style={{ color: isDark ? '#e9d5ff' : '#581c87' }}>
-            节省 Token
-          </p>
-          <p style={{ color: isDark ? '#cbd5e1' : '#64748b' }}>
+      <TutorialLinkCard
+        isDark={isDark}
+        icon={FileText}
+        title="节省 Token"
+        description={
+          <>
             摘要启用时，可以结合{' '}
             <span className="font-semibold" style={{ color: isDark ? '#c084fc' : '#7e22ce' }}>
               节省 Token 功能
             </span>
             ，将已读的故事摘要折叠以减少上下文占用。
-          </p>
-          <Link
-            to="/tutorials/preset-features?step=5"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all hover:scale-105 active:scale-95"
-            style={{
-              background: isDark
-                ? 'linear-gradient(135deg, rgba(147,51,234,0.2), rgba(168,85,247,0.25))'
-                : 'linear-gradient(135deg, rgba(147,51,234,0.1), rgba(168,85,247,0.15))',
-              border: isDark ? '1px solid rgba(147,51,234,0.35)' : '1px solid rgba(147,51,234,0.25)',
-              color: isDark ? '#e9d5ff' : '#581c87',
-            }}
-          >
-            查看节省 Token 教程
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-      </div>
+          </>
+        }
+        href="/tutorials/preset-features?step=5"
+        ctaLabel="查看节省 Token 教程"
+        theme="purple"
+        className="max-w-md mx-auto"
+      />
 
       <TutorialHintCard isDark={isDark} className="max-w-md mx-auto">
         <ul className="list-disc pl-4 space-y-1">

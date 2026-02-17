@@ -1,4 +1,3 @@
-import { Link } from 'react-router'
 import {
   Save,
   FileDown,
@@ -10,8 +9,6 @@ import {
   CheckCircle,
   Link as LinkIcon,
   Copy,
-  Sparkles,
-  ArrowRight,
   AlertTriangle,
   Rocket,
 } from 'lucide-react'
@@ -21,6 +18,7 @@ import {
   TutorialHintCard,
   TutorialCompletionCard,
   SimulationBadge,
+  TutorialLinkCard,
 } from '~/components/ui/tutorial'
 import {
   STPanel,
@@ -419,46 +417,24 @@ function StepDone({ isDark }: { isDark: boolean }) {
         </>
       }
     >
-      {/* DeepSeek NoAss callout */}
-      <div
-        className="p-4 rounded-xl text-left text-sm max-w-md mx-auto flex items-start gap-3"
-        style={{
-          background: isDark ? 'rgba(234,179,8,0.08)' : 'rgba(234,179,8,0.06)',
-          border: isDark ? '1px solid rgba(234,179,8,0.25)' : '1px solid rgba(234,179,8,0.3)',
-          color: isDark ? '#fbbf24' : '#92400e',
-        }}
-      >
-        <AlertTriangle
-          className="w-5 h-5 shrink-0 mt-0.5"
-          style={{ color: isDark ? '#fbbf24' : '#d97706' }}
-        />
-        <div className="space-y-2">
-          <p className="font-bold" style={{ color: isDark ? '#fde68a' : '#92400e' }}>
-            使用 DeepSeek 模型？
-          </p>
-          <p style={{ color: isDark ? '#d1d5db' : '#78716c' }}>
+      <TutorialLinkCard
+        isDark={isDark}
+        icon={AlertTriangle}
+        title="使用 DeepSeek 模型？"
+        description={
+          <>
             DeepSeek 系列模型需要额外配置{' '}
             <span className="font-semibold" style={{ color: isDark ? '#fbbf24' : '#b45309' }}>
               NoAss 插件
             </span>{' '}
             才能正常使用花瓣预设，请前往教程完成配置。
-          </p>
-          <Link
-            to="/tutorials/noass"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all hover:scale-105 active:scale-95"
-            style={{
-              background: isDark
-                ? 'linear-gradient(135deg, rgba(234,179,8,0.2), rgba(217,119,6,0.25))'
-                : 'linear-gradient(135deg, rgba(234,179,8,0.15), rgba(217,119,6,0.2))',
-              border: isDark ? '1px solid rgba(234,179,8,0.35)' : '1px solid rgba(217,119,6,0.3)',
-              color: isDark ? '#fde68a' : '#92400e',
-            }}
-          >
-            前往 NoAss 插件配置教程
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-      </div>
+          </>
+        }
+        href="/tutorials/noass"
+        ctaLabel="前往 NoAss 插件配置教程"
+        theme="yellow"
+        className="max-w-md mx-auto"
+      />
 
       <TutorialHintCard isDark={isDark} className="max-w-md mx-auto">
         <ul className="list-disc pl-4 space-y-1">

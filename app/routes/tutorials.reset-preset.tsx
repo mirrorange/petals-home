@@ -1,11 +1,11 @@
-import { Link } from 'react-router'
-import { ArrowRight, FileText, RotateCcw } from 'lucide-react'
+import { FileText, RotateCcw } from 'lucide-react'
 import type { Route } from './+types/tutorials.reset-preset'
 import {
   GuideStepCard,
   TutorialCompletionCard,
   TutorialHintCard,
   SimulationBadge,
+  TutorialLinkCard,
 } from '~/components/ui/tutorial'
 import {
   TutorialPageHeader,
@@ -121,26 +121,32 @@ function StepFollowConfigGuide({ isDark }: { isDark: boolean }) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <ConfigLinkCard
+        <TutorialLinkCard
           isDark={isDark}
-          tone="pink"
+          theme="pink"
+          icon={FileText}
           title="Petals CoT 配置"
-          desc="配置必选与可选问题"
+          description="配置必选与可选问题"
           href="/tutorials/cot"
+          descriptionClassName="text-xs"
         />
-        <ConfigLinkCard
+        <TutorialLinkCard
           isDark={isDark}
-          tone="blue"
+          theme="blue"
+          icon={FileText}
           title="基本参数设置"
-          desc="回复长度、语言等基础参数"
+          description="回复长度、语言等基础参数"
           href="/tutorials/basic-settings"
+          descriptionClassName="text-xs"
         />
-        <ConfigLinkCard
+        <TutorialLinkCard
           isDark={isDark}
-          tone="green"
+          theme="green"
+          icon={FileText}
           title="预设功能设置"
-          desc="调整元回复、主题与选项开关"
+          description="调整元回复、主题与选项开关"
           href="/tutorials/preset-features"
+          descriptionClassName="text-xs"
         />
       </div>
 
@@ -152,128 +158,6 @@ function StepFollowConfigGuide({ isDark }: { isDark: boolean }) {
           <li>若不确定，建议调整后实际对话测试 1-2 轮再继续修改。</li>
         </ul>
       </TutorialHintCard>
-    </div>
-  )
-}
-
-type ConfigCardTone = 'pink' | 'blue' | 'green'
-
-const CONFIG_CARD_TONE_STYLES: Record<
-  ConfigCardTone,
-  {
-    cardBackgroundDark: string
-    cardBackgroundLight: string
-    cardBorderDark: string
-    cardBorderLight: string
-    iconDark: string
-    iconLight: string
-    titleDark: string
-    titleLight: string
-    linkBackgroundDark: string
-    linkBackgroundLight: string
-    linkBorderDark: string
-    linkBorderLight: string
-    linkTextDark: string
-    linkTextLight: string
-  }
-> = {
-  pink: {
-    cardBackgroundDark: 'rgba(236,72,153,0.09)',
-    cardBackgroundLight: 'rgba(236,72,153,0.05)',
-    cardBorderDark: '1px solid rgba(236,72,153,0.26)',
-    cardBorderLight: '1px solid rgba(236,72,153,0.16)',
-    iconDark: '#f9a8d4',
-    iconLight: '#db2777',
-    titleDark: '#fce7f3',
-    titleLight: '#831843',
-    linkBackgroundDark: 'linear-gradient(135deg, rgba(190,24,93,0.24), rgba(236,72,153,0.26))',
-    linkBackgroundLight: 'linear-gradient(135deg, rgba(236,72,153,0.12), rgba(244,114,182,0.2))',
-    linkBorderDark: '1px solid rgba(244,114,182,0.4)',
-    linkBorderLight: '1px solid rgba(236,72,153,0.28)',
-    linkTextDark: '#fce7f3',
-    linkTextLight: '#9d174d',
-  },
-  blue: {
-    cardBackgroundDark: 'rgba(37,99,235,0.1)',
-    cardBackgroundLight: 'rgba(37,99,235,0.06)',
-    cardBorderDark: '1px solid rgba(59,130,246,0.28)',
-    cardBorderLight: '1px solid rgba(37,99,235,0.18)',
-    iconDark: '#93c5fd',
-    iconLight: '#2563eb',
-    titleDark: '#dbeafe',
-    titleLight: '#1e3a8a',
-    linkBackgroundDark: 'linear-gradient(135deg, rgba(30,64,175,0.24), rgba(59,130,246,0.26))',
-    linkBackgroundLight: 'linear-gradient(135deg, rgba(37,99,235,0.12), rgba(96,165,250,0.2))',
-    linkBorderDark: '1px solid rgba(96,165,250,0.4)',
-    linkBorderLight: '1px solid rgba(59,130,246,0.28)',
-    linkTextDark: '#dbeafe',
-    linkTextLight: '#1e40af',
-  },
-  green: {
-    cardBackgroundDark: 'rgba(16,185,129,0.09)',
-    cardBackgroundLight: 'rgba(16,185,129,0.06)',
-    cardBorderDark: '1px solid rgba(52,211,153,0.26)',
-    cardBorderLight: '1px solid rgba(16,185,129,0.16)',
-    iconDark: '#6ee7b7',
-    iconLight: '#059669',
-    titleDark: '#d1fae5',
-    titleLight: '#065f46',
-    linkBackgroundDark: 'linear-gradient(135deg, rgba(4,120,87,0.24), rgba(16,185,129,0.25))',
-    linkBackgroundLight: 'linear-gradient(135deg, rgba(16,185,129,0.12), rgba(52,211,153,0.2))',
-    linkBorderDark: '1px solid rgba(52,211,153,0.38)',
-    linkBorderLight: '1px solid rgba(16,185,129,0.25)',
-    linkTextDark: '#d1fae5',
-    linkTextLight: '#065f46',
-  },
-}
-
-function ConfigLinkCard({
-  isDark,
-  tone,
-  title,
-  desc,
-  href,
-}: {
-  isDark: boolean
-  tone: ConfigCardTone
-  title: string
-  desc: string
-  href: string
-}) {
-  const toneStyles = CONFIG_CARD_TONE_STYLES[tone]
-
-  return (
-    <div
-      className="p-4 rounded-xl text-left text-sm flex items-start gap-3"
-      style={{
-        background: isDark ? toneStyles.cardBackgroundDark : toneStyles.cardBackgroundLight,
-        border: isDark ? toneStyles.cardBorderDark : toneStyles.cardBorderLight,
-      }}
-    >
-      <FileText
-        className="w-5 h-5 shrink-0 mt-0.5"
-        style={{ color: isDark ? toneStyles.iconDark : toneStyles.iconLight }}
-      />
-      <div className="space-y-2">
-        <h4 className="font-bold" style={{ color: isDark ? toneStyles.titleDark : toneStyles.titleLight }}>
-          {title}
-        </h4>
-        <p className="text-xs" style={{ color: isDark ? '#cbd5e1' : '#64748b' }}>
-          {desc}
-        </p>
-        <Link
-          to={href}
-          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all hover:scale-105 active:scale-95"
-          style={{
-            background: isDark ? toneStyles.linkBackgroundDark : toneStyles.linkBackgroundLight,
-            border: isDark ? toneStyles.linkBorderDark : toneStyles.linkBorderLight,
-            color: isDark ? toneStyles.linkTextDark : toneStyles.linkTextLight,
-          }}
-        >
-          查看教程
-          <ArrowRight className="w-3.5 h-3.5" />
-        </Link>
-      </div>
     </div>
   )
 }
