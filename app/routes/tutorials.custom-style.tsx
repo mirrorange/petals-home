@@ -1,4 +1,6 @@
+import { Link } from "react-router";
 import {
+  ArrowRight,
   Palette,
   Save,
   FileDown,
@@ -17,7 +19,6 @@ import {
 import type { Route } from "./+types/tutorials.custom-style";
 import {
   GuideStepCard,
-  TutorialHintCard,
 } from "~/components/ui/tutorial";
 import {
   TutorialPageHeader,
@@ -560,15 +561,52 @@ function StepEnableAndSave({ isDark }: { isDark: boolean }) {
           tip="不保存预设的话，刷新页面后修改会丢失。"
         />
 
-        <TutorialHintCard isDark={isDark}>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>
-              CoT 问题让 AI 在思考时主动检查文风一致性。参考{" "}
-              <span className="text-purple-400">「定制 CoT 问题」</span>{" "}
-              教程了解更多写法。
-            </li>
-          </ul>
-        </TutorialHintCard>
+        <div
+          className="p-4 rounded-xl text-left text-sm max-w-md"
+          style={{
+            background: isDark
+              ? "rgba(147,51,234,0.08)"
+              : "rgba(147,51,234,0.05)",
+            border: isDark
+              ? "1px solid rgba(147,51,234,0.25)"
+              : "1px solid rgba(147,51,234,0.15)",
+            color: isDark ? "#d8b4fe" : "#7e22ce",
+          }}
+        >
+          <div className="flex items-start gap-3">
+            <LinkIcon
+              className="w-5 h-5 shrink-0 mt-0.5"
+              style={{ color: isDark ? "#c084fc" : "#9333ea" }}
+            />
+            <div className="space-y-2">
+              <p
+                className="font-bold"
+                style={{ color: isDark ? "#e9d5ff" : "#581c87" }}
+              >
+                定制 CoT 问题
+              </p>
+              <p style={{ color: isDark ? "#cbd5e1" : "#64748b" }}>
+                CoT 问题可以让 AI 在思考时主动检查文风一致性，帮助你稳定输出目标风格。
+              </p>
+              <Link
+                to="/tutorials/custom-cot"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all hover:scale-105 active:scale-95"
+                style={{
+                  background: isDark
+                    ? "linear-gradient(135deg, rgba(147,51,234,0.2), rgba(168,85,247,0.25))"
+                    : "linear-gradient(135deg, rgba(147,51,234,0.1), rgba(168,85,247,0.15))",
+                  border: isDark
+                    ? "1px solid rgba(147,51,234,0.35)"
+                    : "1px solid rgba(147,51,234,0.25)",
+                  color: isDark ? "#e9d5ff" : "#581c87",
+                }}
+              >
+                查看定制 CoT 教程
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
 
       <STPanel isDark={isDark} className="relative">
