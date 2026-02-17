@@ -90,9 +90,7 @@ const categories: TutorialCategory[] = [
     description: '学习如何根据个人风格定制预设的行为、界面和输出格式。',
     items: [
       { label: '修改禁词表', href: '/tutorials/banned-words', ready: true },
-      { label: 'Prompt 修改指南', href: '/tutorials/prompt-editing', ready: false },
-      { label: '快速回复自定义', href: '/tutorials/qr-customization', ready: false },
-      { label: '角色卡适配建议', href: '/tutorials/character-cards', ready: false },
+      { label: '定制 CoT 问题', href: '/tutorials/custom-cot', ready: true },
     ],
     accentFrom: '#d946ef',
     accentTo: '#fb7185',
