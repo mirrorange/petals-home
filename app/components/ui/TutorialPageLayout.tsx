@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router'
 import { ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react'
 import Navbar from '~/components/sections/Navbar'
@@ -63,7 +63,7 @@ export function useTutorialStepQuery(totalSteps: number, paramKey = 'step') {
         nextParams.set(paramKey, String(nextStep + 1))
       }
 
-      setSearchParams(nextParams)
+      setSearchParams(nextParams, { preventScrollReset: true })
     },
     [paramKey, searchParams, setSearchParams, totalSteps],
   )
@@ -165,10 +165,25 @@ export function TutorialStepNavigator({
   onStepChange: (stepIndex: number) => void
   children: React.ReactNode
 }) {
+  const stepCardRef = useRef<HTMLDivElement>(null)
+  const isFirstRender = useRef(true)
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    stepCardRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  }, [currentStep])
+
   return (
     <>
       <div
-        className="rounded-2xl p-5 mb-8"
+        ref={stepCardRef}
+        className="rounded-2xl p-5 mb-8 scroll-mt-20"
         style={{
           background: isDark
             ? 'linear-gradient(135deg, rgba(15,12,24,0.8), rgba(26,22,37,0.6))'
