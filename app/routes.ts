@@ -14,4 +14,5 @@ export default [
   route("tutorials/impersonate", "routes/tutorials.impersonate.tsx"),
   route("tutorials/banned-words", "routes/tutorials.banned-words.tsx"),
   route("tutorials/custom-cot", "routes/tutorials.custom-cot.tsx"),
+  route("tutorials/custom-style", "routes/tutorials.custom-style.tsx"),
 ] satisfies RouteConfig;

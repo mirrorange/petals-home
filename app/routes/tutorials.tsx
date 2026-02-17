@@ -91,6 +91,7 @@ const categories: TutorialCategory[] = [
     items: [
       { label: '修改禁词表', href: '/tutorials/banned-words', ready: true },
       { label: '定制 CoT 问题', href: '/tutorials/custom-cot', ready: true },
+      { label: '自定义文风', href: '/tutorials/custom-style', ready: true },
     ],
     accentFrom: '#d946ef',
     accentTo: '#fb7185',
