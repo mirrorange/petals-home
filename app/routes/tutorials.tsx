@@ -45,6 +45,7 @@ const categories: TutorialCategory[] = [
     description: '从零开始，跟着教程完成花瓣预设的安装与配置，几分钟即可上手。',
     items: [
       { label: '预设安装教程', href: '/tutorials/quick-start', ready: true },
+      { label: '重新设置预设', href: '/tutorials/reset-preset', ready: true },
       { label: 'NoAss 插件配置（DeepSeek）', href: '/tutorials/noass', ready: true },
     ],
     accentFrom: '#9333ea',

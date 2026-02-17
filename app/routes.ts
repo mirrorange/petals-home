@@ -5,6 +5,7 @@ export default [
   route("tutorials", "routes/tutorials.tsx"),
   route("tutorials/quick-start", "routes/tutorials.quick-start.tsx"),
   route("tutorials/noass", "routes/tutorials.noass.tsx"),
+  route("tutorials/reset-preset", "routes/tutorials.reset-preset.tsx"),
   route("tutorials/cot", "routes/tutorials.cot.tsx"),
   route("tutorials/basic-settings", "routes/tutorials.basic-settings.tsx"),
   route("tutorials/preset-features", "routes/tutorials.preset-features.tsx"),
