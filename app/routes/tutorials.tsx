@@ -47,6 +47,7 @@ const categories: TutorialCategory[] = [
       { label: '预设安装教程', href: '/tutorials/quick-start', ready: true },
       { label: '重新设置预设', href: '/tutorials/reset-preset', ready: true },
       { label: 'NoAss 插件配置（DeepSeek）', href: '/tutorials/noass', ready: true },
+      { label: '反过滤/防截断（Gemini）', href: '/tutorials/gemini-filter', ready: true },
     ],
     accentFrom: '#9333ea',
     accentTo: '#ec4899',

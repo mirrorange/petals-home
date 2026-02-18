@@ -19,4 +19,5 @@ export default [
   route("tutorials/custom-style", "routes/tutorials.custom-style.tsx"),
   route("tutorials/custom-prompt", "routes/tutorials.custom-prompt.tsx"),
   route("tutorials/optional-prompts", "routes/tutorials.optional-prompts.tsx"),
+  route("tutorials/gemini-filter", "routes/tutorials.gemini-filter.tsx"),
 ] satisfies RouteConfig;

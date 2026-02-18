@@ -436,6 +436,25 @@ function StepDone({ isDark }: { isDark: boolean }) {
         className="max-w-md mx-auto"
       />
 
+      <TutorialLinkCard
+        isDark={isDark}
+        icon={AlertTriangle}
+        title="使用 Gemini 模型且出现空回复？"
+        description={
+          <>
+            Gemini 的外置审查有时会拦截输出导致空回复。若作品包含 NSFW 内容，可前往教程配置{' '}
+            <span className="font-semibold" style={{ color: isDark ? '#f472b6' : '#ec4899' }}>
+              Gemini 反过滤
+            </span>
+            。
+          </>
+        }
+        href="/tutorials/gemini-filter"
+        ctaLabel="前往 Gemini 反过滤教程"
+        theme="pink"
+        className="max-w-md mx-auto"
+      />
+
       <TutorialHintCard isDark={isDark} className="max-w-md mx-auto">
         <ul className="list-disc pl-4 space-y-1">
           <li>如果界面没有变化，请尝试刷新网页。</li>
