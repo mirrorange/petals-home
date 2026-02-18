@@ -17,4 +17,5 @@ export default [
   route("tutorials/banned-words", "routes/tutorials.banned-words.tsx"),
   route("tutorials/custom-cot", "routes/tutorials.custom-cot.tsx"),
   route("tutorials/custom-style", "routes/tutorials.custom-style.tsx"),
+  route("tutorials/custom-prompt", "routes/tutorials.custom-prompt.tsx"),
 ] satisfies RouteConfig;

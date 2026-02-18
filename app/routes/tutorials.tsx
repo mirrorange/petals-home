@@ -93,6 +93,7 @@ const categories: TutorialCategory[] = [
       { label: '修改禁词表', href: '/tutorials/banned-words', ready: true },
       { label: '定制 CoT 问题', href: '/tutorials/custom-cot', ready: true },
       { label: '自定义文风', href: '/tutorials/custom-style', ready: true },
+      { label: '自定义提示词', href: '/tutorials/custom-prompt', ready: true },
     ],
     accentFrom: '#d946ef',
     accentTo: '#fb7185',
