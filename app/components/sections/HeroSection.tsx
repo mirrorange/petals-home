@@ -72,7 +72,7 @@ export default function HeroSection({ isDark }: HeroSectionProps) {
           >
             花瓣预设
           </span>
-          <span className="block text-3xl sm:text-4xl md:text-5xl font-light mt-2 tracking-wide
+          <span className="block text-3xl sm:text-4xl md:text-5xl font-light mt-3 tracking-wide
             text-slate-600 dark:text-slate-300"
             style={{ fontFamily: "'Brush Script MT', cursive" }}
           >
