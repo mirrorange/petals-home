@@ -156,7 +156,7 @@ function StepFindEntry({ isDark }: { isDark: boolean }) {
         <GuideStepCard
           index={2}
           title="选择设置项"
-          accent="purple"
+          accent="pink"
           isDark={isDark}
           detail={
             <>
@@ -226,7 +226,7 @@ function StepLength({ isDark }: { isDark: boolean }) {
       label: '不少于',
       labelEn: 'At Least',
       desc: '期望正文字数不少于设置字数，适合希望获得更充实、丰富内容的场景。',
-      accent: '#a855f7',
+      accent: '#ec4899',
       icon: <ArrowRight size={20} />,
     },
     {
@@ -243,12 +243,12 @@ function StepLength({ isDark }: { isDark: boolean }) {
       <div
         className="rounded-xl p-4 text-sm leading-relaxed"
         style={{
-          background: isDark ? 'rgba(147,51,234,0.06)' : 'rgba(147,51,234,0.04)',
-          border: isDark ? '1px solid rgba(147,51,234,0.15)' : '1px solid rgba(147,51,234,0.08)',
+          background: isDark ? 'rgba(236,72,153,0.06)' : 'rgba(236,72,153,0.04)',
+          border: isDark ? '1px solid rgba(236,72,153,0.15)' : '1px solid rgba(236,72,153,0.08)',
           color: isDark ? '#cbd5e1' : '#475569',
         }}
       >
-        <span className="font-bold" style={{ color: isDark ? '#c084fc' : '#7e22ce' }}>
+        <span className="font-bold" style={{ color: isDark ? '#f472b6' : '#db2777' }}>
           回复长度（Response Length）
         </span>
         {' '}控制模型每次回复的字词数量。通常
@@ -268,7 +268,7 @@ function StepLength({ isDark }: { isDark: boolean }) {
               label,
             }))}
             highlightItemId="600"
-            highlightTone="purple"
+            highlightTone="pink"
             showCancelButton={false}
           />
         </STPanel>
@@ -282,7 +282,7 @@ function StepLength({ isDark }: { isDark: boolean }) {
               label,
             }))}
             highlightItemId={null}
-            highlightTone="purple"
+            highlightTone="pink"
             showCancelButton={false}
           />
         </STPanel>
@@ -357,12 +357,12 @@ function StepLanguage({ isDark }: { isDark: boolean }) {
       <div
         className="rounded-xl p-4 text-sm leading-relaxed"
         style={{
-          background: isDark ? 'rgba(147,51,234,0.06)' : 'rgba(147,51,234,0.04)',
-          border: isDark ? '1px solid rgba(147,51,234,0.15)' : '1px solid rgba(147,51,234,0.08)',
+          background: isDark ? 'rgba(236,72,153,0.06)' : 'rgba(236,72,153,0.04)',
+          border: isDark ? '1px solid rgba(236,72,153,0.15)' : '1px solid rgba(236,72,153,0.08)',
           color: isDark ? '#cbd5e1' : '#475569',
         }}
       >
-        <span className="font-bold" style={{ color: isDark ? '#c084fc' : '#7e22ce' }}>
+        <span className="font-bold" style={{ color: isDark ? '#f472b6' : '#db2777' }}>
           语言设置（Language Setting）
         </span>
         {' '}用于指定创作使用的语言。包含三个层级的语言配置，可分别控制不同场景下的语言偏好。
@@ -384,7 +384,7 @@ function StepLanguage({ isDark }: { isDark: boolean }) {
           subtitle="Dialogue Language"
           description="角色对白使用的语言。如与首选语言不同，对白末尾会附带首选语言翻译。需角色卡支持。"
           points={['适合多语言混合叙事', '不确定时建议选「未设置」']}
-          accentColor="#a855f7"
+          accentColor="#ec4899"
           icon={<MessageSquare size={22} />}
         />
         <SettingDetailCard
@@ -409,7 +409,7 @@ function StepLanguage({ isDark }: { isDark: boolean }) {
               label,
             }))}
             highlightItemId="中文"
-            highlightTone="purple"
+            highlightTone="pink"
             showCancelButton={false}
           />
         </STPanel>
@@ -423,7 +423,7 @@ function StepLanguage({ isDark }: { isDark: boolean }) {
               label,
             }))}
             highlightItemId={null}
-            highlightTone="purple"
+            highlightTone="pink"
             showCancelButton={false}
           />
         </STPanel>
@@ -470,7 +470,7 @@ const MODE_DATA: Record<ModeType, ModeInfo> = {
   expansion: {
     label: '扩写',
     labelEn: 'Expansion',
-    accent: '#a855f7',
+    accent: '#ec4899',
     icon: <Shuffle size={22} />,
     tagline: '大纲扩展，充实细节',
     description: '将你的输入视为用户意图、指令或故事片段的缩略描述，Freesia 会据此扩展出完整的段落内容。适合给出简要指令或情节要点让模型发挥。',
@@ -491,12 +491,12 @@ function StepMode({ isDark }: { isDark: boolean }) {
       <div
         className="rounded-xl p-4 text-sm leading-relaxed"
         style={{
-          background: isDark ? 'rgba(147,51,234,0.06)' : 'rgba(147,51,234,0.04)',
-          border: isDark ? '1px solid rgba(147,51,234,0.15)' : '1px solid rgba(147,51,234,0.08)',
+          background: isDark ? 'rgba(236,72,153,0.06)' : 'rgba(236,72,153,0.04)',
+          border: isDark ? '1px solid rgba(236,72,153,0.15)' : '1px solid rgba(236,72,153,0.08)',
           color: isDark ? '#cbd5e1' : '#475569',
         }}
       >
-        <span className="font-bold" style={{ color: isDark ? '#c084fc' : '#7e22ce' }}>
+        <span className="font-bold" style={{ color: isDark ? '#f472b6' : '#db2777' }}>
           模式设置（Mode Setting）
         </span>
         {' '}决定模型如何处理你的输入。两种模式对应不同的创作方式，影响 Freesia 对输入内容的理解方式。
@@ -522,10 +522,10 @@ function StepMode({ isDark }: { isDark: boolean }) {
                   : 'linear-gradient(135deg, #fefcff, #f5f0ff)',
                 border: isDark
                   ? '1px solid rgba(107,114,128,0.35)'
-                  : '1px solid rgba(147,51,234,0.15)',
+                  : '1px solid rgba(236,72,153,0.15)',
                 boxShadow: isDark
                   ? '0 20px 60px rgba(0,0,0,0.6)'
-                  : '0 20px 60px rgba(147,51,234,0.12)',
+                  : '0 20px 60px rgba(236,72,153,0.12)',
               }}
             >
               <h3
@@ -544,7 +544,7 @@ function StepMode({ isDark }: { isDark: boolean }) {
                   : isDark ? '#2b2d31' : '#ffffff'
                 const border = isActive
                   ? `1px solid ${m.accent}`
-                  : isDark ? '1px solid rgba(107,114,128,0.3)' : '1px solid rgba(147,51,234,0.1)'
+                  : isDark ? '1px solid rgba(107,114,128,0.3)' : '1px solid rgba(236,72,153,0.1)'
                 return (
                   <div
                     key={modeId}
@@ -618,18 +618,18 @@ function StepMode({ isDark }: { isDark: boolean }) {
               className="h-full min-h-[280px] rounded-2xl flex flex-col items-center justify-center gap-4 p-6"
               style={{
                 background: isDark
-                  ? 'linear-gradient(135deg, rgba(147,51,234,0.03), rgba(15,23,42,0.3))'
-                  : 'linear-gradient(135deg, rgba(147,51,234,0.02), rgba(255,255,255,0.8))',
+                  ? 'linear-gradient(135deg, rgba(236,72,153,0.03), rgba(15,23,42,0.3))'
+                  : 'linear-gradient(135deg, rgba(236,72,153,0.02), rgba(255,255,255,0.8))',
                 border: isDark
-                  ? '1px dashed rgba(147,51,234,0.2)'
-                  : '1px dashed rgba(147,51,234,0.15)',
+                  ? '1px dashed rgba(236,72,153,0.2)'
+                  : '1px dashed rgba(236,72,153,0.15)',
               }}
             >
               <div
                 className="w-14 h-14 rounded-full flex items-center justify-center"
                 style={{
-                  background: isDark ? 'rgba(147,51,234,0.08)' : 'rgba(147,51,234,0.05)',
-                  color: isDark ? '#7c3aed50' : '#9333ea40',
+                  background: isDark ? 'rgba(236,72,153,0.08)' : 'rgba(236,72,153,0.05)',
+                  color: isDark ? '#ec489950' : '#ec489940',
                 }}
               >
                 <Zap size={28} />
@@ -663,7 +663,7 @@ function StepMode({ isDark }: { isDark: boolean }) {
 function StepModel({ isDark }: { isDark: boolean }) {
   const models = [
     { name: 'Claude (General)', desc: 'Claude 通用模式，适用于大多数 Claude 模型', accent: '#ec4899' },
-    { name: 'Claude (Prefill)', desc: 'Claude 预填模式，适用于 Claude 4.5 及更早版本', accent: '#a855f7' },
+    { name: 'Claude (Prefill)', desc: 'Claude 预填模式，适用于 Claude 4.5 及更早版本', accent: '#f472b6' },
     { name: 'Claude You.com', desc: '通过 You.com 接口使用的 Claude 模型', accent: '#8b5cf6' },
     { name: 'DeepSeek', desc: 'DeepSeek V3 模型', accent: '#3b82f6' },
     { name: 'Gemini', desc: 'Google Gemini 系列模型', accent: '#06b6d4' },
@@ -674,12 +674,12 @@ function StepModel({ isDark }: { isDark: boolean }) {
       <div
         className="rounded-xl p-4 text-sm leading-relaxed"
         style={{
-          background: isDark ? 'rgba(147,51,234,0.06)' : 'rgba(147,51,234,0.04)',
-          border: isDark ? '1px solid rgba(147,51,234,0.15)' : '1px solid rgba(147,51,234,0.08)',
+          background: isDark ? 'rgba(236,72,153,0.06)' : 'rgba(236,72,153,0.04)',
+          border: isDark ? '1px solid rgba(236,72,153,0.15)' : '1px solid rgba(236,72,153,0.08)',
           color: isDark ? '#cbd5e1' : '#475569',
         }}
       >
-        <span className="font-bold" style={{ color: isDark ? '#c084fc' : '#7e22ce' }}>
+        <span className="font-bold" style={{ color: isDark ? '#f472b6' : '#db2777' }}>
           模型设置（Model Setting）
         </span>
         {' '}用于为当前使用的模型绑定一个模型类型。Petals 会自动保存模型名称与所选类型的绑定关系，
@@ -728,7 +728,7 @@ function StepModel({ isDark }: { isDark: boolean }) {
             <ul className="list-disc pl-4 space-y-1">
               <li>模型类型绑定是<span className="text-pink-400 font-medium">按模型名称保存</span>的，切换模型后会自动加载之前的绑定。</li>
               <li>首次使用新模型时需要手动设置一次类型，此后无需重复操作。</li>
-              <li>若不确定选择哪个类型，Claude 系列模型推荐使用 <span className="text-purple-400 font-medium">Claude (General)</span>。</li>
+              <li>若不确定选择哪个类型，Claude 系列模型推荐使用 <span className="text-pink-400 font-medium">Claude (General)</span>。</li>
             </ul>
           </TutorialHintCard>
         </div>
@@ -745,7 +745,7 @@ function StepModel({ isDark }: { isDark: boolean }) {
                 label,
               }))}
               highlightItemId={null}
-              highlightTone="purple"
+              highlightTone="pink"
               showCancelButton={false}
             />
           </STPanel>

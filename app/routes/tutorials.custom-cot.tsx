@@ -71,11 +71,11 @@ function StepUnderstand({ isDark }: { isDark: boolean }) {
         <GuideStepCard
           index={2}
           title="主要问题 (Mandatory)"
-          accent="purple"
+          accent="pink"
           isDark={isDark}
           detail={
             <>
-              每次 CoT 都会考虑的问题。适合<span className="font-semibold" style={{ color: isDark ? '#c084fc' : '#7e22ce' }}>关键的、必须考虑</span>的内容。
+              每次 CoT 都会考虑的问题。适合<span className="font-semibold" style={{ color: isDark ? '#f472b6' : '#db2777' }}>关键的、必须考虑</span>的内容。
             </>
           }
           tip="例如：情感一致性检查、角色行为合理性等核心问题。"
@@ -104,12 +104,12 @@ function StepUnderstand({ isDark }: { isDark: boolean }) {
               ? 'linear-gradient(135deg, rgba(15,12,24,0.8), rgba(26,22,37,0.6))'
               : 'linear-gradient(135deg, rgba(255,255,255,0.9), rgba(250,245,255,0.5))',
             border: isDark
-              ? '1px solid rgba(147,51,234,0.15)'
-              : '1px solid rgba(147,51,234,0.1)',
+              ? '1px solid rgba(236,72,153,0.15)'
+              : '1px solid rgba(236,72,153,0.1)',
           }}
         >
           <div className="flex items-center gap-2 mb-3">
-            <Brain size={18} style={{ color: isDark ? '#c084fc' : '#9333ea' }} />
+            <Brain size={18} style={{ color: isDark ? '#f472b6' : '#ec4899' }} />
             <span className="text-sm font-bold" style={{ color: isDark ? '#e5e7eb' : '#334155' }}>
               CoT 思考流程
             </span>
@@ -119,16 +119,16 @@ function StepUnderstand({ isDark }: { isDark: boolean }) {
           <div
             className="rounded-lg p-3 space-y-2"
             style={{
-              background: isDark ? 'rgba(168,85,247,0.08)' : 'rgba(168,85,247,0.04)',
-              border: isDark ? '1px solid rgba(168,85,247,0.2)' : '1px solid rgba(168,85,247,0.12)',
+              background: isDark ? 'rgba(236,72,153,0.08)' : 'rgba(236,72,153,0.04)',
+              border: isDark ? '1px solid rgba(236,72,153,0.2)' : '1px solid rgba(236,72,153,0.12)',
             }}
           >
             <div className="flex items-center gap-2">
               <span
                 className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded"
                 style={{
-                  background: isDark ? 'rgba(168,85,247,0.2)' : 'rgba(168,85,247,0.1)',
-                  color: isDark ? '#c084fc' : '#7e22ce',
+                  background: isDark ? 'rgba(236,72,153,0.2)' : 'rgba(236,72,153,0.1)',
+                  color: isDark ? '#f472b6' : '#db2777',
                 }}
               >
                 主要问题
@@ -139,11 +139,11 @@ function StepUnderstand({ isDark }: { isDark: boolean }) {
             </div>
             <div className="space-y-1">
               <div className="flex items-start gap-2 text-xs" style={{ color: isDark ? '#d1d5db' : '#475569' }}>
-                <HelpCircle size={12} className="shrink-0 mt-0.5" style={{ color: isDark ? '#c084fc' : '#9333ea' }} />
+                <HelpCircle size={12} className="shrink-0 mt-0.5" style={{ color: isDark ? '#f472b6' : '#ec4899' }} />
                 <span>Based on the latest user input, along with the story's history and requirements, how will the next part of the story unfold?</span>
               </div>
               <div className="flex items-start gap-2 text-xs" style={{ color: isDark ? '#d1d5db' : '#475569' }}>
-                <HelpCircle size={12} className="shrink-0 mt-0.5" style={{ color: isDark ? '#c084fc' : '#9333ea' }} />
+                <HelpCircle size={12} className="shrink-0 mt-0.5" style={{ color: isDark ? '#f472b6' : '#ec4899' }} />
                 <span>你的自定义主要问题…</span>
               </div>
             </div>
@@ -238,12 +238,12 @@ function StepFindQuestions({
         <GuideStepCard
           index={startIndex + 2}
           title="点击编辑按钮"
-          accent="purple"
+          accent="pink"
           isDark={isDark}
           detail={
             <>
               点击该条目右侧的{' '}
-              <span className="font-semibold" style={{ color: isDark ? '#d8b4fe' : '#7e22ce' }}>
+              <span className="font-semibold" style={{ color: isDark ? '#f9a8d4' : '#db2777' }}>
                 小铅笔（编辑）
               </span>
               {' '}按钮，进入编辑对话框。
@@ -291,7 +291,7 @@ function StepEditQuestions({
   startIndex?: number
 }) {
   const fieldBg = isDark ? '#0b0c0f' : '#ffffff'
-  const fieldBorder = isDark ? 'rgba(107,114,128,0.3)' : 'rgba(147,51,234,0.15)'
+  const fieldBorder = isDark ? 'rgba(107,114,128,0.3)' : 'rgba(236,72,153,0.15)'
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10 lg:gap-12 items-start">
@@ -299,14 +299,14 @@ function StepEditQuestions({
         <GuideStepCard
           index={startIndex}
           title="添加自定义问题"
-          accent="purple"
+          accent="pink"
           isDark={isDark}
           detail={
             <>
               在编辑框的{' '}
-              <span className="font-semibold" style={{ color: isDark ? '#d8b4fe' : '#7e22ce' }}>提示词</span>
+              <span className="font-semibold" style={{ color: isDark ? '#f9a8d4' : '#db2777' }}>提示词</span>
               {' '}区域，按对应位置添加问题：
-              <span className="font-semibold" style={{ color: isDark ? '#c084fc' : '#7e22ce' }}>主要问题</span>添加在
+              <span className="font-semibold" style={{ color: isDark ? '#f472b6' : '#db2777' }}>主要问题</span>添加在
               {' '}<TutorialInlineCode isDark={isDark}>Mandatory Questions</TutorialInlineCode>{' '}下方，
               <span className="font-semibold" style={{ color: isDark ? '#4ade80' : '#16a34a' }}>可选问题</span>添加在
               {' '}<TutorialInlineCode isDark={isDark}>Optional Questions</TutorialInlineCode>{' '}下方。
@@ -343,19 +343,19 @@ function StepEditQuestions({
                 style={{
                   background: fieldBg,
                   border: isDark
-                    ? '2px solid rgba(168,85,247,0.5)'
-                    : '2px solid rgba(168,85,247,0.4)',
+                    ? '2px solid rgba(236,72,153,0.5)'
+                    : '2px solid rgba(236,72,153,0.4)',
                   color: isDark ? '#d1d5db' : '#475569',
                   boxShadow: isDark
-                    ? '0 0 12px rgba(168,85,247,0.15)'
-                    : '0 0 12px rgba(168,85,247,0.1)',
+                    ? '0 0 12px rgba(236,72,153,0.15)'
+                    : '0 0 12px rgba(236,72,153,0.1)',
                 }}
               >
                 <span style={{ color: isDark ? '#9ca3af' : '#64748b' }}>## Mandatory Questions</span>
                 <br />
                 - Based on the latest user input, along with the story's history and requirements, how will the next part of the story unfold?
                 <br />
-                <span className="font-semibold" style={{ color: isDark ? '#c084fc' : '#7e22ce' }}>
+                <span className="font-semibold" style={{ color: isDark ? '#f472b6' : '#db2777' }}>
                   - 在这里添加新的主要问题
                 </span>
                 <br />
@@ -364,14 +364,14 @@ function StepEditQuestions({
                 <br />
                 - Are there opportunities to introduce twists, surprises, or new elements into the story?
                 <br />
-                <span className="font-semibold" style={{ color: isDark ? '#c084fc' : '#7e22ce' }}>
+                <span className="font-semibold" style={{ color: isDark ? '#f472b6' : '#db2777' }}>
                   - 在这里添加新的可选问题
                 </span>
               </div>
               <div
                 className="absolute -top-3 right-2 text-xs px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
                 style={{
-                  background: isDark ? '#a855f7' : '#7e22ce',
+                  background: isDark ? '#ec4899' : '#db2777',
                   color: '#fff',
                 }}
               >
@@ -512,13 +512,13 @@ function StepSave({ isDark }: { isDark: boolean }) {
         <GuideStepCard
           index={1}
           title="保存预设"
-          accent="purple"
+          accent="pink"
           isDark={isDark}
           detail={
             <>
               回到预设页面，点击名称输入框右侧的{' '}
-              <span className="font-semibold" style={{ color: isDark ? '#c084fc' : '#7e22ce' }}>
-                紫色保存按钮
+              <span className="font-semibold" style={{ color: isDark ? '#f472b6' : '#db2777' }}>
+                粉色保存按钮
               </span>
               {' '}将修改写入预设文件。
             </>
@@ -530,7 +530,7 @@ function StepSave({ isDark }: { isDark: boolean }) {
           <ul className="list-disc pl-4 space-y-1">
             <li>
               每次修改 Prompt 后都需要点击{' '}
-              <span className="text-purple-400">保存按钮</span> 保存预设。
+              <span className="text-pink-400">保存按钮</span> 保存预设。
             </li>
             <li>
               两种方法可以混合使用：核心问题直接写在 Questions 条目中，与特定提示词关联的问题用 addglobalvar 宏。
@@ -561,8 +561,8 @@ function StepSave({ isDark }: { isDark: boolean }) {
             </div>
             <div className="flex gap-1">
               <div className="relative group">
-                <STButton icon={Save} highlight="purple" isDark={isDark} />
-                <div className="absolute bottom-full mb-2 right-0 bg-purple-600 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                <STButton icon={Save} highlight="pink" isDark={isDark} />
+                <div className="absolute bottom-full mb-2 right-0 bg-pink-600 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                   记得保存
                 </div>
               </div>
@@ -574,7 +574,7 @@ function StepSave({ isDark }: { isDark: boolean }) {
           <div
             className="mt-2 space-y-2 pt-3"
             style={{
-              borderTop: isDark ? '1px solid rgba(107,114,128,0.3)' : '1px solid rgba(147,51,234,0.08)',
+              borderTop: isDark ? '1px solid rgba(107,114,128,0.3)' : '1px solid rgba(236,72,153,0.08)',
             }}
           >
             <div className="flex items-center justify-between">

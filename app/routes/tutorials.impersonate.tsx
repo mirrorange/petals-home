@@ -548,7 +548,7 @@ function StepTriggerInteractive({ isDark }: { isDark: boolean }) {
                     border: isDark
                       ? '1px solid rgba(107,114,128,0.2)'
                       : '1px solid rgba(147,51,234,0.06)',
-                    color: isDark ? '#f9a8d4' : '#db2777',
+                    color: isDark ? '#d8b4fe' : '#7e22ce',
                   }}
                 >
                   @Freesia 帮我代写，语气温柔一些
@@ -643,7 +643,7 @@ function StepTriggerInteractive({ isDark }: { isDark: boolean }) {
                       style={{
                         background: triggered
                           ? isDark
-                            ? 'rgba(168,85,247,0.15)'
+                            ? 'rgba(147,51,234,0.15)'
                             : 'rgba(124,58,237,0.08)'
                           : isDark
                           ? 'rgba(107,114,128,0.15)'
@@ -658,7 +658,7 @@ function StepTriggerInteractive({ isDark }: { isDark: boolean }) {
                         border: `1px solid ${
                           triggered
                             ? isDark
-                              ? 'rgba(168,85,247,0.3)'
+                              ? 'rgba(147,51,234,0.3)'
                               : 'rgba(124,58,237,0.15)'
                             : isDark
                             ? 'rgba(107,114,128,0.3)'

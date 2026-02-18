@@ -115,14 +115,14 @@ function StepUnderstand({ isDark }: { isDark: boolean }) {
         <GuideStepCard
           index={2}
           title="预设文风"
-          accent="purple"
+          accent="pink"
           isDark={isDark}
           detail={
             <>
               花瓣预设内置了多种文风。每种文风有不同的叙事特征，选择后{" "}
               <span
                 className="font-semibold"
-                style={{ color: isDark ? "#c084fc" : "#7e22ce" }}
+                style={{ color: isDark ? "#f472b6" : "#db2777" }}
               >
                 只需开启对应条目
               </span>{" "}
@@ -156,14 +156,14 @@ function StepUnderstand({ isDark }: { isDark: boolean }) {
               ? "linear-gradient(135deg, rgba(15,12,24,0.8), rgba(26,22,37,0.6))"
               : "linear-gradient(135deg, rgba(255,255,255,0.9), rgba(250,245,255,0.5))",
             border: isDark
-              ? "1px solid rgba(147,51,234,0.15)"
-              : "1px solid rgba(147,51,234,0.1)",
+              ? "1px solid rgba(236,72,153,0.15)"
+              : "1px solid rgba(236,72,153,0.1)",
           }}
         >
           <div className="flex items-center gap-2 mb-3">
             <Feather
               size={18}
-              style={{ color: isDark ? "#c084fc" : "#9333ea" }}
+              style={{ color: isDark ? "#f472b6" : "#ec4899" }}
             />
             <span
               className="text-sm font-bold"
@@ -187,7 +187,7 @@ function StepUnderstand({ isDark }: { isDark: boolean }) {
                       : "rgba(250,245,255,0.6)",
                     border: isDark
                       ? "1px solid rgba(107,114,128,0.2)"
-                      : "1px solid rgba(147,51,234,0.08)",
+                      : "1px solid rgba(236,72,153,0.08)",
                   }}
                 >
                   <Icon
@@ -283,13 +283,13 @@ function StepFindStyle({ isDark }: { isDark: boolean }) {
         <GuideStepCard
           index={3}
           title="选择或自定义"
-          accent="purple"
+          accent="pink"
           isDark={isDark}
           detail={
             <>
               <span
                 className="font-semibold"
-                style={{ color: isDark ? "#c084fc" : "#7e22ce" }}
+                style={{ color: isDark ? "#f472b6" : "#db2777" }}
               >
                 选择预设文风：
               </span>
@@ -297,7 +297,7 @@ function StepFindStyle({ isDark }: { isDark: boolean }) {
               <br />
               <span
                 className="font-semibold"
-                style={{ color: isDark ? "#c084fc" : "#7e22ce" }}
+                style={{ color: isDark ? "#f472b6" : "#db2777" }}
               >
                 自定义文风：
               </span>
@@ -394,14 +394,14 @@ function StepEditStyle({ isDark }: { isDark: boolean }) {
         <GuideStepCard
           index={1}
           title="编写风格描述"
-          accent="purple"
+          accent="pink"
           isDark={isDark}
           detail={
             <>
               在文风名称下方编写风格描述。可以包含：
               <span
                 className="font-semibold"
-                style={{ color: isDark ? "#d8b4fe" : "#7e22ce" }}
+                style={{ color: isDark ? "#f9a8d4" : "#db2777" }}
               >
                 风格流派、美学特征、语言特征、写作要求、示例片段
               </span>
@@ -473,12 +473,12 @@ function StepEditStyle({ isDark }: { isDark: boolean }) {
                 style={{
                   background: fieldBg,
                   border: isDark
-                    ? "2px solid rgba(168,85,247,0.5)"
-                    : "2px solid rgba(168,85,247,0.4)",
+                    ? "2px solid rgba(236,72,153,0.5)"
+                    : "2px solid rgba(236,72,153,0.4)",
                   color: isDark ? "#d1d5db" : "#475569",
                   boxShadow: isDark
-                    ? "0 0 12px rgba(168,85,247,0.15)"
-                    : "0 0 12px rgba(168,85,247,0.1)",
+                    ? "0 0 12px rgba(236,72,153,0.15)"
+                    : "0 0 12px rgba(236,72,153,0.1)",
                 }}
               >
                 <span style={{ color: isDark ? "#6b7280" : "#94a3b8" }}>
@@ -497,7 +497,7 @@ function StepEditStyle({ isDark }: { isDark: boolean }) {
                 <br />
                 <span
                   className="font-semibold"
-                  style={{ color: isDark ? "#c084fc" : "#7e22ce" }}
+                  style={{ color: isDark ? "#f472b6" : "#db2777" }}
                 >
                   在这里描述想要的文风…
                 </span>
@@ -518,7 +518,7 @@ function StepEditStyle({ isDark }: { isDark: boolean }) {
               <div
                 className="absolute -top-3 right-2 text-xs px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
                 style={{
-                  background: isDark ? "#a855f7" : "#7e22ce",
+                  background: isDark ? "#ec4899" : "#db2777",
                   color: "#fff",
                 }}
               >
@@ -543,16 +543,16 @@ function StepEnableAndSave({ isDark }: { isDark: boolean }) {
         <GuideStepCard
           index={1}
           title="保存预设"
-          accent="purple"
+          accent="pink"
           isDark={isDark}
           detail={
             <>
               回到预设页面，点击名称输入框右侧的{" "}
               <span
                 className="font-semibold"
-                style={{ color: isDark ? "#c084fc" : "#7e22ce" }}
+                style={{ color: isDark ? "#f472b6" : "#db2777" }}
               >
-                紫色保存按钮
+                粉色保存按钮
               </span>{" "}
               将修改写入预设文件。
             </>
@@ -599,8 +599,8 @@ function StepEnableAndSave({ isDark }: { isDark: boolean }) {
             </div>
             <div className="flex gap-1">
               <div className="relative group">
-                <STButton icon={Save} highlight="purple" isDark={isDark} />
-                <div className="absolute bottom-full mb-2 right-0 bg-purple-600 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                <STButton icon={Save} highlight="pink" isDark={isDark} />
+                <div className="absolute bottom-full mb-2 right-0 bg-pink-600 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                   记得保存
                 </div>
               </div>
@@ -614,7 +614,7 @@ function StepEnableAndSave({ isDark }: { isDark: boolean }) {
             style={{
               borderTop: isDark
                 ? "1px solid rgba(107,114,128,0.3)"
-                : "1px solid rgba(147,51,234,0.08)",
+                : "1px solid rgba(236,72,153,0.08)",
             }}
           >
             <div className="flex items-center justify-between">

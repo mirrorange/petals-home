@@ -1,4 +1,4 @@
-export type GuideAccent = 'red' | 'purple' | 'yellow' | 'blue' | 'green'
+export type GuideAccent = 'red' | 'purple' | 'pink' | 'yellow' | 'blue' | 'green'
 
 export function GuideStepCard({
   index,
@@ -18,6 +18,7 @@ export function GuideStepCard({
   const accentColorMap: Record<GuideAccent, string> = {
     red: '#ef4444',
     purple: '#a855f7',
+    pink: '#ec4899',
     yellow: '#eab308',
     blue: '#3b82f6',
     green: '#22c55e',
