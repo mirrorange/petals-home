@@ -915,14 +915,14 @@ function StepDelete({ isDark }: { isDark: boolean }) {
         <GuideStepCard
           index={3}
           title="确认清除"
-          accent="purple"
+          accent="pink"
           isDark={isDark}
           detail={
             <>
               确认选择后，点击{' '}
               <span
                 className="font-semibold"
-                style={{ color: isDark ? '#c084fc' : '#9333ea' }}
+                style={{ color: isDark ? '#f472b6' : '#ec4899' }}
               >
                 Ok
               </span>

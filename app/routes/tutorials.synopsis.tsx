@@ -47,14 +47,14 @@ function StepIntro({ isDark }: { isDark: boolean }) {
         <GuideStepCard
           index={1}
           title="什么是摘要系统"
-          accent="purple"
+          accent="pink"
           isDark={isDark}
           detail={
             <>
               摘要系统（Event Synopsis）会在每次故事正文之后自动输出一张{' '}
               <span
                 className="font-semibold"
-                style={{ color: isDark ? '#c084fc' : '#7e22ce' }}
+                style={{ color: isDark ? '#f472b6' : '#ec4899' }}
               >
                 摘要卡片
               </span>

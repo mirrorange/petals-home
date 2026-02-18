@@ -161,14 +161,14 @@ function StepFind({ isDark }: { isDark: boolean }) {
         <GuideStepCard
           index={3}
           title="点击编辑按钮"
-          accent="purple"
+          accent="pink"
           isDark={isDark}
           detail={
             <>
               点击该条目右侧的{' '}
               <span
                 className="font-semibold"
-                style={{ color: isDark ? '#d8b4fe' : '#7e22ce' }}
+                style={{ color: isDark ? '#f472b6' : '#ec4899' }}
               >
                 小铅笔（编辑）
               </span>

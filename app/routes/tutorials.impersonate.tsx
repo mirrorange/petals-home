@@ -507,7 +507,7 @@ function StepTriggerInteractive({ isDark }: { isDark: boolean }) {
           <GuideStepCard
             index={1}
             title="通过 @Freesia 触发代写"
-            accent="purple"
+            accent="pink"
             isDark={isDark}
             detail={
               <>
@@ -519,13 +519,13 @@ function StepTriggerInteractive({ isDark }: { isDark: boolean }) {
                 <ul className="list-disc pl-4 mt-2 space-y-1">
                   <li>
                     中文：
-                    <code className="text-xs px-1 py-0.5 rounded font-mono" style={{ background: isDark ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.06)', color: isDark ? '#d8b4fe' : '#7e22ce' }}>
+                    <code className="text-xs px-1 py-0.5 rounded font-mono" style={{ background: isDark ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.06)', color: isDark ? '#f472b6' : '#ec4899' }}>
                       代我 / 替我 / 帮我写 / 代写 / 代回
                     </code>
                   </li>
                   <li>
                     英文：
-                    <code className="text-xs px-1 py-0.5 rounded font-mono" style={{ background: isDark ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.06)', color: isDark ? '#d8b4fe' : '#7e22ce' }}>
+                    <code className="text-xs px-1 py-0.5 rounded font-mono" style={{ background: isDark ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.06)', color: isDark ? '#f472b6' : '#ec4899' }}>
                       impersonate / ghostwrite / reply as me
                     </code>
                   </li>
