@@ -550,7 +550,7 @@ function FAQSection({ isDark }: { isDark: boolean }) {
           style={{ color: isDark ? 'rgba(168,139,250,0.45)' : 'rgba(100,116,139,0.6)' }}
         >
           感谢{' '}
-          <span style={{ fontWeight: 600, color: isDark ? 'rgba(192,132,252,0.6)' : 'rgba(147,51,234,0.55)' }}>
+          <span style={{ fontWeight: 600, color: isDark ? '#f472b6' : '#ec4899' }}>
             蔬（@souffle100253006）
           </span>{' '}
           整理了部分常见问题。
