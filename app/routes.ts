@@ -18,4 +18,5 @@ export default [
   route("tutorials/custom-cot", "routes/tutorials.custom-cot.tsx"),
   route("tutorials/custom-style", "routes/tutorials.custom-style.tsx"),
   route("tutorials/custom-prompt", "routes/tutorials.custom-prompt.tsx"),
+  route("tutorials/optional-prompts", "routes/tutorials.optional-prompts.tsx"),
 ] satisfies RouteConfig;

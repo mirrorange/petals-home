@@ -62,6 +62,7 @@ const categories: TutorialCategory[] = [
       { label: 'Petals CoT 配置', href: '/tutorials/cot', ready: true },
       { label: '基本参数设置', href: '/tutorials/basic-settings', ready: true },
       { label: '预设功能设置', href: '/tutorials/preset-features', ready: true },
+      { label: '可选功能提示词', href: '/tutorials/optional-prompts', ready: true },
     ],
     accentFrom: '#7e22ce',
     accentTo: '#a855f7',
