@@ -242,7 +242,7 @@ export default function Tutorials() {
   return (
     <div
       className={`min-h-screen transition-colors duration-500
-      ${isDark ? 'bg-dark-bg text-slate-200' : 'bg-[#fefcff] text-slate-800'}`}
+      overflow-x-hidden ${isDark ? 'bg-dark-bg text-slate-200' : 'bg-[#fefcff] text-slate-800'}`}
     >
       <FloatingPetals />
       <Navbar isDark={isDark} onToggleTheme={toggleTheme} />
