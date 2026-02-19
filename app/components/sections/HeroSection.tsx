@@ -55,7 +55,7 @@ export default function HeroSection({ isDark }: HeroSectionProps) {
           <Sparkles className="w-4 h-4" />
           <span>SillyTavern 预设</span>
           <span className="px-2 py-0.5 rounded-full text-[10px] bg-freesia-500/15 text-freesia-600 dark:text-freesia-300 border border-freesia-300/30 dark:border-freesia-600/30">
-            V5.2
+            V5.3
           </span>
         </div>
 

@@ -161,7 +161,7 @@ function StepImportPreset({ isDark }: { isDark: boolean }) {
                   color: isDark ? '#e5e7eb' : '#475569',
                 }}
               >
-                Freesia Petals Full v5.2.json
+                Freesia Petals Full v5.3.json
               </code>{' '}
               并完成导入。
             </>
@@ -175,7 +175,7 @@ function StepImportPreset({ isDark }: { isDark: boolean }) {
           isDark={isDark}
           detail={
             <>
-              导入后下拉名称应显示 <span className="font-semibold">Freesia Petals Full v5.2</span>。
+              导入后下拉名称应显示 <span className="font-semibold">Freesia Petals Full v5.3</span>。
             </>
           }
           tip="名称没有变化通常代表导入失败或选错文件。"
@@ -205,7 +205,7 @@ function StepImportPreset({ isDark }: { isDark: boolean }) {
 
           <div className="flex gap-2">
             <div className="flex-grow">
-              <STInput value="Freesia Petals Full v5.2" isDark={isDark} />
+              <STInput value="Freesia Petals Full v5.3" isDark={isDark} />
             </div>
             <div className="flex gap-1">
               <div className="relative group">
@@ -272,7 +272,7 @@ function StepImportQR({ isDark }: { isDark: boolean }) {
                   color: isDark ? '#e5e7eb' : '#475569',
                 }}
               >
-                Freesia Petals v5.2 QR.json
+                Freesia Petals v5.3 QR.json
               </code>
               。
             </>
@@ -295,7 +295,7 @@ function StepImportQR({ isDark }: { isDark: boolean }) {
                 +
               </span>{' '}
               让下方全局快速回复项出现，并在该项目选中{' '}
-              <span className="font-semibold">Freesia Petals v5.2 QR</span>。
+              <span className="font-semibold">Freesia Petals v5.3 QR</span>。
             </>
           }
           tip="只导入不绑定到全局，或新增项选错 QR，都会导致 QR 集不生效。"
@@ -346,7 +346,7 @@ function StepImportQR({ isDark }: { isDark: boolean }) {
             >
               <div className="flex items-center gap-2 min-w-0 relative group">
                 <span className="flex items-center gap-1 min-w-0">
-                  <span className="truncate">Freesia Petals v5.2 QR</span>
+                  <span className="truncate">Freesia Petals v5.3 QR</span>
                   <ChevronDown
                     size={14}
                     className={isDark ? 'text-gray-500 shrink-0' : 'text-slate-400 shrink-0'}

@@ -549,7 +549,7 @@ function StepSave({ isDark }: { isDark: boolean }) {
 
           <div className="flex gap-2">
             <div className="flex-grow">
-              <STInput value="Freesia Petals Full v5.2" isDark={isDark} />
+              <STInput value="Freesia Petals Full v5.3" isDark={isDark} />
             </div>
             <div className="flex gap-1">
               <div className="relative group">
