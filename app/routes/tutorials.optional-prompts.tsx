@@ -109,6 +109,20 @@ const OPTIONAL_PROMPTS = [
   },
   {
     emoji: "📍",
+    label: "[CoT 兼容] CoT Compatibility",
+    enabled: false,
+    desc: "检测角色卡或上下文中是否要求输出显式思维结构，并按要求在正文前插入对应结构。",
+    tip: "仅在角色卡包含 CoT 时开启；若角色卡无 CoT 要求，应保持关闭。",
+  },
+  {
+    emoji: "📍",
+    label: "[格式增强] Output Structure Reinforcement",
+    enabled: false,
+    desc: "强化对上下文结构要求的识别，尽量避免漏掉状态栏、变量更新、选项等固定格式内容。",
+    tip: "仅在出现掉格式时开启；输出结构正确时建议关闭。",
+  },
+  {
+    emoji: "📍",
     label: "[防发情] NSFW Contextual Protocol",
     enabled: false,
     desc: "禁止角色在日常场景中满脑子色色，NSFW 场景的触发必须符合设定与故事进展。",
