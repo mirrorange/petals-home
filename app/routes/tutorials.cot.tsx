@@ -8,6 +8,7 @@ import {
   Languages,
   Send,
   Lightbulb,
+  Pencil,
 } from 'lucide-react'
 import type { Route } from './+types/tutorials.cot'
 import {
@@ -38,14 +39,14 @@ export function meta({}: Route.MetaArgs) {
     {
       name: 'description',
       content:
-        '花瓣预设 CoT（Chain of Thought）配置教程 — 了解线性、迭代、迭代&切换语言三种 CoT 模式的用法与配置方式。',
+        '花瓣预设 CoT（Chain of Thought）配置教程 — 了解线性、编辑、迭代、迭代&切换语言四种 CoT 模式的用法与配置方式。',
     },
   ]
 }
 
 /* ───────────── Interactive CoT Mode Selector for Step 2 ───────────── */
 
-type CoTModeId = 'linear' | 'iterative' | 'iterative-lang'
+type CoTModeId = 'linear' | 'edit' | 'iterative' | 'iterative-lang'
 
 const COT_MODE_DATA: Record<
   CoTModeId,
@@ -71,6 +72,18 @@ const COT_MODE_DATA: Record<
     accentColor: '#ec4899',
     icon: <Zap size={22} />,
     recommended: true,
+  },
+  edit: {
+    title: '编辑',
+    subtitle: 'Edit',
+    description:
+      '基于线性流程，Freesia 在写完正文后，会对内容进行自检，并使用 <Freesia_Edit> 模块进行文本编辑。',
+    pros: [
+      '在单次处理中完成写与改，兼顾速度与质量',
+      '有效减少禁词和重复用词',
+    ],
+    accentColor: '#f59e0b',
+    icon: <Pencil size={22} />,
   },
   iterative: {
     title: '迭代',
@@ -99,6 +112,7 @@ const COT_MODE_DATA: Record<
 
 const COT_FLOW_COMPONENTS: Record<CoTModeId, (isDark: boolean) => React.ReactNode> = {
   linear: (isDark) => <CoTFlowLinear isDark={isDark} />,
+  edit: (isDark) => <CoTFlowEdit isDark={isDark} />,
   iterative: (isDark) => <CoTFlowIterative isDark={isDark} />,
   'iterative-lang': (isDark) => <CoTFlowIterativeLang isDark={isDark} />,
 }
@@ -183,6 +197,41 @@ function CoTFlowLinear({ isDark }: { isDark: boolean }) {
         label="根据建议撰写故事正文"
         accentColor="#ec4899"
         icon={<Send size={18} />}
+      />
+    </div>
+  )
+}
+
+function CoTFlowEdit({ isDark }: { isDark: boolean }) {
+  return (
+    <div className="space-y-1">
+      <FlowStep
+        isDark={isDark}
+        role="Freesia 小苍兰"
+        label="分析场景，提出创作问题"
+        accentColor="#ec4899"
+        icon={<MessageSquare size={18} />}
+      />
+      <FlowStep
+        isDark={isDark}
+        role="Petals 花瓣"
+        label="基于问题给出创作建议"
+        accentColor="#a855f7"
+        icon={<Sparkles size={18} />}
+      />
+      <FlowStep
+        isDark={isDark}
+        role="Freesia 小苍兰"
+        label="根据建议撰写正文初稿"
+        accentColor="#ec4899"
+        icon={<Send size={18} />}
+      />
+      <FlowStep
+        isDark={isDark}
+        role="Freesia 小苍兰"
+        label="对初稿进行自检与编辑"
+        accentColor="#f59e0b"
+        icon={<Pencil size={18} />}
       />
     </div>
   )
@@ -428,6 +477,7 @@ function StepFindEntry({ isDark }: { isDark: boolean }) {
             <>
               在 CoT 模式菜单中，选择需要的模式：
               <span className="font-semibold"> 线性（推荐）</span>、
+              <span className="font-semibold"> 编辑</span>、
               <span className="font-semibold"> 迭代</span>、或
               <span className="font-semibold"> 迭代&amp;切换语言</span>。
             </>
@@ -513,6 +563,7 @@ function StepModeDetails({ isDark }: { isDark: boolean }) {
               title="Petals CoT 模式菜单"
               items={[
                 { id: 'linear', label: '线性（推荐）', accent: '#ec4899' },
+                { id: 'edit', label: '编辑', accent: '#f59e0b' },
                 { id: 'iterative', label: '迭代', accent: '#a855f7' },
                 { id: 'iterative-lang', label: '迭代&切换语言', accent: '#3b82f6' },
               ]}
@@ -638,7 +689,7 @@ const steps: Step[] = [
   },
   {
     title: 'CoT 模式详解',
-    desc: '了解三种 CoT 模式的原理与适用场景',
+    desc: '了解四种 CoT 模式的原理与适用场景',
     content: (isDark) => <StepModeDetails isDark={isDark} />,
   },
   {
@@ -659,7 +710,7 @@ export default function CoTConfig() {
         badgeIcon={<Settings className="w-3.5 h-3.5" />}
         badgeLabel="配置指南"
         title="Petals CoT 配置指南"
-        description="了解 CoT 模式的配置入口与三种模式的工作原理，选择最适合你的创作方式。"
+        description="了解 CoT 模式的配置入口与四种模式的工作原理，选择最适合你的创作方式。"
       />
 
       <TutorialStepNavigator
