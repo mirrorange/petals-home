@@ -344,7 +344,7 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
                   Petals Preset
                 </span>
                 <span className="text-[10px] text-slate-400 dark:text-slate-500 ml-auto font-mono">
-                  v5.3
+                  v5.4
                 </span>
               </div>
             </div>
